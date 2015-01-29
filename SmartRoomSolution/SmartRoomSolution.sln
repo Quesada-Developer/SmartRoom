@@ -4,10 +4,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartRoom.Web", "SmartRoomSolution\SmartRoom.Web.csproj", "{6E355644-1A7C-4705-9E9B-1E624AB202A9}"
+	ProjectSection(ProjectDependencies) = postProject
+		{612DEC73-286C-403A-ABDE-145B7C9430DA} = {612DEC73-286C-403A-ABDE-145B7C9430DA}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartRoom.Model", "SmartRoom.Model\SmartRoom.Model.csproj", "{612DEC73-286C-403A-ABDE-145B7C9430DA}"
-EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "SmartRoom.Database", "SmartRoom.Database\SmartRoom.Database.sqlproj", "{352571C6-9CF0-4031-AB9D-43C909104E66}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,12 +24,6 @@ Global
 		{612DEC73-286C-403A-ABDE-145B7C9430DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{612DEC73-286C-403A-ABDE-145B7C9430DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{612DEC73-286C-403A-ABDE-145B7C9430DA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{352571C6-9CF0-4031-AB9D-43C909104E66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{352571C6-9CF0-4031-AB9D-43C909104E66}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{352571C6-9CF0-4031-AB9D-43C909104E66}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{352571C6-9CF0-4031-AB9D-43C909104E66}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{352571C6-9CF0-4031-AB9D-43C909104E66}.Release|Any CPU.Build.0 = Release|Any CPU
-		{352571C6-9CF0-4031-AB9D-43C909104E66}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -4,79 +4,81 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Alias="Self" Namespace="VTModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012">
+    <Schema Namespace="VTModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityContainer Name="VTModelStoreContainer">
-    <EntitySet Name="People" EntityType="VTModel.Store.People" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="ClassroomRoles" EntityType="VTModel.Store.ClassroomRoles" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Classrooms" EntityType="VTModel.Store.Classrooms" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="ClassroomOptions" EntityType="VTModel.Store.ClassroomOptions" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="People" EntityType="VTModel.Store.People" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ClassroomRoles" EntityType="VTModel.Store.ClassroomRoles" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Classrooms" EntityType="VTModel.Store.Classrooms" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ClassroomOptions" EntityType="VTModel.Store.ClassroomOptions" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="PersonClassroomRoles" Association="VTModel.Store.PersonClassroomRoles">
-      <End EntitySet="People" Role="Person" />
-      <End EntitySet="ClassroomRoles" Role="ClassroomRoles" />
+      <End Role="Person" EntitySet="People" />
+      <End Role="ClassroomRoles" EntitySet="ClassroomRoles" />
     </AssociationSet>
     <AssociationSet Name="ClassroomClassroomRoles" Association="VTModel.Store.ClassroomClassroomRoles">
-      <End EntitySet="Classrooms" Role="Classroom" />
-      <End EntitySet="ClassroomRoles" Role="ClassroomRoles" />
+      <End Role="Classroom" EntitySet="Classrooms" />
+      <End Role="ClassroomRoles" EntitySet="ClassroomRoles" />
     </AssociationSet>
     <AssociationSet Name="ClassroomClassroomOptions" Association="VTModel.Store.ClassroomClassroomOptions">
-      <End EntitySet="Classrooms" Role="Classroom" />
-      <End EntitySet="ClassroomOptions" Role="ClassroomOptions" />
+      <End Role="Classroom" EntitySet="Classrooms" />
+      <End Role="ClassroomOptions" EntitySet="ClassroomOptions" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="People">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
-    <Property Name="Name" Nullable="false" Type="nvarchar(max)" />
-    <Property Name="Email" Nullable="false" Type="nvarchar(max)" />
-    <Property Name="CreateDate" Nullable="false" Type="datetime" />
-    <Property Name="CreatedBy" Nullable="false" Type="nvarchar(max)" />
-    <Property Name="ModifiedDate" Nullable="false" Type="datetime" />
-    <Property Name="ModiefiedBy" Nullable="false" Type="nvarchar(max)" />
-    <Property Name="IsActive" Nullable="false" Type="bit" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+    <Property Name="ModiefiedBy" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="ClassroomRoles">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
-    <Property Name="PersonId" Nullable="false" Type="int" />
-    <Property Name="ClassroomId" Nullable="false" Type="int" />
-    <Property Name="Role" Nullable="false" Type="nvarchar(max)" />
-    <Property Name="CreateDate" Nullable="false" Type="datetime" />
-    <Property Name="CreatedBy" Nullable="false" Type="nvarchar(max)" />
-    <Property Name="ModifiedDate" Nullable="false" Type="datetime" />
-    <Property Name="ModifiedBy" Nullable="false" Type="nvarchar(max)" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PersonId" Type="int" Nullable="false" />
+    <Property Name="ClassroomId" Type="int" Nullable="false" />
+    <Property Name="Role" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+    <Property Name="ModifiedBy" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="Classrooms">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
-    <Property Name="Term" Nullable="false" Type="nvarchar(max)" />
-    <Property Name="Year" Nullable="false" Type="datetime" />
-    <Property Name="Campus" Nullable="false" Type="nvarchar(max)" />
-    <Property Name="CreateDate" Nullable="false" Type="datetime" />
-    <Property Name="CreatedBy" Nullable="false" Type="nvarchar(max)" />
-    <Property Name="ModifiedDate" Nullable="false" Type="datetime" />
-    <Property Name="ModifiedBy" Nullable="false" Type="nvarchar(max)" />
-    <Property Name="IsActive" Nullable="false" Type="bit" />
-    <Property Name="ClassroomOption_Id" Nullable="false" Type="int" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Term" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ClassCode" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ClassName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Year" Type="int" Nullable="false" />
+    <Property Name="Campus" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+    <Property Name="ModifiedBy" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="ClassroomOption_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="ClassroomOptions">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
-    <Property Name="CreateDate" Nullable="false" Type="datetime" />
-    <Property Name="CreatedBy" Nullable="false" Type="nvarchar(max)" />
-    <Property Name="ModifiedDate" Nullable="false" Type="datetime" />
-    <Property Name="ModifiedBy" Nullable="false" Type="nvarchar(max)" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+    <Property Name="ModifiedBy" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <Association Name="PersonClassroomRoles">
-    <End Type="VTModel.Store.People" Multiplicity="1" Role="Person" />
-    <End Type="VTModel.Store.ClassroomRoles" Multiplicity="*" Role="ClassroomRoles" />
+    <End Role="Person" Type="VTModel.Store.People" Multiplicity="1" />
+    <End Role="ClassroomRoles" Type="VTModel.Store.ClassroomRoles" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Person">
         <PropertyRef Name="Id" />
@@ -87,8 +89,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="ClassroomClassroomRoles">
-    <End Type="VTModel.Store.Classrooms" Multiplicity="1" Role="Classroom" />
-    <End Type="VTModel.Store.ClassroomRoles" Multiplicity="*" Role="ClassroomRoles" />
+    <End Role="Classroom" Type="VTModel.Store.Classrooms" Multiplicity="1" />
+    <End Role="ClassroomRoles" Type="VTModel.Store.ClassroomRoles" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Classroom">
         <PropertyRef Name="Id" />
@@ -99,8 +101,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="ClassroomClassroomOptions">
-    <End Type="VTModel.Store.Classrooms" Multiplicity="*" Role="Classroom" />
-    <End Type="VTModel.Store.ClassroomOptions" Multiplicity="1" Role="ClassroomOptions" />
+    <End Role="Classroom" Type="VTModel.Store.Classrooms" Multiplicity="*" />
+    <End Role="ClassroomOptions" Type="VTModel.Store.ClassroomOptions" Multiplicity="1" />
     <ReferentialConstraint>
       <Principal Role="ClassroomOptions">
         <PropertyRef Name="Id" />
@@ -223,7 +225,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
     <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping CdmEntityContainer="VTModelContainer" StorageEntityContainer="VTModelStoreContainer">
+  <EntityContainerMapping StorageEntityContainer="VTModelStoreContainer" CdmEntityContainer="VTModelContainer">
     <EntitySetMapping Name="People">
       <EntityTypeMapping TypeName="IsTypeOf(VTModel.Person)">
         <MappingFragment StoreEntitySet="People">
@@ -257,6 +259,8 @@
         <MappingFragment StoreEntitySet="Classrooms">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Term" ColumnName="Term" />
+          <ScalarProperty Name="ClassCode" ColumnName="ClassCode" />
+          <ScalarProperty Name="ClassName" ColumnName="ClassName" />
           <ScalarProperty Name="Year" ColumnName="Year" />
           <ScalarProperty Name="Campus" ColumnName="Campus" />
           <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />

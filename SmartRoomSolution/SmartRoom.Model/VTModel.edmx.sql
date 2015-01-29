@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 01/29/2015 09:04:45
+-- Date Created: 01/29/2015 17:41:38
 -- Generated from EDMX file: C:\Users\jquesad\Documents\GitHub\SmartRoom\SmartRoomSolution\SmartRoom.Model\VTModel.edmx
 -- --------------------------------------------------
 
@@ -78,7 +78,9 @@ GO
 CREATE TABLE [dbo].[Classrooms] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Term] nvarchar(max)  NOT NULL,
-    [Year] datetime  NOT NULL,
+    [ClassCode] nvarchar(max)  NOT NULL,
+    [ClassName] nvarchar(max)  NOT NULL,
+    [Year] int  NOT NULL,
     [Campus] nvarchar(max)  NOT NULL,
     [CreateDate] datetime  NOT NULL,
     [CreatedBy] nvarchar(max)  NOT NULL,
