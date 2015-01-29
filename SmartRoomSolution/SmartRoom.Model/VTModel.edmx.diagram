@@ -5,7 +5,7 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="1f2d5955816941a09a5f7a980551b32b" Name="Diagram1" >
-        <EntityTypeShape EntityType="VTModel.Person" Width="1.5" PointX="0.5" PointY="0.5" />
+        <EntityTypeShape EntityType="VTModel.Person" Width="1.5" PointX="0.75" PointY="1" />
         <EntityTypeShape EntityType="VTModel.ClassroomRoles" Width="1.5" PointX="3.625" PointY="0.5" />
         <AssociationConnector Association="VTModel.PersonClassroomRoles" />
         <EntityTypeShape EntityType="VTModel.Classroom" Width="1.5" PointX="6" PointY="0.5" />

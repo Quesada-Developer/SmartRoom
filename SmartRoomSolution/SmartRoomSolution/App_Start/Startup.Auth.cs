@@ -6,6 +6,7 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using SmartRoomSolution.Models;
+using System.Configuration;
 
 namespace SmartRoomSolution
 {
@@ -58,11 +59,11 @@ namespace SmartRoomSolution
             //   appId: "",
             //   appSecret: "");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = ConfigurationManager.AppSettings["ClientID"],
+                ClientSecret = ConfigurationManager.AppSettings["ClientSecret"]
+            });
         }
     }
 }
