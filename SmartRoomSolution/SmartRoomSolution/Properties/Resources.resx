@@ -117,4 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ClientID" xml:space="preserve">
+    <value>1084733801830-4j2fje2ku2b6tkpa4v9v6cbbt08jeiql.apps.googleusercontent.com</value>
+  </data>
+  <data name="ClientSecret" xml:space="preserve">
+    <value>WIeQIEArSTs1P_drjOQvsSiC</value>
+  </data>
 </root>

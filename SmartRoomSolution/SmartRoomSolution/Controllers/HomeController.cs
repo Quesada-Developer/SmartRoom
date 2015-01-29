@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace SmartRoomSolution.Controllers
+namespace SmartRoomSolution.Web.Controllers
 {
     [RequireHttps]
     public class HomeController : Controller

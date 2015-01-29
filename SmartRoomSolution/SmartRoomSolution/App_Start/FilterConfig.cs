@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 
-namespace SmartRoomSolution
+namespace SmartRoomSolution.Web
 {
     public class FilterConfig
     {

@@ -5,10 +5,10 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
-using SmartRoomSolution.Models;
+using SmartRoomSolution.Web.Models;
 using System.Configuration;
 
-namespace SmartRoomSolution
+namespace SmartRoomSolution.Web
 {
     public partial class Startup
     {
@@ -61,8 +61,8 @@ namespace SmartRoomSolution
 
             app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             {
-                ClientId = ConfigurationManager.AppSettings["ClientID"],
-                ClientSecret = ConfigurationManager.AppSettings["ClientSecret"]
+                ClientId = ConfigurationManager.AppSettings["GoogleAPI.ClientID"],
+                ClientSecret = ConfigurationManager.AppSettings["GoogleAPI.ClientSecret"]
             });
         }
     }

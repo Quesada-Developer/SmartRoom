@@ -10,9 +10,9 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
-using SmartRoomSolution.Models;
+using SmartRoomSolution.Web.Models;
 
-namespace SmartRoomSolution
+namespace SmartRoomSolution.Web
 {
     public class EmailService : IIdentityMessageService
     {

@@ -22,3 +22,19 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.jumbotron_h{
+  background: -webkit-linear-gradient(left, white, #A2E0E5 2.5%, #A2E0E5 97.5%,white);
+}
+.jumbotron {
+    color: #FCFFFF;
+}
+
+.col-md-4 h2{
+    color: #489CA4;
+}
+
+/*.jumbotron_v{
+  background: -webkit-linear-gradient(bottom, white, transparent 5%, transparent);
+}*/
+

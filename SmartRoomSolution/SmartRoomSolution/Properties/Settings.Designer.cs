@@ -31,23 +31,5 @@ namespace SmartRoomSolution.Properties {
                 return ((string)(this["ApplicationName"]));
             }
         }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1084733801830-4j2fje2ku2b6tkpa4v9v6cbbt08jeiql.apps.googleusercontent.com")]
-        public string ClientID {
-            get {
-                return ((string)(this["ClientID"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("WIeQIEArSTs1P_drjOQvsSiC")]
-        public string ClientSecret {
-            get {
-                return ((string)(this["ClientSecret"]));
-            }
-        }
     }
 }

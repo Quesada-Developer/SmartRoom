@@ -4501,12 +4501,12 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 
 .navbar-inverse {
-  background-color: #222222;
+  background-color: #428bca;
   border-color: #080808;
 }
 
 .navbar-inverse .navbar-brand {
-  color: #999999;
+  color: #B5F9FF;
 }
 
 .navbar-inverse .navbar-brand:hover,
@@ -4520,7 +4520,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 
 .navbar-inverse .navbar-nav > li > a {
-  color: #999999;
+  color: #B5F9FF;
 }
 
 .navbar-inverse .navbar-nav > li > a:hover,
@@ -4934,7 +4934,6 @@ a.list-group-item.active > .badge,
   font-weight: 200;
   line-height: 2.1428571435;
   color: inherit;
-  background-color: #eeeeee;
 }
 
 .jumbotron h1 {
@@ -4951,10 +4950,7 @@ a.list-group-item.active > .badge,
 }
 
 @media screen and (min-width: 768px) {
-  .jumbotron {
-    padding-top: 48px;
-    padding-bottom: 48px;
-  }
+  
   .container .jumbotron {
     padding-right: 60px;
     padding-left: 60px;
@@ -5577,7 +5573,7 @@ a.list-group-item:focus {
   font-size: 21px;
   font-weight: bold;
   line-height: 1;
-  color: #000000;
+  color: #428bca;
   text-shadow: 0 1px 0 #ffffff;
   opacity: 0.2;
   filter: alpha(opacity=20);
@@ -5585,7 +5581,7 @@ a.list-group-item:focus {
 
 .close:hover,
 .close:focus {
-  color: #000000;
+  color: #428bca;
   text-decoration: none;
   cursor: pointer;
   opacity: 0.5;
@@ -5665,7 +5661,7 @@ body.modal-open,
   bottom: 0;
   left: 0;
   z-index: 1030;
-  background-color: #000000;
+  background-color: #428bca;
 }
 
 .modal-backdrop.fade {
@@ -5810,14 +5806,14 @@ body.modal-open,
   bottom: 0;
   left: 50%;
   margin-left: -5px;
-  border-top-color: #000000;
+  border-top-color: #428bca;
   border-width: 5px 5px 0;
 }
 
 .tooltip.top-left .tooltip-arrow {
   bottom: 0;
   left: 5px;
-  border-top-color: #000000;
+  border-top-color: #428bca;
   border-width: 5px 5px 0;
 }
 

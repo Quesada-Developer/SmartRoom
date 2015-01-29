@@ -8,9 +8,9 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using SmartRoomSolution.Models;
+using SmartRoomSolution.Web.Models;
 
-namespace SmartRoomSolution.Controllers
+namespace SmartRoomSolution.Web.Controllers
 {
     [Authorize]
     public class AccountController : Controller
