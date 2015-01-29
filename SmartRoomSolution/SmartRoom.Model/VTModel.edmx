@@ -179,7 +179,9 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Term" Type="String" Nullable="false" />
-          <Property Name="Year" Type="DateTime" Nullable="false" />
+          <Property Name="ClassCode" Type="String" Nullable="false" />
+          <Property Name="ClassName" Type="String" Nullable="false" />
+          <Property Name="Year" Type="Int32" Nullable="false" />
           <Property Name="Campus" Type="String" Nullable="false" />
           <Property Name="CreateDate" Type="DateTime" Nullable="false" />
           <Property Name="CreatedBy" Type="String" Nullable="false" />

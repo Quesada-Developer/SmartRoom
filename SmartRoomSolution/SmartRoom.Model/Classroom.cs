@@ -21,7 +21,9 @@ namespace SmartRoom.Model
     
         public int Id { get; set; }
         public string Term { get; set; }
-        public System.DateTime Year { get; set; }
+        public string ClassCode { get; set; }
+        public string ClassName { get; set; }
+        public int Year { get; set; }
         public string Campus { get; set; }
         public System.DateTime CreateDate { get; set; }
         public string CreatedBy { get; set; }
