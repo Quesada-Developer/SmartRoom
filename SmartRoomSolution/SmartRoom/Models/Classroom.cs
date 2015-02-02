@@ -8,7 +8,7 @@ namespace SmartRoom.Models
 
     public enum Term
     {
-        Spring,MayMester,Summer,Fall
+        Spring, MayMester, Summer, Fall
     }
     public enum Campus
     {
