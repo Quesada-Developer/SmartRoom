@@ -31,20 +31,23 @@ textarea {
     color: #FCFFFF;
     background-color: transparent;
 }
-.col-md-4{
-    border-style:solid;
-    border-width:medium;
+
+.col-md-4 {
+    border-style: solid;
+    border-width: medium;
     max-height: 20%;
-    max-width: 20%;
-    margin:5px;
+    max-width: 20;%
+    margin: 5px;
 }
-.col-md-4 p{
-    overflow: hidden;
-    max-height:150px;
-}
-.col-md-4 h2 {
-    color: #489CA4;
-}
+
+    .col-md-4 p {
+        overflow: hidden;
+        max-height: 150px;
+    }
+
+    .col-md-4 h2 {
+        color: #489CA4;
+    }
 
 .navbar {
     margin-bottom: 0px;
@@ -163,18 +166,18 @@ ul.dropdown-menu > li {
     content: " ";
 }
 
-.app-name{
+.app-name {
     padding: 15px 15px;
     font-size: 25px;
     line-height: 20px;
     float: left;
-    color:#B5F9FF;
+    color: #B5F9FF;
 }
 
-.row
-{
+.row {
     padding-top: 30px;
 }
+
 a.app-name:link {
     text-decoration: none;
 }
@@ -190,18 +193,20 @@ a.app-name:hover {
 a.app-name:active {
     text-decoration: none;
 }
-.user{
+
+.user {
     padding: 15px 15px;
     font-size: 15px;
     line-height: 20px;
     float: right;
-    color:#B5F9FF;
+    color: #B5F9FF;
 }
-.navbar-header-right{
-    margin-top:5px;
+
+.navbar-header-right {
+    margin-top: 5px;
     float: right;
 }
-.dropdown-menu > li > a
-{
-    color:white;
+
+.dropdown-menu > li > a {
+    color: white;
 }
