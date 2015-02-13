@@ -8,16 +8,11 @@ namespace SmartRoom.Controllers
 {
     public class HomeController : Controller
     {
-
         public ActionResult Index()
         {
-            //if (User.Identity.IsAuthenticated)
-            //    return View();
-            //else
-                return View();
+            return View();
         }
 
-        [Authorize]
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
@@ -25,7 +20,6 @@ namespace SmartRoom.Controllers
             return View();
         }
 
-        [Authorize]
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
