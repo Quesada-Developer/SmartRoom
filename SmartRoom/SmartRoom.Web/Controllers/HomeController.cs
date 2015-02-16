@@ -10,6 +10,9 @@ namespace SmartRoom.Web.Controllers
     {
         public ActionResult Index()
         {
+
+            
+
             return View();
         }
 
