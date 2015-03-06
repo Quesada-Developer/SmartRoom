@@ -1,8 +1,8 @@
 ﻿using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartupAttribute(typeof(SmartRoom.Web.Startup))]
-namespace SmartRoom.Web
+[assembly: OwinStartupAttribute(typeof(SmartRoom.Startup))]
+namespace SmartRoom
 {
     public partial class Startup
     {

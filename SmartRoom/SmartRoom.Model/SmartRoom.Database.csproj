@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{DB346480-44AB-4174-86E4-607FE26204B2}</ProjectGuid>
+    <ProjectGuid>{8D24F5CF-787F-4CF6-B4A7-0D52038DA9FE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SmartRoom.Database</RootNamespace>
@@ -48,15 +48,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helpers\Campus.cs" />
+    <Compile Include="Helpers\Role.cs" />
+    <Compile Include="Helpers\Terms.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SrEntities.cs" />
-    <Compile Include="Tables\test.cs" />
-    <Compile Include="Tables\test2c.cs" />
+    <Compile Include="SmartModel.cs" />
+    <Compile Include="SmartModelInitializer.cs" />
+    <Compile Include="Tables\Account.cs" />
+    <Compile Include="Tables\ClassRole.cs" />
+    <Compile Include="Tables\Course.cs" />
+    <Compile Include="Tables\CourseOption.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

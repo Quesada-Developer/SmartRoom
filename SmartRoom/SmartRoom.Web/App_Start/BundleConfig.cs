@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace SmartRoom.Web
+namespace SmartRoom
 {
     public class BundleConfig
     {

@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("SmartRoom.Web")]
+[assembly: AssemblyTitle("SmartRoom")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Shaw Industries Group")]
-[assembly: AssemblyProduct("SmartRoom.Web")]
+[assembly: AssemblyProduct("SmartRoom")]
 [assembly: AssemblyCopyright("Copyright © Shaw Industries Group 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("1c59adbe-85b4-4664-b650-57dda7299ade")]
+[assembly: Guid("eb33de77-aeba-4a8c-8053-988b26b63524")]
 
 // Version information for an assembly consists of the following four values:
 //
