@@ -9,7 +9,7 @@ using System.Web.Mvc;
 using SmartRoom.Database;
 using SmartRoom.Database.Tables;
 
-namespace SmartRoom.Controllers
+namespace SmartRoom.Web.Controllers
 {
     public class CoursesController : Controller
     {

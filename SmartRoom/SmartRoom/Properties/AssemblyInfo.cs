@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("SmartRoom")]
+[assembly: AssemblyTitle("SmartRoom.Web")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Shaw Industries Group")]
-[assembly: AssemblyProduct("SmartRoom")]
+[assembly: AssemblyProduct("SmartRoom.Web")]
 [assembly: AssemblyCopyright("Copyright © Shaw Industries Group 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

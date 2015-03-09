@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace SmartRoom.Models
+namespace SmartRoom.Web.Models
 {
     public class ExternalLoginConfirmationViewModel
     {

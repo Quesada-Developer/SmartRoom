@@ -5,9 +5,9 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
-using SmartRoom.Models;
+using SmartRoom.Web.Models;
 
-namespace SmartRoom
+namespace SmartRoom.Web
 {
     public partial class Startup
     {

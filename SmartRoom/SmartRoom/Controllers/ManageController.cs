@@ -6,9 +6,9 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using SmartRoom.Models;
+using SmartRoom.Web.Models;
 
-namespace SmartRoom.Controllers
+namespace SmartRoom.Web.Controllers
 {
     [Authorize]
     public class ManageController : Controller
