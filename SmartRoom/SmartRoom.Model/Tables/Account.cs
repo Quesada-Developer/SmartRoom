@@ -13,10 +13,10 @@ namespace SmartRoom.Database.Tables
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         [Required]
-        [StringLength(20, MinimumLength = 5)]
+        [StringLength(20, MinimumLength = 2)]
         public string FirstName { get; set; }
         [Required]
-        [StringLength(20, MinimumLength = 5)]
+        [StringLength(20, MinimumLength = 2)]
         public string LastName { get; set; }
         [Required]
         [StringLength(50, MinimumLength = 5)]

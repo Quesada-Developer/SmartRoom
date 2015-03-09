@@ -11,14 +11,15 @@ namespace SmartRoom.Database
         protected override void Seed(SmartModel context)
         {
             var courses = new List<Course> {
-            new Course{Subject="CHEML", CourseNumber=3500, Title="Biochemistry Lab", Section="01", StartDate=DateTime.Parse("01/05/2015"), EndDate=DateTime.Parse("05/01/2015"), Location=Campus.Kennesaw, Term=Terms.Spring}
+            new Course{Subject="CHEML", CourseNumber=3500, Title="Biochemistry Lab", Section="01", StartDate=DateTime.Parse("01/05/2015"), EndDate=DateTime.Parse("05/01/2015"), Location=Campus.Kennesaw, Term=Terms.Spring},
+            new Course{Subject="CS", CourseNumber=4850, Title="Senior Project", Section="01", StartDate=DateTime.Parse("01/05/2015"), EndDate=DateTime.Parse("05/01/2015"), Location=Campus.Kennesaw, Term=Terms.Spring}
             };
             var accounts = new List<Account> {
-            new Account{ FirstName="Francisco", LastName="Quesada", CreatedBy=1, CreateDate=DateTime.Now, ModifedBy=1, ModifiedDate=DateTime.Now},
-            new Account{ FirstName="Steven", LastName="Carver", CreatedBy=1, CreateDate=DateTime.Now, ModifedBy=1, ModifiedDate=DateTime.Now},
-            new Account{ FirstName="Christopher", LastName="Nordike", CreatedBy=1, CreateDate=DateTime.Now, ModifedBy=1, ModifiedDate=DateTime.Now},
-            new Account{ FirstName="Elizabeth", LastName="Bever", CreatedBy=1, CreateDate=DateTime.Now, ModifedBy=1, ModifiedDate=DateTime.Now},
-            new Account{ FirstName="Brandon", LastName="Bell", CreatedBy=1, CreateDate=DateTime.Now, ModifedBy=1, ModifiedDate=DateTime.Now},
+            new Account{ FirstName="Francisco", LastName="Quesada", Email="jquesada@students.kennesaw.edu", CreatedBy=1, CreateDate=DateTime.Now, ModifedBy=1, ModifiedDate=DateTime.Now},
+            new Account{ FirstName="Steven", LastName="Carver", Email="scarver6@students.kennesaw.edu", CreatedBy=1, CreateDate=DateTime.Now, ModifedBy=1, ModifiedDate=DateTime.Now},
+            new Account{ FirstName="Christopher", LastName="Nordike", Email="cnordike@students.kennesaw.edu", CreatedBy=1, CreateDate=DateTime.Now, ModifedBy=1, ModifiedDate=DateTime.Now},
+            new Account{ FirstName="Elizabeth", LastName="Bever", Email="ebevers@students.kennesaw.edu", CreatedBy=1, CreateDate=DateTime.Now, ModifedBy=1, ModifiedDate=DateTime.Now},
+            new Account{ FirstName="Brandon", LastName="Bell", Email="bbell31@students.kennesaw.edu", CreatedBy=1, CreateDate=DateTime.Now, ModifedBy=1, ModifiedDate=DateTime.Now},
             };
             var roles = new List<ClassRole> {
             new ClassRole{ AccountId=1, ClassroomId=-1, AccountRole=Role.administrator, CreatedBy=1, CreateDate=DateTime.Now, ModifedBy=1, ModifiedDate=DateTime.Now},
