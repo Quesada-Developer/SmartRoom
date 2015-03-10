@@ -30,7 +30,6 @@ namespace SmartRoom.Database.Tables
         public Campus Location { get; set; }
         [Required]
         public Terms Term { get; set; }
-
         [Required]
         public int CreatedBy { get; set; }
         [Required]

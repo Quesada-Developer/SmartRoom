@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("SmartRoom.Web")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Shaw Industries Group")]
+[assembly: AssemblyCompany("Team 4")]
 [assembly: AssemblyProduct("SmartRoom.Web")]
-[assembly: AssemblyCopyright("Copyright © Shaw Industries Group 2015")]
+[assembly: AssemblyCopyright("Copyright © Team 4 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

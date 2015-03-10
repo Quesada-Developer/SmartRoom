@@ -58,11 +58,11 @@ namespace SmartRoom.Web
             //   appId: "",
             //   appSecret: "");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "422999885229-0vup5e1e8ol8nsoe238uhp264s27ktp0.apps.googleusercontent.com",
+                ClientSecret = "AfXuO7N3RFbOkoj9DgQOajq"
+            });
         }
     }
 }
