@@ -55,7 +55,7 @@
     <Compile Include="SmartModel.cs" />
     <Compile Include="SmartModelInitializer.cs" />
     <Compile Include="Tables\Account.cs" />
-    <Compile Include="Tables\CourseYoutubeLive.cs" />
+    <Compile Include="Tables\CourseYoutubeLiveDetail.cs" />
     <Compile Include="Tables\ClassRole.cs" />
     <Compile Include="Tables\Course.cs" />
     <Compile Include="Tables\CourseOption.cs" />

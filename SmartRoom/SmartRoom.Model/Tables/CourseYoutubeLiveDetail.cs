@@ -8,7 +8,7 @@ using System.Web;
 
 namespace SmartRoom.Database.Tables
 {
-    class CourseYoutubeLive {
+    class CourseYoutubeLiveDetail {
         
         public int CourseId { get; set; }
         public virtual Course Classrooms { get; set; }

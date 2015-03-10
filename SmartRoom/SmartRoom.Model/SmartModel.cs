@@ -23,6 +23,7 @@ namespace SmartRoom.Database
         public DbSet<Course> Courses { get; set; }
         public DbSet<ClassRole> ClassRoles { get; set; }
         public DbSet<CourseOption> CourseOptions { get; set; }
+        public DbSet<CourseYoutubeLiveDetail> CourseYoutubeLiveDetails { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
