@@ -21,7 +21,10 @@ namespace SmartRoom.Database.Tables
         [Required]
         [StringLength(50, MinimumLength = 5)]
         public string Email { get; set; }
-
+        [Required]
+        public Boolean isActive { get; set; }
+        [Required]
+        public Boolean isAdmin { get; set; }
         [Required]
         public int CreatedBy { get; set; }
         [Required]

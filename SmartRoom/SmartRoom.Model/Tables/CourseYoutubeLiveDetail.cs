@@ -8,11 +8,13 @@ using System.Web;
 
 namespace SmartRoom.Database.Tables
 {
-   public class CourseYoutubeLiveDetail {
-        
+    public class CourseYoutubeLiveDetail {
+   
+        [Key]
         public int CourseId { get; set; }
-        public virtual Course Classrooms { get; set; }
-        [Required]
+        [ForeignKey("CourseId")]
+        public virtual Course Id { get; set; }
+
         public int BroadcastId { get; set; }
         public String BroadcastTitle { get; set; }
         public String BroadcastDescription { get; set; }
