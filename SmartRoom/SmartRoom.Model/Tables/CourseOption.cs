@@ -26,5 +26,6 @@ namespace SmartRoom.Database.Tables
         [Required]
         [Column(TypeName = "DateTime2")]
         public DateTime ModifiedDate { get; set; }
+
     }
 }

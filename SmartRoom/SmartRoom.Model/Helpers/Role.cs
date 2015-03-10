@@ -7,6 +7,6 @@ namespace SmartRoom.Database.Helpers
 {
     public enum Role
     {
-        administrator = 0, professor = 1, student = 2, nonStudentRole = 3, visitor = 4
+        professor = 0, student = 1, nonStudentRole = 2, visitor = 3
     }
 }

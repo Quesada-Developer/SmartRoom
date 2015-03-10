@@ -23,15 +23,17 @@ namespace SmartRoom.Database
         public DbSet<Course> Courses { get; set; }
         public DbSet<ClassRole> ClassRoles { get; set; }
         public DbSet<CourseOption> CourseOptions { get; set; }
-        public DbSet<CourseYoutubeLiveDetail> CourseYoutubeLiveDetails { get; set; }
+        public DbSet<YoutubeLiveDetail> YoutubeLiveDetails { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Course>()
                 .HasKey(s=>s.Id)
-                .Property(c=>c.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+                .Property(c => c.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
             modelBuilder.Entity<Course>()
-                .HasRequired(s=>s.CourseOptions).WithRequiredPrincipal(s=>s.Course);
+                .HasRequired(s => s.CourseOptions).WithRequiredPrincipal(s => s.Course);
+            modelBuilder.Entity<Course>()
+                .HasRequired(s => s.YoutubeLiveDetails).WithRequiredPrincipal(s => s.Courses);
         }
 
         // Add a DbSet for each entity type that you want to include in your model. For more information 
