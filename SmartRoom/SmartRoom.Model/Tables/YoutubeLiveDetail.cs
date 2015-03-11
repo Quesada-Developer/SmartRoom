@@ -14,19 +14,19 @@ namespace SmartRoom.Database.Tables
         public int Id { get; set; }
         public virtual Course Courses { get; set; }
 
-        public int BroadcastId { get; set; }
+        public String BroadcastId { get; set; }
         public String BroadcastTitle { get; set; }
         public String BroadcastDescription { get; set; }
         public DateTime BroadcastScheduledStartTime { get; set; }
         public DateTime BroadcastScheduledEndTime { get; set; }
         public String BroadcastStatus { get; set; }
-        public int StreamId { get; set; }
+        public String StreamId { get; set; }
         public String StreamTitle { get; set; }
         public String StreamKind { get; set; }
         public String StreamSnippetTitle { get; set; }
         public String StreamCDNFormat { get; set; }
         public String StreamCDNIngestionType { get; set; }
-
+        public String StreamCDNIngestionUrl { get; set; }
     }
 }
 
