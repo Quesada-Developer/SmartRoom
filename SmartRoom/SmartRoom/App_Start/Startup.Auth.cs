@@ -60,8 +60,8 @@ namespace SmartRoom.Web
 
             app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             {
-                ClientId = "422999885229-0vup5e1e8ol8nsoe238uhp264s27ktp0.apps.googleusercontent.com",
-                ClientSecret = "AfXuO7N3RFbOkoj9DgQOajq"
+                ClientId = "1084733801830-4j2fje2ku2b6tkpa4v9v6cbbt08jeiql.apps.googleusercontent.com",
+                ClientSecret = "WIeQIEArSTs1P_drjOQvsSiC"
             });
         }
     }

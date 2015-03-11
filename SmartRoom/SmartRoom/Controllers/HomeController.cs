@@ -8,6 +8,7 @@ namespace SmartRoom.Web.Controllers
 {
     public class HomeController : Controller
     {
+        [AllowAnonymous]
         public ActionResult Index()
         {
             return View();
@@ -19,7 +20,7 @@ namespace SmartRoom.Web.Controllers
 
             return View();
         }
-
+        [Authorize]
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";

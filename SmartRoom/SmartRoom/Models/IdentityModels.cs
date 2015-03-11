@@ -13,9 +13,48 @@ namespace SmartRoom.Web.Models
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
             var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
+            
             // Add custom user claims here
+            if (Email.Contains("@students.kennesaw.edu"))
+            {
+                manager.AddToRole(Id, "Student");
+            }
+            else if (Email.Contains("@kennesaw.edu"))
+            {
+                manager.AddToRole(Id, "Teacher");
+            }
+
             return userIdentity;
         }
+        public void ApplyRole()
+        {
+            
+        }
+
+    }
+
+    public class ApplicationDbInitializer : DropCreateDatabaseAlways<ApplicationDbContext>
+    {
+        protected override void Seed(ApplicationDbContext context)
+        {
+            var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+            var RoleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+
+            IdentityResult roleResult;
+
+            // Check to see if Role Exists, if not create it
+            if (!RoleManager.RoleExists("Student"))
+            {
+                roleResult = RoleManager.Create(new IdentityRole("Student"));
+            }
+
+            if (!RoleManager.RoleExists("Teacher"))
+            {
+                roleResult = RoleManager.Create(new IdentityRole("Teacher"));
+            }
+            base.Seed(context);
+        }
+
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
@@ -23,11 +62,15 @@ namespace SmartRoom.Web.Models
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
+            base.Configuration.AutoDetectChangesEnabled = true;
+            System.Data.Entity.Database.SetInitializer<ApplicationDbContext>(new ApplicationDbInitializer());
         }
 
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
         }
+
+        
     }
 }
