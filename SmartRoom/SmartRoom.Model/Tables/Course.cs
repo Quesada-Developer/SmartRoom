@@ -44,6 +44,6 @@ namespace SmartRoom.Database.Tables
         public virtual ICollection<ClassRole> ClassRoles { get; set; }
 
         public CourseOption CourseOptions { get; set; }
-        public YoutubeLiveDetail YoutubeLiveDetails { get; set; }
+        public virtual ICollection<YoutubeLiveDetail> YoutubeLiveDetails { get; set; }
     }
 }

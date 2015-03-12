@@ -9,10 +9,13 @@ using System.Web;
 namespace SmartRoom.Database.Tables
 {
     public class YoutubeLiveDetail {
-   
+
         [Key]
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        public virtual Course Courses { get; set; }
+        
+        public int CourseId{get;set;}
+        public virtual Course Course { get; set; }
 
         public String BroadcastId { get; set; }
         public String BroadcastTitle { get; set; }
