@@ -101,36 +101,75 @@ namespace SmartRoom.Web.Controllers
             return returnedBroadcast;
         }
 
-        public LiveStream createStream(String kind, String snippetTitle, String CDNFormat, String CDNIngestionType)
+        public async Task<LiveStream> createStream(String kind, String snippetTitle, String CDNFormat, String CDNIngestionType)
         {
-            LiveStream stream = new LiveStream();
+            UserCredential credential;
+            using (var stream = new FileStream("C:\\Users\\scarver6\\Documents\\Visual Studio 2013\\Projects\\SmartRoom\\client_secret_1084733801830-4j2fje2ku2b6tkpa4v9v6cbbt08jeiql.apps.googleusercontent.com.json", FileMode.Open, FileAccess.Read))
+            {
+                credential = await GoogleWebAuthorizationBroker.AuthorizeAsync(
+                    GoogleClientSecrets.Load(stream).Secrets,
+                    // This OAuth 2.0 access scope allows an application to upload files to the
+                    // authenticated user's YouTube channel, but doesn't allow other types of access.
+                    new[] { YouTubeService.Scope.Youtube,
+                        "https://www.googleapis.com/auth/youtube",  
+                        "https://www.googleapis.com/auth/plus.login" },
+                    "user",
+                    CancellationToken.None
+                );
+            }
             
-            var youtube = new YouTubeService(new BaseClientService.Initializer());
+            LiveStream liveStream = new LiveStream();
+
+            var youtube = new YouTubeService(new BaseClientService.Initializer()
+            {
+                HttpClientInitializer = credential,
+                ApplicationName = "SmartRoom"
+            });
+
             // Set stream kind
-            stream.Kind = kind;
+            liveStream.Kind = kind;
 
             // Set stream's snippet and title.
-            stream.Snippet = new LiveStreamSnippet();
-            stream.Snippet.Title = snippetTitle;
+            liveStream.Snippet = new LiveStreamSnippet();
+            liveStream.Snippet.Title = snippetTitle;
 
             //Set stream's Cdn
-            stream.Cdn = new CdnSettings();
-            stream.Cdn.Format = CDNFormat;
-            stream.Cdn.IngestionType = CDNIngestionType;
+            liveStream.Cdn = new CdnSettings();
+            liveStream.Cdn.Format = CDNFormat;
+            liveStream.Cdn.IngestionType = CDNIngestionType;
 
-            String url = stream.Cdn.IngestionInfo.IngestionAddress;
-
-            LiveStream returnedStream = youtube.LiveStreams.Insert(stream, "snippet,cdn").Execute();
+            LiveStream returnedStream = youtube.LiveStreams.Insert(liveStream, "snippet,cdn").Execute();
 
             return returnedStream;
         }
 
-        public LiveBroadcast bindBroadcast(LiveBroadcast broadcast, LiveStream stream)
+        public async Task<LiveBroadcast> bindBroadcast(LiveBroadcast broadcast, LiveStream Livestream)
         {
+
+            UserCredential credential;
+            using (var stream = new FileStream("C:\\Users\\scarver6\\Documents\\Visual Studio 2013\\Projects\\SmartRoom\\client_secret_1084733801830-4j2fje2ku2b6tkpa4v9v6cbbt08jeiql.apps.googleusercontent.com.json", FileMode.Open, FileAccess.Read))
+            {
+                credential = await GoogleWebAuthorizationBroker.AuthorizeAsync(
+                    GoogleClientSecrets.Load(stream).Secrets,
+                    // This OAuth 2.0 access scope allows an application to upload files to the
+                    // authenticated user's YouTube channel, but doesn't allow other types of access.
+                    new[] { YouTubeService.Scope.Youtube,
+                        "https://www.googleapis.com/auth/youtube",  
+                        "https://www.googleapis.com/auth/plus.login" },
+                    "user",
+                    CancellationToken.None
+                );
+            }
+
+            var youtube = new YouTubeService(new BaseClientService.Initializer()
+            {
+                HttpClientInitializer = credential,
+                ApplicationName = "SmartRoom"
+            });
             
-            var youtube = new YouTubeService(new BaseClientService.Initializer());
+           
             LiveBroadcastsResource.BindRequest liveBroadcastBind = youtube.LiveBroadcasts.Bind(broadcast.Id, "id,contentDetails");
-            liveBroadcastBind.StreamId = stream.Id;
+            liveBroadcastBind.StreamId = Livestream.Id;
             LiveBroadcast returnedBroadcast = liveBroadcastBind.Execute();
 
             return returnedBroadcast;

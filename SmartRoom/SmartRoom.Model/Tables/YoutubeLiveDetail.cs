@@ -11,6 +11,8 @@ namespace SmartRoom.Database.Tables
     public class YoutubeLiveDetail {
    
         [Key]
+        public int YoutubeId { get; set; }
+
         public int Id { get; set; }
         public virtual Course Courses { get; set; }
 

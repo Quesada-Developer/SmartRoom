@@ -61,10 +61,10 @@ namespace SmartRoom.Web.Controllers
            
             // Create broadcast and stream for YoutubeLive
             LiveBroadcast broadcast = await liveController.createBroadcast("youtube#liveBroadcast", youtubelivedetail.BroadcastTitle, youtubelivedetail.BroadcastScheduledStartTime, youtubelivedetail.BroadcastScheduledEndTime, youtubelivedetail.BroadcastStatus);
-            LiveStream stream = liveController.createStream("youtube#liveStream", youtubelivedetail.StreamSnippetTitle, youtubelivedetail.StreamCDNFormat, "rtmp");
+            LiveStream stream = await liveController.createStream("youtube#liveStream", youtubelivedetail.StreamSnippetTitle, youtubelivedetail.StreamCDNFormat, "rtmp");
 
             // Bind them together
-            LiveBroadcast bindedBroadcast = liveController.bindBroadcast(broadcast, stream);
+            LiveBroadcast bindedBroadcast = await liveController.bindBroadcast(broadcast, stream);
             
             // Values to-be inserted updated
             youtubelivedetail.BroadcastId = bindedBroadcast.Id;
