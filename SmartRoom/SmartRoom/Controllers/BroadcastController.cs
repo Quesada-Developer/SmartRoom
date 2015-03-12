@@ -22,21 +22,42 @@ using Google.Apis.Auth.OAuth2.Web;
 using Google.Apis.Auth.OAuth2.Flows;
 using Google.Apis.Auth.OAuth2.Requests;
 using Google.Apis.Auth.OAuth2.Responses;
+using System.Security.Cryptography.X509Certificates;
 
 namespace SmartRoom.Web.Controllers
 {
     public class BroadcastController : Controller
     {
+        private readonly static string serviceAccountEmail = "1084733801830-qg01saqaeoicgtgv5c6l6qlduotsvnsu@developer.gserviceaccount.com";
 
-        private static YouTubeService youtube = new YouTubeService(new BaseClientService.Initializer()
+        private readonly static string[] scopes = new string[] {
+                //YouTubeService.Scope.Youtube,
+                YouTubeService.Scope.YoutubeReadonly,
+                YouTubeService.Scope.YoutubeUpload
+             };
+
+        private readonly static X509Certificate2 certificate = new X509Certificate2("C:\\Users\\jquesad\\Documents\\GitHub\\SmartRoom\\SmartRoom\\SmartRoom\\SmartRoom-97a44346405c.p12", "notasecret", X509KeyStorageFlags.Exportable);
+        private readonly static ServiceAccountCredential credential = new ServiceAccountCredential(
+            new ServiceAccountCredential.Initializer(serviceAccountEmail)
+            {
+                Scopes = scopes
+            }.FromCertificate(certificate));
+        private readonly static YouTubeService youtube = new YouTubeService(new BaseClientService.Initializer()
         {
+            
+            HttpClientInitializer = credential,
             ApiKey = "AIzaSyDDnEMgDDPgQm1mOSktMciDsbnLq41rHcQ"
         });
 
+        //private static YouTubeService youtube = new YouTubeService(new BaseClientService.Initializer()
+        //{
+        //    ApiKey = "AIzaSyDDnEMgDDPgQm1mOSktMciDsbnLq41rHcQ"
+        //});
+
         public LiveBroadcast createBroadcast(String kind, String snippetTitle, DateTime startTime, DateTime endTime, String privacyStatus)
         {
-           
-           LiveBroadcast broadcast = new LiveBroadcast();
+            
+            LiveBroadcast broadcast = new LiveBroadcast();
 
             // Set broadcast Kind
             broadcast.Kind = kind;
