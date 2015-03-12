@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -12,7 +14,6 @@ using SmartRoom.Database;
 using Google.Apis.YouTube.v3;
 using Google.Apis.YouTube.v3.Data;
 
-
 namespace SmartRoom.Web.Controllers
 {
     public class YoutubeLiveController : Controller
@@ -22,7 +23,7 @@ namespace SmartRoom.Web.Controllers
         // GET: /YoutubeLive/
         public ActionResult Index()
         {
-            var youtubelivedetails = db.YoutubeLiveDetails.Include(y => y.Id);
+            var youtubelivedetails = db.YoutubeLiveDetails.Include(y => y.Course);
             return View(youtubelivedetails.ToList());
         }
 
@@ -38,13 +39,14 @@ namespace SmartRoom.Web.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.Embededhtml = youtubelivedetail.Embededhtml;
             return View(youtubelivedetail);
         }
 
         // GET: /YoutubeLive/Create
         public ActionResult Create()
         {
-            ViewBag.Id = new SelectList(db.Courses, "Id", "Subject");
+            ViewBag.CourseId = new SelectList(db.Courses, "Id", "Title");
             return View();
         }
 
@@ -53,22 +55,25 @@ namespace SmartRoom.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="Id,BroadcastId,BroadcastTitle,BroadcastDescription,BroadcastScheduledStartTime,BroadcastScheduledEndTime,BroadcastStatus,StreamId,StreamTitle,StreamKind,StreamSnippetTitle,StreamCDNFormat,StreamCDNIngestionType,StreamCDNIngestionUrl")] YoutubeLiveDetail youtubelivedetail)
+        public async Task<ActionResult> Create([Bind(Include = "Id,CourseId,BroadcastId,BroadcastTitle,BroadcastDescription,BroadcastScheduledStartTime,BroadcastScheduledEndTime,BroadcastStatus,StreamId,StreamTitle,StreamKind,StreamSnippetTitle,StreamCDNFormat,StreamCDNIngestionType,StreamCDNIngestionUrl,Embededhtml")] YoutubeLiveDetail youtubelivedetail)
         {
+
             BroadcastController liveController = new BroadcastController();
            
             // Create broadcast and stream for YoutubeLive
-            LiveBroadcast broadcast = liveController.createBroadcast("youtube#liveBroadcast", youtubelivedetail.BroadcastTitle, youtubelivedetail.BroadcastScheduledStartTime, youtubelivedetail.BroadcastScheduledEndTime, youtubelivedetail.BroadcastStatus);
-            LiveStream stream = liveController.createStream("youtube#liveStream", youtubelivedetail.StreamSnippetTitle, youtubelivedetail.StreamCDNFormat, "rtmp");
+            LiveBroadcast broadcast = await liveController.createBroadcast("youtube#liveBroadcast", youtubelivedetail.BroadcastTitle, youtubelivedetail.BroadcastScheduledStartTime, youtubelivedetail.BroadcastScheduledEndTime, youtubelivedetail.BroadcastStatus);
+            LiveStream stream = await liveController.createStream("youtube#liveStream", youtubelivedetail.StreamSnippetTitle, youtubelivedetail.StreamCDNFormat, "rtmp");
 
             // Bind them together
-            LiveBroadcast bindedBroadcast = liveController.bindBroadcast(broadcast, stream);
+            LiveBroadcast bindedBroadcast = await liveController.bindBroadcast(broadcast, stream);
             
             // Values to-be inserted updated
             youtubelivedetail.BroadcastId = bindedBroadcast.Id;
             youtubelivedetail.StreamId = stream.Id;
             youtubelivedetail.StreamCDNIngestionUrl = stream.Cdn.IngestionInfo.IngestionAddress;
-
+            youtubelivedetail.Embededhtml = bindedBroadcast.ContentDetails.MonitorStream.EmbedHtml;
+            
+                       
             if (ModelState.IsValid)
             {
                 db.YoutubeLiveDetails.Add(youtubelivedetail);
@@ -76,7 +81,7 @@ namespace SmartRoom.Web.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Id = new SelectList(db.Courses, "Id", "Subject", youtubelivedetail.Id);
+            ViewBag.CourseId = new SelectList(db.Courses, "Id", "Title", youtubelivedetail.CourseId);
             return View(youtubelivedetail);
         }
 
@@ -92,7 +97,7 @@ namespace SmartRoom.Web.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.Id = new SelectList(db.Courses, "Id", "Subject", youtubelivedetail.Id);
+            ViewBag.CourseId = new SelectList(db.Courses, "Id", "Title", youtubelivedetail.CourseId);
             return View(youtubelivedetail);
         }
 
@@ -101,7 +106,7 @@ namespace SmartRoom.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="Id,BroadcastId,BroadcastTitle,BroadcastDescription,BroadcastScheduledStartTime,BroadcastScheduledEndTime,BroadcastStatus,StreamId,StreamTitle,StreamKind,StreamSnippetTitle,StreamCDNFormat,StreamCDNIngestionType,StreamCDNIngestionUrl")] YoutubeLiveDetail youtubelivedetail)
+        public ActionResult Edit([Bind(Include = "Id,CourseId,BroadcastId,BroadcastTitle,BroadcastDescription,BroadcastScheduledStartTime,BroadcastScheduledEndTime,BroadcastStatus,StreamId,StreamTitle,StreamKind,StreamSnippetTitle,StreamCDNFormat,StreamCDNIngestionType,StreamCDNIngestionUrl,Embededhtml")] YoutubeLiveDetail youtubelivedetail)
         {
             if (ModelState.IsValid)
             {
@@ -109,7 +114,7 @@ namespace SmartRoom.Web.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.Id = new SelectList(db.Courses, "Id", "Subject", youtubelivedetail.Id);
+            ViewBag.CourseId = new SelectList(db.Courses, "Id", "Title", youtubelivedetail.CourseId);
             return View(youtubelivedetail);
         }
 

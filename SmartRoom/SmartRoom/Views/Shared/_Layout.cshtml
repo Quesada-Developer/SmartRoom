@@ -23,7 +23,9 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home", new { Area = "" }, new{})))</li>
                     <li>@Html.ActionLink("About", "About", "Home", new { Area = "" }, new{}))</li>
-                    <li>@Html.ActionLink("Courses", "Index", "Courses", new { Area = "Classroom" }, new{}))</li>
+                    <li>@Html.ActionLink("Courses", "Index", "Courses", new { Area = "Classroom" }, new { }))</li>
+                    <li>@Html.ActionLink("YouTube Demo", "Create", "YoutubeLive", new { Area = "" }, new { }))</li>
+                    <li>@Html.ActionLink("YouTube Presentation", "Index", "YoutubeLive", new { Area = "" }, new { }))</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home", new { Area = "" }, new { })))</li>
                 </ul>
                 @Html.Partial("_LoginPartial")

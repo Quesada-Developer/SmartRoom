@@ -1,42 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using System.Threading;
 using System.Threading.Tasks;
 
-using Google.Apis;
-using Google.Apis.Http;
-using Google.Apis.Requests;
-using Google.Apis.Util.Store;
-using Google.Apis.Json;
-using Google.Apis.Services;
 
 using Google.Apis.YouTube.v3;
 using Google.Apis.YouTube.v3.Data;
 
-using Google.Apis.Auth;
-using Google.Apis.Auth.OAuth2;
-using Google.Apis.Auth.OAuth2.Web;
-using Google.Apis.Auth.OAuth2.Flows;
-using Google.Apis.Auth.OAuth2.Requests;
-using Google.Apis.Auth.OAuth2.Responses;
 
 namespace SmartRoom.Web.Controllers
 {
     public class BroadcastController : Controller
     {
+        private readonly Authen youtubeAuthen = new Authen(new[] { 
+                        "https://www.googleapis.com/auth/youtube",  
+                        "https://www.googleapis.com/auth/plus.login" });
+        private YouTubeService youtube;
 
-        private static YouTubeService youtube = new YouTubeService(new BaseClientService.Initializer()
+        public async Task<LiveBroadcast> createBroadcast(String kind, String snippetTitle, DateTime startTime, DateTime endTime, String privacyStatus)
         {
-            ApiKey = "AIzaSyDDnEMgDDPgQm1mOSktMciDsbnLq41rHcQ"
-        });
-
-        public LiveBroadcast createBroadcast(String kind, String snippetTitle, DateTime startTime, DateTime endTime, String privacyStatus)
-        {
-
-           LiveBroadcast broadcast = new LiveBroadcast();
+            youtube = new YouTubeService(await youtubeAuthen.getInitializer());
+            LiveBroadcast broadcast = new LiveBroadcast();
 
             // Set broadcast Kind
             broadcast.Kind = kind;
@@ -58,36 +41,38 @@ namespace SmartRoom.Web.Controllers
             return returnedBroadcast;
         }
 
-        public LiveStream createStream(String kind, String snippetTitle, String CDNFormat, String CDNIngestionType)
+        public async Task<LiveStream> createStream(String kind, String snippetTitle, String CDNFormat, String CDNIngestionType)
         {
-            LiveStream stream = new LiveStream();
+            LiveStream liveStream = new LiveStream();
+            youtube = new YouTubeService(await youtubeAuthen.getInitializer());
 
             // Set stream kind
-            stream.Kind = kind;
+            liveStream.Kind = kind;
 
             // Set stream's snippet and title.
-            stream.Snippet = new LiveStreamSnippet();
-            stream.Snippet.Title = snippetTitle;
+            liveStream.Snippet = new LiveStreamSnippet();
+            liveStream.Snippet.Title = snippetTitle;
 
             //Set stream's Cdn
-            stream.Cdn = new CdnSettings();
-            stream.Cdn.Format = CDNFormat;
-            stream.Cdn.IngestionType = CDNIngestionType;
+            liveStream.Cdn = new CdnSettings();
+            liveStream.Cdn.Format = CDNFormat;
+            liveStream.Cdn.IngestionType = CDNIngestionType;
+            
 
-            String url = stream.Cdn.IngestionInfo.IngestionAddress;
-
-            LiveStream returnedStream = youtube.LiveStreams.Insert(stream, "snippet,cdn").Execute();
+            LiveStream returnedStream = youtube.LiveStreams.Insert(liveStream, "snippet,cdn").Execute();
 
             return returnedStream;
         }
 
-        public LiveBroadcast bindBroadcast(LiveBroadcast broadcast, LiveStream stream)
+        public async Task<LiveBroadcast> bindBroadcast(LiveBroadcast broadcast, LiveStream Livestream)
         {
+            youtube = new YouTubeService(await youtubeAuthen.getInitializer());
 
             LiveBroadcastsResource.BindRequest liveBroadcastBind = youtube.LiveBroadcasts.Bind(broadcast.Id, "id,contentDetails");
-            liveBroadcastBind.StreamId = stream.Id;
-            LiveBroadcast returnedBroadcast = liveBroadcastBind.Execute();
-
+            liveBroadcastBind.StreamId = Livestream.Id;
+            LiveBroadcast returnedBroadcast = liveBroadcastBind.Execute(); 
+            returnedBroadcast.ContentDetails.EnableEmbed = true;
+ 
             return returnedBroadcast;
 
         }
