@@ -31,12 +31,12 @@ namespace SmartRoom.Web.Controllers
         private readonly static string serviceAccountEmail = "1084733801830-qg01saqaeoicgtgv5c6l6qlduotsvnsu@developer.gserviceaccount.com";
 
         private readonly static string[] scopes = new string[] {
-                //YouTubeService.Scope.Youtube,
+                YouTubeService.Scope.Youtube,
                 YouTubeService.Scope.YoutubeReadonly,
                 YouTubeService.Scope.YoutubeUpload
              };
 
-        private readonly static X509Certificate2 certificate = new X509Certificate2("C:\\Users\\jquesad\\Documents\\GitHub\\SmartRoom\\SmartRoom\\SmartRoom\\SmartRoom-97a44346405c.p12", "notasecret", X509KeyStorageFlags.Exportable);
+        private readonly static X509Certificate2 certificate = new X509Certificate2("C:\\Users\\scarver6\\Documents\\Visual Studio 2013\\Projects\\SmartRoom\\SmartRoom-361d028c817a.p12", "notasecret", X509KeyStorageFlags.Exportable);
         private readonly static ServiceAccountCredential credential = new ServiceAccountCredential(
             new ServiceAccountCredential.Initializer(serviceAccountEmail)
             {
