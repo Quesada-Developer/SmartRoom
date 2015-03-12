@@ -57,14 +57,16 @@ namespace SmartRoom.Web.Controllers
         {
 
             UserCredential credential;
-            using (var stream = new FileStream("C:\\Users\\jquesad\\Documents\\GitHub\\SmartRoom\\SmartRoom\\SmartRoom\\client_secret_1084733801830-4j2fje2ku2b6tkpa4v9v6cbbt08jeiql.apps.googleusercontent.com.json", FileMode.Open, FileAccess.Read))
+            using (var stream = new FileStream("C:\\Users\\scarver6\\Documents\\Visual Studio 2013\\Projects\\SmartRoom\\client_secret_1084733801830-4j2fje2ku2b6tkpa4v9v6cbbt08jeiql.apps.googleusercontent.com.json", FileMode.Open, FileAccess.Read))
             {
                 credential = await GoogleWebAuthorizationBroker.AuthorizeAsync(
                     GoogleClientSecrets.Load(stream).Secrets,
                     // This OAuth 2.0 access scope allows an application to upload files to the
                     // authenticated user's YouTube channel, but doesn't allow other types of access.
-                    new[] { YouTubeService.Scope.YoutubeUpload },
-                    "stevenjc721@gmail.com",
+                    new[] { YouTubeService.Scope.Youtube,
+                        "https://www.googleapis.com/auth/youtube",  
+                        "https://www.googleapis.com/auth/plus.login" },
+                    "user",
                     CancellationToken.None
                 );
             }
