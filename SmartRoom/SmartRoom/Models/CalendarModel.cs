@@ -1,6 +1,4 @@
-﻿//need to add the Nuget package https://www.nuget.org/packages/Google.Apis.Calendar.v3/
-//PM> Install-Package Google.Apis.Calendar.v3
-
+﻿//Google.Apis.Calendar.v3
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +15,31 @@ namespace SmartRoom.Web.Models
 {
     public class CalendarModel
     {
+        /**THIS IS TO GET THE VERIFICATION FROM THE USER*/
+        //added static because it complained
+        static string clientId = "1084733801830-4j2fje2ku2b6tkpa4v9v6cbbt08jeiql.apps.googleusercontent.com";
+        static string clientSecret = "WIeQIEArSTs1P_drjOQvsSiC";
+        static string userName = ""; //  A string used to identify a user.
+        static string[] scopes = new string[] {
+            CalendarService.Scope.Calendar, // Manage your calendars
+ 	        CalendarService.Scope.CalendarReadonly // View your Calendars
+            };
+
+        // here is where we Request the user to give us access, or use the Refresh Token that was previously stored in %AppData%
+        //added static because it complained
+        static UserCredential credential = GoogleWebAuthorizationBroker.AuthorizeAsync(new ClientSecrets { //added static
+ 		    ClientId = clientId, ClientSecret = clientSecret
+ 	        }, scopes, userName, CancellationToken.None, new FileDataStore("Daimto.GoogleCalendar.Auth.Store")).Result;
+
+        /**THIS IS TO CREATE THE SERVICE*/
+        // Create the service.
+        CalendarService service = new CalendarService(new BaseClientService.Initializer()
+        {
+            HttpClientInitializer = credential,
+            ApplicationName = "Calendar API Sample",
+        });
+        
+        
         //RESOURCES:    Acl (access control)[delete, get, insert, list, patch, update, watch]
         //              CalendarList [delete, get, insert, list, patch, update, watch]
         //              Calenders [clear, delete, get, insert, patch, update]
