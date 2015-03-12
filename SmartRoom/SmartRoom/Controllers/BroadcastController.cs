@@ -35,7 +35,7 @@ namespace SmartRoom.Web.Controllers
 
         public LiveBroadcast createBroadcast(String kind, String snippetTitle, DateTime startTime, DateTime endTime, String privacyStatus)
         {
-
+           
            LiveBroadcast broadcast = new LiveBroadcast();
 
             // Set broadcast Kind

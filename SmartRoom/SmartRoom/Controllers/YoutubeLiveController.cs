@@ -18,10 +18,11 @@ namespace SmartRoom.Web.Controllers
     public class YoutubeLiveController : Controller
     {
         private SmartModel db = new SmartModel();
-
+        
         // GET: /YoutubeLive/
         public ActionResult Index()
         {
+        
             var youtubelivedetails = db.YoutubeLiveDetails.Include(y => y.Id);
             return View(youtubelivedetails.ToList());
         }

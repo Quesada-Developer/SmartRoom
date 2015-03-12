@@ -181,9 +181,11 @@
     <Compile Include="Areas\Classroom\classroomAreaRegistration.cs" />
     <Compile Include="Areas\Classroom\Controllers\CoursesController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BroadcastController.cs" />
     <Compile Include="Controllers\CoursesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\YoutubeLiveController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -272,6 +274,11 @@
     <Content Include="Views\Courses\Details.cshtml" />
     <Content Include="Views\Courses\Edit.cshtml" />
     <Content Include="Views\Courses\Index.cshtml" />
+    <Content Include="Views\YoutubeLive\Create.cshtml" />
+    <Content Include="Views\YoutubeLive\Delete.cshtml" />
+    <Content Include="Views\YoutubeLive\Details.cshtml" />
+    <Content Include="Views\YoutubeLive\Edit.cshtml" />
+    <Content Include="Views\YoutubeLive\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
