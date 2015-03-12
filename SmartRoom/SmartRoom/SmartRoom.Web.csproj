@@ -318,12 +318,12 @@
     <Content Include="Views\Courses\Details.cshtml" />
     <Content Include="Views\Courses\Edit.cshtml" />
     <Content Include="Views\Courses\Index.cshtml" />
+    <Content Include="SmartRoom-97a44346405c.p12" />
     <Content Include="Views\YoutubeLive\Create.cshtml" />
     <Content Include="Views\YoutubeLive\Delete.cshtml" />
     <Content Include="Views\YoutubeLive\Details.cshtml" />
     <Content Include="Views\YoutubeLive\Edit.cshtml" />
     <Content Include="Views\YoutubeLive\Index.cshtml" />
-    <Content Include="SmartRoom-97a44346405c.p12" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

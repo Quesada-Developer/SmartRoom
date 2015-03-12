@@ -17,14 +17,14 @@
         @Html.ValidationSummary(true)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Id, "Id", new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.CourseId, "CourseId", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("Id", String.Empty)
-                @Html.ValidationMessageFor(model => model.Id)
+                @Html.DropDownList("CourseId", String.Empty)
+                @Html.ValidationMessageFor(model => model.CourseId)
             </div>
         </div>
 
-       <!-- <div class="form-group">
+     <!--   <div class="form-group">
             @Html.LabelFor(model => model.BroadcastId, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.BroadcastId)
@@ -72,7 +72,7 @@
             </div>
         </div>
 
-      <!--  <div class="form-group">
+     <!--   <div class="form-group">
             @Html.LabelFor(model => model.StreamId, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.StreamId)
@@ -88,13 +88,13 @@
             </div>
         </div>
 
-        <div class="form-group">
+     <!--   <div class="form-group">
             @Html.LabelFor(model => model.StreamKind, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.StreamKind)
                 @Html.ValidationMessageFor(model => model.StreamKind)
             </div>
-        </div>
+        </div> -->
 
         <div class="form-group">
             @Html.LabelFor(model => model.StreamSnippetTitle, new { @class = "control-label col-md-2" })
@@ -112,7 +112,7 @@
             </div>
         </div>
 
-  <!--      <div class="form-group">
+     <!--   <div class="form-group">
             @Html.LabelFor(model => model.StreamCDNIngestionType, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.StreamCDNIngestionType)
@@ -120,13 +120,13 @@
             </div>
         </div> -->
 
-        <div class="form-group">
+    <!--    <div class="form-group">
             @Html.LabelFor(model => model.StreamCDNIngestionUrl, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.StreamCDNIngestionUrl)
                 @Html.ValidationMessageFor(model => model.StreamCDNIngestionUrl)
             </div>
-        </div>
+        </div> -->
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
