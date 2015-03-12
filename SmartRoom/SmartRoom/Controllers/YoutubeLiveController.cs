@@ -11,6 +11,7 @@ using SmartRoom.Database;
 
 using Google.Apis.YouTube.v3;
 using Google.Apis.YouTube.v3.Data;
+using System.Threading.Tasks;
 
 
 namespace SmartRoom.Web.Controllers
@@ -54,12 +55,12 @@ namespace SmartRoom.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="Id,BroadcastId,BroadcastTitle,BroadcastDescription,BroadcastScheduledStartTime,BroadcastScheduledEndTime,BroadcastStatus,StreamId,StreamTitle,StreamKind,StreamSnippetTitle,StreamCDNFormat,StreamCDNIngestionType,StreamCDNIngestionUrl")] YoutubeLiveDetail youtubelivedetail)
+        public async Task<ActionResult> Create([Bind(Include="Id,BroadcastId,BroadcastTitle,BroadcastDescription,BroadcastScheduledStartTime,BroadcastScheduledEndTime,BroadcastStatus,StreamId,StreamTitle,StreamKind,StreamSnippetTitle,StreamCDNFormat,StreamCDNIngestionType,StreamCDNIngestionUrl")] YoutubeLiveDetail youtubelivedetail)
         {
             BroadcastController liveController = new BroadcastController();
            
             // Create broadcast and stream for YoutubeLive
-            LiveBroadcast broadcast = liveController.createBroadcast("youtube#liveBroadcast", youtubelivedetail.BroadcastTitle, youtubelivedetail.BroadcastScheduledStartTime, youtubelivedetail.BroadcastScheduledEndTime, youtubelivedetail.BroadcastStatus);
+            LiveBroadcast broadcast = await liveController.createBroadcast("youtube#liveBroadcast", youtubelivedetail.BroadcastTitle, youtubelivedetail.BroadcastScheduledStartTime, youtubelivedetail.BroadcastScheduledEndTime, youtubelivedetail.BroadcastStatus);
             LiveStream stream = liveController.createStream("youtube#liveStream", youtubelivedetail.StreamSnippetTitle, youtubelivedetail.StreamCDNFormat, "rtmp");
 
             // Bind them together
