@@ -32,8 +32,6 @@ namespace SmartRoom.Database
                 .Property(c => c.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
             modelBuilder.Entity<Course>()
                 .HasRequired(s => s.CourseOptions).WithRequiredPrincipal(s => s.Course);
-            modelBuilder.Entity<Course>()
-                .HasRequired(s => s.YoutubeLiveDetails).WithRequiredPrincipal(s => s.Courses);
         }
 
         // Add a DbSet for each entity type that you want to include in your model. For more information 
