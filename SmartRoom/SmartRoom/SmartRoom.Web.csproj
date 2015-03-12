@@ -306,6 +306,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Classroom\Models\" />
     <Folder Include="Areas\Classroom\Views\Shared\" />
+    <Folder Include="Views\Calendar\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
