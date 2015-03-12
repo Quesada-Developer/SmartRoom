@@ -39,7 +39,7 @@ namespace SmartRoom.Web.Controllers
             {
                 return HttpNotFound();
             }
-            youtubelivedetail.Embededhtml = Server.HtmlEncode(youtubelivedetail.Embededhtml);
+            ViewBag.Embededhtml = youtubelivedetail.Embededhtml;
             return View(youtubelivedetail);
         }
 
