@@ -18,7 +18,9 @@ namespace SmartRoom.Web.Controllers
         // GET: Courses
         public ActionResult Index()
         {
+            
             return View(db.Courses.ToList());
+
         }
 
         // GET: Courses/Details/5
