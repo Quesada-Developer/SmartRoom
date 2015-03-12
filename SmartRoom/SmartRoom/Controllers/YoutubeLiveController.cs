@@ -39,13 +39,14 @@ namespace SmartRoom.Web.Controllers
             {
                 return HttpNotFound();
             }
+            youtubelivedetail.Embededhtml = Server.HtmlEncode(youtubelivedetail.Embededhtml);
             return View(youtubelivedetail);
         }
 
         // GET: /YoutubeLive/Create
         public ActionResult Create()
         {
-            ViewBag.CourseId = new SelectList(db.Courses, "Id", "Subject");
+            ViewBag.CourseId = new SelectList(db.Courses, "Id", "Title");
             return View();
         }
 
@@ -54,7 +55,7 @@ namespace SmartRoom.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include="Id,CourseId,BroadcastId,BroadcastTitle,BroadcastDescription,BroadcastScheduledStartTime,BroadcastScheduledEndTime,BroadcastStatus,StreamId,StreamTitle,StreamKind,StreamSnippetTitle,StreamCDNFormat,StreamCDNIngestionType,StreamCDNIngestionUrl")] YoutubeLiveDetail youtubelivedetail)
+        public async Task<ActionResult> Create([Bind(Include = "Id,CourseId,BroadcastId,BroadcastTitle,BroadcastDescription,BroadcastScheduledStartTime,BroadcastScheduledEndTime,BroadcastStatus,StreamId,StreamTitle,StreamKind,StreamSnippetTitle,StreamCDNFormat,StreamCDNIngestionType,StreamCDNIngestionUrl,Embededhtml")] YoutubeLiveDetail youtubelivedetail)
         {
 
             BroadcastController liveController = new BroadcastController();
@@ -70,6 +71,8 @@ namespace SmartRoom.Web.Controllers
             youtubelivedetail.BroadcastId = bindedBroadcast.Id;
             youtubelivedetail.StreamId = stream.Id;
             youtubelivedetail.StreamCDNIngestionUrl = stream.Cdn.IngestionInfo.IngestionAddress;
+            youtubelivedetail.Embededhtml = bindedBroadcast.ContentDetails.MonitorStream.EmbedHtml;
+            
                        
             if (ModelState.IsValid)
             {
@@ -78,7 +81,7 @@ namespace SmartRoom.Web.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CourseId = new SelectList(db.Courses, "Id", "Subject", youtubelivedetail.CourseId);
+            ViewBag.CourseId = new SelectList(db.Courses, "Id", "Title", youtubelivedetail.CourseId);
             return View(youtubelivedetail);
         }
 
@@ -94,7 +97,7 @@ namespace SmartRoom.Web.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.CourseId = new SelectList(db.Courses, "Id", "Subject", youtubelivedetail.CourseId);
+            ViewBag.CourseId = new SelectList(db.Courses, "Id", "Title", youtubelivedetail.CourseId);
             return View(youtubelivedetail);
         }
 
@@ -103,7 +106,7 @@ namespace SmartRoom.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="Id,CourseId,BroadcastId,BroadcastTitle,BroadcastDescription,BroadcastScheduledStartTime,BroadcastScheduledEndTime,BroadcastStatus,StreamId,StreamTitle,StreamKind,StreamSnippetTitle,StreamCDNFormat,StreamCDNIngestionType,StreamCDNIngestionUrl")] YoutubeLiveDetail youtubelivedetail)
+        public ActionResult Edit([Bind(Include = "Id,CourseId,BroadcastId,BroadcastTitle,BroadcastDescription,BroadcastScheduledStartTime,BroadcastScheduledEndTime,BroadcastStatus,StreamId,StreamTitle,StreamKind,StreamSnippetTitle,StreamCDNFormat,StreamCDNIngestionType,StreamCDNIngestionUrl,Embededhtml")] YoutubeLiveDetail youtubelivedetail)
         {
             if (ModelState.IsValid)
             {
@@ -111,7 +114,7 @@ namespace SmartRoom.Web.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CourseId = new SelectList(db.Courses, "Id", "Subject", youtubelivedetail.CourseId);
+            ViewBag.CourseId = new SelectList(db.Courses, "Id", "Title", youtubelivedetail.CourseId);
             return View(youtubelivedetail);
         }
 

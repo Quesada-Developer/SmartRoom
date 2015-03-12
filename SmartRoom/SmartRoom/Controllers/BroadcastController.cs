@@ -137,6 +137,7 @@ namespace SmartRoom.Web.Controllers
             liveStream.Cdn = new CdnSettings();
             liveStream.Cdn.Format = CDNFormat;
             liveStream.Cdn.IngestionType = CDNIngestionType;
+            
 
             LiveStream returnedStream = youtube.LiveStreams.Insert(liveStream, "snippet,cdn").Execute();
 
@@ -170,8 +171,9 @@ namespace SmartRoom.Web.Controllers
            
             LiveBroadcastsResource.BindRequest liveBroadcastBind = youtube.LiveBroadcasts.Bind(broadcast.Id, "id,contentDetails");
             liveBroadcastBind.StreamId = Livestream.Id;
-            LiveBroadcast returnedBroadcast = liveBroadcastBind.Execute();
-
+            LiveBroadcast returnedBroadcast = liveBroadcastBind.Execute(); 
+            returnedBroadcast.ContentDetails.EnableEmbed = true;
+ 
             return returnedBroadcast;
 
         }

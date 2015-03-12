@@ -30,6 +30,7 @@ namespace SmartRoom.Database.Tables
         public String StreamCDNFormat { get; set; }
         public String StreamCDNIngestionType { get; set; }
         public String StreamCDNIngestionUrl { get; set; }
+        public String Embededhtml { get; set; }
     }
 }
 
