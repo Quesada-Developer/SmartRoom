@@ -11,6 +11,8 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using SmartRoom.Web.Models;
+using System.Security.Principal;
+using System.Runtime.InteropServices;
 
 namespace SmartRoom.Web
 {
@@ -106,4 +108,5 @@ namespace SmartRoom.Web
             return new ApplicationSignInManager(context.GetUserManager<ApplicationUserManager>(), context.Authentication);
         }
     }
+
 }
