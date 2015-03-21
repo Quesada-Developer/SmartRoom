@@ -11,9 +11,9 @@ using System.Threading;
 using SmartRoom.Web.Properties;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace SmartRoom.Database.Tables
+namespace SmartRoom.Database
 {
-    class SmartRoomIdentityConfig
+    /*class SmartRoomIdentityConfig
     {
     }
 
@@ -122,5 +122,5 @@ namespace SmartRoom.Database.Tables
     public class SmartRoomPrincipal : ISmartRoomPrincipal
     {
         
-    }
+    }*/
 }

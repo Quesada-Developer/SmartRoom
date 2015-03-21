@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SmartRoom.Web.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,6 +12,10 @@ namespace SmartRoom.Web.Controllers
         [AllowAnonymous]
         public ActionResult Index()
         {
+            //ApplicationUser user = context.Users.Where(u => u.UserName.Equals(UserName, StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
+            //var account = new AccountController();
+            //account.UserManager.
+            //var user = UserManager.FindById(User.Identity.GetUserId());
             return View();
         }
 

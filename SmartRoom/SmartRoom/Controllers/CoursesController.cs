@@ -7,7 +7,6 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using SmartRoom.Database;
-using SmartRoom.Database.Tables;
 
 namespace SmartRoom.Web.Controllers
 {

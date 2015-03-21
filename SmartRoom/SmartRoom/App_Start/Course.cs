@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
-namespace SmartRoom.Database.Tables
+namespace SmartRoom.Web
 {
     public class Course
     {

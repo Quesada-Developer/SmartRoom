@@ -6,7 +6,6 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using SmartRoom.Database.Tables;
 using SmartRoom.Database;
 
 namespace SmartRoom.Web.Areas.Classroom.Controllers
@@ -19,6 +18,7 @@ namespace SmartRoom.Web.Areas.Classroom.Controllers
         [Authorize]
         public ActionResult Index()
         {
+         
             return View(db.Courses.ToList());
         }
 
@@ -39,7 +39,7 @@ namespace SmartRoom.Web.Areas.Classroom.Controllers
         }
 
         // GET: /Classroom/Courses/Create
-        [Authorize(Roles = "Teacher")]
+        [Authorize(Roles = "Teacher,Admin")]
         public ActionResult Create()
         {
             return View();
