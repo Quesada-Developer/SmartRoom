@@ -223,6 +223,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Classroom\classroomAreaRegistration.cs" />
     <Compile Include="Areas\Classroom\Controllers\CoursesController.cs" />
+    <Compile Include="Areas\YouTube\YouTubeAreaRegistration.cs" />
     <Compile Include="Authen.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BroadcastController.cs" />
@@ -267,6 +268,7 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="client_secret_1084733801830-4j2fje2ku2b6tkpa4v9v6cbbt08jeiql.apps.googleusercontent.com.json" />
+    <Content Include="Areas\YouTube\Views\web.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -340,6 +342,9 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Classroom\Models\" />
     <Folder Include="Areas\Classroom\Views\Shared\" />
+    <Folder Include="Areas\YouTube\Controllers\" />
+    <Folder Include="Areas\YouTube\Models\" />
+    <Folder Include="Areas\YouTube\Views\Shared\" />
     <Folder Include="Helper\" />
   </ItemGroup>
   <ItemGroup>
