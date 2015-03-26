@@ -1,10 +1,9 @@
-﻿using System;
-using System.Web.Mvc;
-using System.Threading.Tasks;
-using Microsoft.AspNet.Identity;
-
-using Google.Apis.YouTube.v3;
+﻿using Google.Apis.YouTube.v3;
 using Google.Apis.YouTube.v3.Data;
+using Microsoft.AspNet.Identity;
+using System;
+using System.Threading.Tasks;
+using System.Web.Mvc;
 
 
 namespace SmartRoom.Web.Controllers

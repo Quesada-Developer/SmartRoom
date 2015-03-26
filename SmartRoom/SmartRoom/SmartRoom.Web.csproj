@@ -216,30 +216,29 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
-    <Compile Include="App_Start\Course.cs" />
-    <Compile Include="App_Start\CourseOption.cs" />
+    <Compile Include="Areas\Classroom\Models\Course.cs" />
+    <Compile Include="Areas\Classroom\Models\CourseOption.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\SmartModel.cs" />
     <Compile Include="App_Start\SmartModelInitializer.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="App_Start\UserRelationship.cs" />
+    <Compile Include="Areas\Classroom\Models\UserRelationship.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="App_Start\YoutubeLiveDetail.cs" />
+    <Compile Include="Areas\Classroom\Models\YoutubeLiveDetail.cs" />
     <Compile Include="Areas\Classroom\classroomAreaRegistration.cs" />
     <Compile Include="Areas\Classroom\Controllers\CoursesController.cs" />
-    <Compile Include="Authen.cs" />
+    <Compile Include="Helper\Authen.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BroadcastController.cs" />
-    <Compile Include="Controllers\CoursesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\YoutubeLiveController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\GetClasses.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -331,11 +330,6 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Courses\Create.cshtml" />
-    <Content Include="Views\Courses\Delete.cshtml" />
-    <Content Include="Views\Courses\Details.cshtml" />
-    <Content Include="Views\Courses\Edit.cshtml" />
-    <Content Include="Views\Courses\Index.cshtml" />
     <Content Include="SmartRoom-97a44346405c.p12" />
     <Content Include="Views\YoutubeLive\Create.cshtml" />
     <Content Include="Views\YoutubeLive\Delete.cshtml" />
@@ -345,9 +339,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Classroom\Models\" />
     <Folder Include="Areas\Classroom\Views\Shared\" />
-    <Folder Include="Helper\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
