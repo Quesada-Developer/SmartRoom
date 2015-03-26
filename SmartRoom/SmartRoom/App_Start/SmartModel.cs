@@ -5,6 +5,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Linq;
@@ -65,6 +66,10 @@ namespace SmartRoom.Web
 
     public class ApplicationUser : IdentityUser
     {
+        public ApplicationUser()
+        {
+            Course = new List<Course>();
+        }
         /// <summary>
         /// <example>await Account.UserManager.FindById(User.Identity.GetUserId()).GoogleAuthentication.GetInitializer()</example>
         /// </summary>
@@ -77,7 +82,9 @@ namespace SmartRoom.Web
             
             return userIdentity;
         }
-        public virtual ICollection<UserRelationship> UserRelationships { get; set; }
+        //public virtual ICollection<UserRelationship> UserRelationships { get; set; }
+
+        public virtual ICollection<Course> Course { get; set; }
     }
     public class SmartModel : IdentityDbContext<ApplicationUser>
     {
@@ -95,15 +102,12 @@ namespace SmartRoom.Web
         }
         //public DbSet<Account> Accounts { get; set; }
         public DbSet<Course> Courses { get; set; }
-        public DbSet<UserRelationship> ClassRoles { get; set; }
+        //public DbSet<UserRelationship> ClassRoles { get; set; }
         public DbSet<CourseOption> CourseOptions { get; set; }
         public DbSet<YoutubeLiveDetail> YoutubeLiveDetails { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Course>()
-                .HasKey(s=>s.Id)
-                .Property(c => c.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
             modelBuilder.Entity<Course>()
                 .HasRequired(s => s.CourseOptions).WithRequiredPrincipal(s => s.Course);
             base.OnModelCreating(modelBuilder);

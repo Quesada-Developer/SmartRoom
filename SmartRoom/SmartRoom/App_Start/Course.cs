@@ -10,6 +10,10 @@ namespace SmartRoom.Web
 {
     public class Course
     {
+        public Course()
+        {
+            
+        }
         public int Id { get; set; }
         [Required]
         [StringLength(8, MinimumLength = 2)]
@@ -40,10 +44,8 @@ namespace SmartRoom.Web
         [Required]
         [Column(TypeName = "DateTime2")]
         public DateTime ModifiedDate { get; set; }
-
-        public virtual ICollection<UserRelationship> ClassRoles { get; set; }
-
-        public CourseOption CourseOptions { get; set; }
+        public int CourseOptionsId { get; set; }
+        public virtual CourseOption CourseOptions { get; set; }
         public virtual ICollection<YoutubeLiveDetail> YoutubeLiveDetails { get; set; }
     }
 }

@@ -8,17 +8,16 @@ using System.Web;
 
 namespace SmartRoom.Web
 {
-    public class UserRelationship
+    /*public class UserRelationship
     {
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         [Required]
-        public int AccountId { get; set; }
+        public string AccountId { get; set; }
         public virtual ApplicationUser Accounts { get; set; }
         [Required]
-        public int ClassroomId { get; set; }
-        public virtual Course Classrooms { get; set; }
+        public virtual List<Course> Course { get; set; }
         [Required]
         public Role AccountRole { get; set; }
 
@@ -32,5 +31,5 @@ namespace SmartRoom.Web
         [Required]
         [Column(TypeName = "DateTime2")]
         public DateTime ModifiedDate { get; set; }
-    }
+    }*/
 }
