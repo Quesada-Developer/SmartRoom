@@ -20,7 +20,6 @@ namespace SmartRoom.Web.Controllers
             //account.UserManager.
             //var user = UserManager.FindById(User.Identity.GetUserId());
             var a = model.Users.Find(User.Identity.GetUserId()).Course;
-            
 
             return View();
         }

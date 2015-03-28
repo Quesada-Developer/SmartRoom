@@ -1139,7 +1139,6 @@
     <Folder Include="Areas\YouTube\Models\" />
     <Folder Include="Areas\YouTube\Views\Video\" />
     <Folder Include="Helper\" />
-    <Folder Include="Views\Youtube\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -1175,7 +1174,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>52953</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
