@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using SmartRoom.Web.Models;
+using SmartRoom.Database;
 
 namespace SmartRoom.Web.Controllers
 {
@@ -153,8 +154,29 @@ namespace SmartRoom.Web.Controllers
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
+                
+
                 if (result.Succeeded)
                 {
+
+                    // Add custom user claims here
+                    if (model.Email.Contains("@students.kennesaw.edu"))
+                    {
+                        await UserManager.AddToRoleAsync(user.Id, "Student");
+                    }
+                    else if (model.Email.Contains("@kennesaw.edu"))
+                    {
+                        await UserManager.AddToRoleAsync(user.Id, "Teacher");
+                    }
+
+                    if (model.Email.Contains("bbell31"))
+                    {
+
+                        await UserManager.AddToRoleAsync(user.Id, "Teacher");
+                    }
+
+
+
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
@@ -374,6 +396,21 @@ namespace SmartRoom.Web.Controllers
                     result = await UserManager.AddLoginAsync(user.Id, info.Login);
                     if (result.Succeeded)
                     {
+                        // Add custom user claims here
+                        if (model.Email.Contains("@students.kennesaw.edu"))
+                        {
+                            await UserManager.AddToRoleAsync(user.Id, "Student");
+                        }
+                        else if (model.Email.Contains("@kennesaw.edu"))
+                        {
+                            await UserManager.AddToRoleAsync(user.Id, "Teacher");
+                        }
+
+                        if (model.Email.Contains("bbell31"))
+                        {
+
+                            await UserManager.AddToRoleAsync(user.Id, "Teacher");
+                        }
                         await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                         return RedirectToLocal(returnUrl);
                     }

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Web.Mvc;
 using System.Threading.Tasks;
-
+using Microsoft.AspNet.Identity;
 
 using Google.Apis.YouTube.v3;
 using Google.Apis.YouTube.v3.Data;
@@ -9,16 +9,18 @@ using Google.Apis.YouTube.v3.Data;
 
 namespace SmartRoom.Web.Controllers
 {
+
+    
+
     public class BroadcastController : Controller
     {
-        private readonly Authen youtubeAuthen = new Authen(new[] { 
-                        "https://www.googleapis.com/auth/youtube",  
-                        "https://www.googleapis.com/auth/plus.login" });
+        AccountController Account = new AccountController();
         private YouTubeService youtube;
 
         public async Task<LiveBroadcast> createBroadcast(String kind, String snippetTitle, DateTime startTime, DateTime endTime, String privacyStatus)
         {
-            youtube = new YouTubeService(await youtubeAuthen.getInitializer());
+
+            youtube = new YouTubeService(await Account.UserManager.FindById(User.Identity.GetUserId()).GoogleAuthentication.GetInitializer());
             LiveBroadcast broadcast = new LiveBroadcast();
 
             // Set broadcast Kind
@@ -44,7 +46,7 @@ namespace SmartRoom.Web.Controllers
         public async Task<LiveStream> createStream(String kind, String snippetTitle, String CDNFormat, String CDNIngestionType)
         {
             LiveStream liveStream = new LiveStream();
-            youtube = new YouTubeService(await youtubeAuthen.getInitializer());
+            youtube = new YouTubeService(await Account.UserManager.FindById(User.Identity.GetUserId()).GoogleAuthentication.GetInitializer());
 
             // Set stream kind
             liveStream.Kind = kind;
@@ -66,7 +68,7 @@ namespace SmartRoom.Web.Controllers
 
         public async Task<LiveBroadcast> bindBroadcast(LiveBroadcast broadcast, LiveStream Livestream)
         {
-            youtube = new YouTubeService(await youtubeAuthen.getInitializer());
+            youtube = new YouTubeService(await Account.UserManager.FindById(User.Identity.GetUserId()).GoogleAuthentication.GetInitializer());
 
             LiveBroadcastsResource.BindRequest liveBroadcastBind = youtube.LiveBroadcasts.Bind(broadcast.Id, "id,contentDetails");
             liveBroadcastBind.StreamId = Livestream.Id;
