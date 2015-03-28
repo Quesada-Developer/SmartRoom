@@ -6,113 +6,112 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using SmartRoom.Database;
+using SmartRoomSolution.Models;
+using SmartRoomSolution.Web.Models;
 
-namespace SmartRoom.Web.Controllers
+namespace SmartRoomSolution.Controllers
 {
-    public class CoursesController : Controller
+    public class ClassroomController : Controller
     {
-        private SmartModel db = new SmartModel();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Courses
+        // GET: /Classroom/
         public ActionResult Index()
         {
-            
-            return View(db.Courses.ToList());
-
+            return View(db.Classrooms.ToList());
         }
 
-        // GET: Courses/Details/5
+        // GET: /Classroom/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Course course = db.Courses.Find(id);
-            if (course == null)
+            Classroom classroom = db.Classrooms.Find(id);
+            if (classroom == null)
             {
                 return HttpNotFound();
             }
-            return View(course);
+            return View(classroom);
         }
 
-        // GET: Courses/Create
+        // GET: /Classroom/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Courses/Create
+        // POST: /Classroom/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Subject,CourseNumber,Section,Title,StartDate,EndDate,Location,Term,CreatedBy,CreateDate,ModifedBy,ModifiedDate")] Course course)
+        public ActionResult Create([Bind(Include="Id,Term,Year,Campus,CreateDate,CreatedBy,ModifiedDate,ModifiedBy,IsActive")] Classroom classroom)
         {
             if (ModelState.IsValid)
             {
-                db.Courses.Add(course);
+                db.Classrooms.Add(classroom);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(course);
+            return View(classroom);
         }
 
-        // GET: Courses/Edit/5
+        // GET: /Classroom/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Course course = db.Courses.Find(id);
-            if (course == null)
+            Classroom classroom = db.Classrooms.Find(id);
+            if (classroom == null)
             {
                 return HttpNotFound();
             }
-            return View(course);
+            return View(classroom);
         }
 
-        // POST: Courses/Edit/5
+        // POST: /Classroom/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Subject,CourseNumber,Section,Title,StartDate,EndDate,Location,Term,CreatedBy,CreateDate,ModifedBy,ModifiedDate")] Course course)
+        public ActionResult Edit([Bind(Include="Id,Term,Year,Campus,CreateDate,CreatedBy,ModifiedDate,ModifiedBy,IsActive")] Classroom classroom)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(course).State = EntityState.Modified;
+                db.Entry(classroom).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(course);
+            return View(classroom);
         }
 
-        // GET: Courses/Delete/5
+        // GET: /Classroom/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Course course = db.Courses.Find(id);
-            if (course == null)
+            Classroom classroom = db.Classrooms.Find(id);
+            if (classroom == null)
             {
                 return HttpNotFound();
             }
-            return View(course);
+            return View(classroom);
         }
 
-        // POST: Courses/Delete/5
+        // POST: /Classroom/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Course course = db.Courses.Find(id);
-            db.Courses.Remove(course);
+            Classroom classroom = db.Classrooms.Find(id);
+            db.Classrooms.Remove(classroom);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

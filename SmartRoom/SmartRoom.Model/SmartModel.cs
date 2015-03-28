@@ -6,6 +6,30 @@ namespace SmartRoom.Database
     using System.Data.Entity;
     using System.Linq;
 
+
+    public class ApplicationUser : IdentityUser
+    {
+        public string RandomName { get; set; }
+        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
+        {
+            // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
+            var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
+            
+            // Add custom user claims here
+            if (Email.Contains("@students.kennesaw.edu"))
+            {
+                manager.AddToRole(Id, "Student");
+            }
+            else if (Email.Contains("@kennesaw.edu"))
+            {
+                manager.AddToRole(Id, "Teacher");
+            }
+
+            return userIdentity;
+        }
+        
+
+    }
     public class SmartModel : DbContext
     {
         // Your context has been configured to use a 'SmartModel' connection string from your application's 
