@@ -58,8 +58,10 @@ namespace SmartRoom.Web.Areas.YouTube.Controllers
             liveStream.Cdn.Format = CDNFormat;
             liveStream.Cdn.IngestionType = CDNIngestionType;
 
+            liveStream.Status.StreamStatus = "active";
 
-            LiveStream returnedStream = youtube.LiveStreams.Insert(liveStream, "snippet,cdn").Execute();
+
+            LiveStream returnedStream = youtube.LiveStreams.Insert(liveStream, "snippet,cdn,status").Execute();
 
             return returnedStream;
         }
@@ -81,26 +83,30 @@ namespace SmartRoom.Web.Areas.YouTube.Controllers
         {
             youtube = new YouTubeService(await youtubeAuthen.getInitializer());
 
-            LiveBroadcastsResource.UpdateRequest liveBroadcastUpdates = youtube.LiveBroadcasts.Update();
+           // LiveBroadcastsResource.UpdateRequest liveBroadcastUpdates = youtube.LiveBroadcasts.Update();
 
-            LiveBroadcast returnedBroadcast = liveBroadcastUpdates.Execute();
-            returnedBroadcast.ContentDetails.EnableEmbed = true;
+          // LiveBroadcast returnedBroadcast = liveBroadcastUpdates.Execute();
+          //   returnedBroadcast.ContentDetails.EnableEmbed = true;
 
-            return returnedBroadcast;
+            return broadcast;
 
         }
 
-        public async Task<LiveBroadcast> transitionBroadcast(LiveBroadcast broadcast, String broadcastStatus)
+        public async Task<LiveBroadcast> transitionBroadcast(LiveBroadcast broadcast, String streamId, String broadcastStatus)
         {
             youtube = new YouTubeService(await youtubeAuthen.getInitializer());
+
+            LiveStreamsResource.ListRequest streamStatus = youtube.LiveStreams.List("id");
+            streamStatus.Id = 
+            List<LiveStream> streamCheck = streamStatus.Execute();
 
             if (broadcast.Status.Equals(broadcastStatus)) {
                 return broadcast;
             }
 
-            LiveBroadcastsResource.TransitionRequest liveBroadcastTransition = youtube.LiveBroadcasts.Update();
+            LiveBroadcastsResource.TransitionRequest liveBroadcastTransition = youtube.LiveBroadcasts.Transition();
 
-            LiveBroadcast returnedBroadcast = liveBroadcastUpdates.Execute();
+            LiveBroadcast returnedBroadcast = liveBroadcastTransition.Execute();
             returnedBroadcast.ContentDetails.EnableEmbed = true;
 
             return returnedBroadcast;
@@ -111,12 +117,12 @@ namespace SmartRoom.Web.Areas.YouTube.Controllers
         {
             youtube = new YouTubeService(await youtubeAuthen.getInitializer());
 
-            LiveBroadcastsResource.UpdateRequest liveBroadcastUpdates = youtube.LiveBroadcasts.Update();
+          //  LiveBroadcastsResource.UpdateRequest liveBroadcastUpdates = youtube.LiveBroadcasts.Update();
 
-            LiveBroadcast returnedBroadcast = liveBroadcastUpdates.Execute();
-            returnedBroadcast.ContentDetails.EnableEmbed = true;
+          //  LiveBroadcast returnedBroadcast = liveBroadcastUpdates.Execute();
+          //  returnedBroadcast.ContentDetails.EnableEmbed = true;
 
-            return returnedBroadcast;
+            return broadcast;
 
         }
     }
