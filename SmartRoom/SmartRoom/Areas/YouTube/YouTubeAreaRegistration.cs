@@ -19,6 +19,8 @@ namespace SmartRoom.Web.Areas.YouTube
                 "YouTube/{controller}/{action}/{id}",
                 new { action = "Index", id = UrlParameter.Optional }
             );
+
+
         }
     }
 }
