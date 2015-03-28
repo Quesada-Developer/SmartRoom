@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web.Mvc;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 
 using Google.Apis.YouTube.v3;
@@ -92,26 +93,28 @@ namespace SmartRoom.Web.Areas.YouTube.Controllers
 
         }
 
-        public async Task<LiveBroadcast> transitionBroadcast(LiveBroadcast broadcast, String streamId, String broadcastStatus)
-        {
-            youtube = new YouTubeService(await youtubeAuthen.getInitializer());
+        //public async Task<LiveBroadcast> transitionBroadcast(LiveBroadcast broadcast, String broadcastStatus)
+        //{
+        //    youtube = new YouTubeService(await youtubeAuthen.getInitializer());
 
-            LiveStreamsResource.ListRequest streamStatus = youtube.LiveStreams.List("id");
-            streamStatus.Id = 
-            List<LiveStream> streamCheck = streamStatus.Execute();
+        //    LiveStreamsResource.ListRequest streamRequest = youtube.LiveStreams.List("id");
+        //    streamRequest.Mine = true;
 
-            if (broadcast.Status.Equals(broadcastStatus)) {
-                return broadcast;
-            }
+        //    LiveStreamListResponse streamResponse = streamRequest.Execute();
+        //    List<LiveStream> streamCheck = streamResponse.Items.;
 
-            LiveBroadcastsResource.TransitionRequest liveBroadcastTransition = youtube.LiveBroadcasts.Transition();
+        //    if (broadcast.Status.Equals(broadcastStatus)) {
+        //        return broadcast;
+        //    }
 
-            LiveBroadcast returnedBroadcast = liveBroadcastTransition.Execute();
-            returnedBroadcast.ContentDetails.EnableEmbed = true;
+           // LiveBroadcastsResource.TransitionRequest liveBroadcastTransition = youtube.LiveBroadcasts.Transition();
 
-            return returnedBroadcast;
+          //  LiveBroadcast returnedBroadcast = liveBroadcastTransition.Execute();
+      //      returnedBroadcast.ContentDetails.EnableEmbed = true;
 
-        }
+        //    return returnedBroadcast;
+
+     //   }
 
         public async Task<LiveBroadcast> deleteBroadcast(LiveBroadcast broadcast)
         {
