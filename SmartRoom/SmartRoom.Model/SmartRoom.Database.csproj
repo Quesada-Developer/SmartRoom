@@ -52,13 +52,6 @@
     <Compile Include="Helpers\Role.cs" />
     <Compile Include="Helpers\Terms.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SmartModel.cs" />
-    <Compile Include="SmartModelInitializer.cs" />
-    <Compile Include="Tables\Account.cs" />
-    <Compile Include="Tables\YoutubeLiveDetail.cs" />
-    <Compile Include="Tables\ClassRole.cs" />
-    <Compile Include="Tables\Course.cs" />
-    <Compile Include="Tables\CourseOption.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

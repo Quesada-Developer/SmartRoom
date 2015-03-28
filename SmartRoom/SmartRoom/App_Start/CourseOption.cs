@@ -1,26 +1,20 @@
-﻿using SmartRoom.Database.Helpers;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
-namespace SmartRoom.Database.Tables
+namespace SmartRoom.Web
 {
-    public class ClassRole
+    public class CourseOption
     {
         [Key]
-        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
+        public virtual Course Course { get; set; }
+
         [Required]
-        public int AccountId { get; set; }
-        public virtual Account Accounts { get; set; }
-        [Required]
-        public int ClassroomId { get; set; }
-        public virtual Course Classrooms { get; set; }
-        [Required]
-        public Role AccountRole { get; set; }
+        public bool YoutubeLive { get; set; }
 
         [Required]
         public int CreatedBy { get; set; }
@@ -32,5 +26,6 @@ namespace SmartRoom.Database.Tables
         [Required]
         [Column(TypeName = "DateTime2")]
         public DateTime ModifiedDate { get; set; }
+
     }
 }

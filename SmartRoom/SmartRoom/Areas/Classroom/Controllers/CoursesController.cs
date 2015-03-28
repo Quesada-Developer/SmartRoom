@@ -6,8 +6,8 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using SmartRoom.Database.Tables;
 using SmartRoom.Database;
+using Microsoft.AspNet.Identity;
 
 namespace SmartRoom.Web.Areas.Classroom.Controllers
 {
@@ -19,7 +19,7 @@ namespace SmartRoom.Web.Areas.Classroom.Controllers
         [Authorize]
         public ActionResult Index()
         {
-            return View(db.Courses.ToList());
+            return View(db.Users.Find(User.Identity.GetUserId()).Course);
         }
 
         // GET: /Classroom/Courses/Details/5
@@ -30,7 +30,7 @@ namespace SmartRoom.Web.Areas.Classroom.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Course course = db.Courses.Find(id);
+            Course course = db.Users.Find(User.Identity.GetUserId()).Course.Where(obj => obj.Id == id).FirstOrDefault();
             if (course == null)
             {
                 return HttpNotFound();
@@ -39,7 +39,7 @@ namespace SmartRoom.Web.Areas.Classroom.Controllers
         }
 
         // GET: /Classroom/Courses/Create
-        [Authorize(Roles = "Teacher")]
+        [Authorize(Roles = "Teacher,Admin")]
         public ActionResult Create()
         {
             return View();
@@ -55,7 +55,7 @@ namespace SmartRoom.Web.Areas.Classroom.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Courses.Add(course);
+                db.Users.Find(User.Identity.GetUserId()).Course.Add(course);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -71,7 +71,7 @@ namespace SmartRoom.Web.Areas.Classroom.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Course course = db.Courses.Find(id);
+            Course course = db.Users.Find(User.Identity.GetUserId()).Course.Where(obj => obj.Id == id).FirstOrDefault();
             if (course == null)
             {
                 return HttpNotFound();
@@ -103,7 +103,7 @@ namespace SmartRoom.Web.Areas.Classroom.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Course course = db.Courses.Find(id);
+            Course course = db.Users.Find(User.Identity.GetUserId()).Course.Where(obj => obj.Id == id).FirstOrDefault(); ;
             if (course == null)
             {
                 return HttpNotFound();
@@ -117,7 +117,7 @@ namespace SmartRoom.Web.Areas.Classroom.Controllers
         [Authorize(Roles = "Teacher")]
         public ActionResult DeleteConfirmed(int id)
         {
-            Course course = db.Courses.Find(id);
+            Course course = db.Users.Find(User.Identity.GetUserId()).Course.Where(obj => obj.Id == id).FirstOrDefault();
             db.Courses.Remove(course);
             db.SaveChanges();
             return RedirectToAction("Index");
