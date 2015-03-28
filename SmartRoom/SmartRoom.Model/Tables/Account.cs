@@ -7,7 +7,7 @@ using System.Web;
 
 namespace SmartRoom.Database.Tables
 {
-    public class Account
+    /*public class Account
     {
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
@@ -36,6 +36,6 @@ namespace SmartRoom.Database.Tables
         [Column(TypeName = "DateTime2")]
         public DateTime ModifiedDate { get; set; }
 
-        public virtual ICollection<ClassRole> Classroles { get; set; }
-    }
+        public virtual ICollection<UserRelationship> Classroles { get; set; }
+    }*/
 }

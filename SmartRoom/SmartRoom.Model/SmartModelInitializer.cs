@@ -10,6 +10,22 @@ namespace SmartRoom.Database
     {
         protected override void Seed(SmartModel context)
         {
+            var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+            var RoleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+
+            IdentityResult roleResult;
+
+            // Check to see if Role Exists, if not create it
+            if (!RoleManager.RoleExists("Student"))
+            {
+                roleResult = RoleManager.Create(new IdentityRole("Student"));
+            }
+
+            if (!RoleManager.RoleExists("Teacher"))
+            {
+                roleResult = RoleManager.Create(new IdentityRole("Teacher"));
+            }
+
             var courses = new List<Course> {
             new Course{Subject="CHEML", CourseNumber=3500, Title="Biochemistry Lab", Section="01", StartDate=DateTime.Parse("01/05/2015"), EndDate=DateTime.Parse("05/01/2015"), Location=Campus.Kennesaw, Term=Terms.Spring},
             new Course{Subject="CS", CourseNumber=4850, Title="Senior Project", Section="01", StartDate=DateTime.Parse("01/05/2015"), EndDate=DateTime.Parse("05/01/2015"), Location=Campus.Kennesaw, Term=Terms.Spring}

@@ -41,7 +41,7 @@ namespace SmartRoom.Database.Tables
         [Column(TypeName = "DateTime2")]
         public DateTime ModifiedDate { get; set; }
 
-        public virtual ICollection<ClassRole> ClassRoles { get; set; }
+        public virtual ICollection<UserRelationship> ClassRoles { get; set; }
 
         public CourseOption CourseOptions { get; set; }
         public virtual ICollection<YoutubeLiveDetail> YoutubeLiveDetails { get; set; }
