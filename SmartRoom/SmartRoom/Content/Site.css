@@ -22,3 +22,38 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.index-course {
+    height: 300px;
+    width: 150px;
+    float: left;
+    border: 2px solid #666666;
+    background-color: white;
+    padding: 3px;
+    margin: 5px;
+    text-align: center;
+}
+
+/* Styles go here */
+
+.as-sortable-item,
+.as-sortable-placeholder {
+    width: 124px;
+    margin: 2px;
+    border: 1px solid #ff0000;
+    border-radius: 5px;
+    list-style: none;
+}
+
+.as-sortable-placeholder {
+    border: 1px dotted #0000ff !important;
+}
+
+#sortable-container {
+    display: inline-block;
+}
+
+.column {
+    border: 1px solid #000000;
+    border-radius: 5px;
+}

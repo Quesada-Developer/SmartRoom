@@ -19,9 +19,12 @@ namespace SmartRoom.Web.Controllers
             //var account = new AccountController();
             //account.UserManager.
             //var user = UserManager.FindById(User.Identity.GetUserId());
-            var a = model.Users.Find(User.Identity.GetUserId()).Course;
+            //var a = model.Users.Find(User.Identity.GetUserId()).Course;
 
-            return View();
+
+
+            return View(model.Users.Find(User.Identity.GetUserId()).Course);
+            //return View(model.Courses);
         }
 
         public ActionResult About()
