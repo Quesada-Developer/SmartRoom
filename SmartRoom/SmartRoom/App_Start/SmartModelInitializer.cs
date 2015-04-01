@@ -7,7 +7,7 @@ using System.Data.Entity;
 
 namespace SmartRoom.Web
 {
-    class SmartModelInitializer : DropCreateDatabaseAlways<SmartModel>
+    class SmartModelInitializer : DropCreateDatabaseIfModelChanges<SmartModel>
     {
         protected override void Seed(SmartModel context)
         {
@@ -32,11 +32,11 @@ namespace SmartRoom.Web
             }
 
 
-            var courses = new List<Course> {
+            /*var courses = new List<Course> {
             new Course{Subject="CHEML", CourseNumber=3500, Title="Biochemistry Lab", Section="01", StartDate=DateTime.Parse("01/05/2015"), EndDate=DateTime.Parse("05/01/2015"), Location=Campus.Kennesaw, Term=Terms.Spring},
             new Course{Subject="CS", CourseNumber=4850, Title="Senior Project", Section="01", StartDate=DateTime.Parse("01/05/2015"), EndDate=DateTime.Parse("05/01/2015"), Location=Campus.Kennesaw, Term=Terms.Spring}
             };
-            /*var accounts = new List<Account> {
+            var accounts = new List<Account> {
             new Account{ FirstName="Francisco", LastName="Quesada", Email="jquesada@students.kennesaw.edu", isActive=true, isAdmin=true, CreatedBy=1, CreateDate=DateTime.Now, ModifedBy=1, ModifiedDate=DateTime.Now},
             new Account{ FirstName="Steven", LastName="Carver", Email="scarver6@students.kennesaw.edu", isActive=true, isAdmin=true, CreatedBy=1, CreateDate=DateTime.Now, ModifedBy=1, ModifiedDate=DateTime.Now},
             new Account{ FirstName="Christopher", LastName="Nordike", Email="cnordike@students.kennesaw.edu", isActive=true, isAdmin=true, CreatedBy=1, CreateDate=DateTime.Now, ModifedBy=1, ModifiedDate=DateTime.Now},

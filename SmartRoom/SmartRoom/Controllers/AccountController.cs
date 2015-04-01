@@ -13,7 +13,6 @@ using SmartRoom.Database;
 
 namespace SmartRoom.Web.Controllers
 {
-    [Authorize]
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;

@@ -24,7 +24,7 @@ namespace SmartRoom.Web
         [StringLength(3, MinimumLength = 2)]
         public String Section { get; set; }
         [Required]
-        [StringLength(20, MinimumLength = 5)]
+        [StringLength(50, MinimumLength = 5)]
         public string Title { get; set; }
         [Required]
         public DateTime StartDate { get; set; }

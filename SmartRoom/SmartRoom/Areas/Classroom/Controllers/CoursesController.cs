@@ -39,7 +39,7 @@ namespace SmartRoom.Web.Areas.Classroom.Controllers
         }
 
         // GET: /Classroom/Courses/Create
-        [Authorize(Roles = "Teacher,Admin")]
+        //[Authorize(Roles = "Teacher,Admin")]
         public ActionResult Create()
         {
             return View();
@@ -50,7 +50,7 @@ namespace SmartRoom.Web.Areas.Classroom.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Teacher")]
+        //[Authorize(Roles = "Teacher")]
         public ActionResult Create([Bind(Include="Id,Subject,CourseNumber,Section,Title,StartDate,EndDate,Location,Term,CreatedBy,CreateDate,ModifedBy,ModifiedDate")] Course course)
         {
             if (ModelState.IsValid)
@@ -64,7 +64,7 @@ namespace SmartRoom.Web.Areas.Classroom.Controllers
         }
 
         // GET: /Classroom/Courses/Edit/5
-        [Authorize(Roles = "Teacher")]
+        //[Authorize(Roles = "Teacher")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -84,7 +84,7 @@ namespace SmartRoom.Web.Areas.Classroom.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Teacher")]
+        //[Authorize(Roles = "Teacher")]
         public ActionResult Edit([Bind(Include="Id,Subject,CourseNumber,Section,Title,StartDate,EndDate,Location,Term,CreatedBy,CreateDate,ModifedBy,ModifiedDate")] Course course)
         {
             if (ModelState.IsValid)
@@ -95,7 +95,7 @@ namespace SmartRoom.Web.Areas.Classroom.Controllers
             }
             return View(course);
         }
-        [Authorize(Roles = "Teacher")]
+        //[Authorize(Roles = "Teacher")]
         // GET: /Classroom/Courses/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -114,7 +114,7 @@ namespace SmartRoom.Web.Areas.Classroom.Controllers
         // POST: /Classroom/Courses/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Teacher")]
+        //[Authorize(Roles = "Teacher")]
         public ActionResult DeleteConfirmed(int id)
         {
             Course course = db.Users.Find(User.Identity.GetUserId()).Course.Where(obj => obj.Id == id).FirstOrDefault();
