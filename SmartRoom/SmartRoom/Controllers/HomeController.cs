@@ -20,11 +20,17 @@ namespace SmartRoom.Web.Controllers
             //account.UserManager.
             //var user = UserManager.FindById(User.Identity.GetUserId());
             //var a = model.Users.Find(User.Identity.GetUserId()).Course;
+            List<Course> CourseList = new List<Course>();
+            try
+            {
+                CourseList = model.Users.Find(User.Identity.GetUserId()).Course.ToList();
+            }
+            catch(Exception e)
+            {
 
+            }
 
-
-            return View(model.Users.Find(User.Identity.GetUserId()).Course);
-            //return View(model.Courses);
+            return View(CourseList);
         }
 
         public ActionResult About()

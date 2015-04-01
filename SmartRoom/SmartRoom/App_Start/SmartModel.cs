@@ -98,6 +98,7 @@ namespace SmartRoom.Web
             : base("name=SmartModel", throwIfV1Schema: false)
         {
             base.Configuration.AutoDetectChangesEnabled = true;
+            //base.Configuration.LazyLoadingEnabled = true;
             System.Data.Entity.Database.SetInitializer<SmartModel>(new SmartModelInitializer());
         }
         //public DbSet<Account> Accounts { get; set; }

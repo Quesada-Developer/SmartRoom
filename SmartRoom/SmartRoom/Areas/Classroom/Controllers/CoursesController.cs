@@ -39,7 +39,7 @@ namespace SmartRoom.Web.Areas.Classroom.Controllers
         }
 
         // GET: /Classroom/Courses/Create
-        //[Authorize(Roles = "Teacher,Admin")]
+        [Authorize(Roles = "Teacher,Admin")]
         public ActionResult Create()
         {
             return View();
@@ -50,7 +50,7 @@ namespace SmartRoom.Web.Areas.Classroom.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        //[Authorize(Roles = "Teacher")]
+        [Authorize(Roles = "Teacher")]
         public ActionResult Create([Bind(Include="Id,Subject,CourseNumber,Section,Title,StartDate,EndDate,Location,Term,CreatedBy,CreateDate,ModifedBy,ModifiedDate")] Course course)
         {
             if (ModelState.IsValid)

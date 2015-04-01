@@ -10,6 +10,8 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using SmartRoom.Web.Models;
 using SmartRoom.Database;
+using Microsoft.AspNet.Identity.EntityFramework;
+using System.Net;
 
 namespace SmartRoom.Web.Controllers
 {
@@ -151,6 +153,7 @@ namespace SmartRoom.Web.Controllers
         {
             if (ModelState.IsValid)
             {
+
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 
@@ -362,6 +365,11 @@ namespace SmartRoom.Web.Controllers
                 case SignInStatus.Failure:
                 default:
                     // If the user does not have an account, then prompt the user to create an account
+                    if (!loginInfo.Email.Contains("kennesaw.edu"))
+                    {
+                        ViewBag.Error = "Email must be a KSU email.";
+                        return View("ExternalLoginFailure");
+                    }
                     ViewBag.ReturnUrl = returnUrl;
                     ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
                     return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Email = loginInfo.Email });
@@ -384,7 +392,7 @@ namespace SmartRoom.Web.Controllers
             {
                 // Get the information about the user from the external login provider
                 var info = await AuthenticationManager.GetExternalLoginInfoAsync();
-                if (info == null)
+                if (info == null || !model.Email.Contains("kennesaw.edu"))
                 {
                     return View("ExternalLoginFailure");
                 }
@@ -408,7 +416,7 @@ namespace SmartRoom.Web.Controllers
                         if (model.Email.Contains("bbell31"))
                         {
 
-                            await UserManager.AddToRoleAsync(user.Id, "Teacher");
+                            await UserManager.AddToRoleAsync(user.Id, "Admin");
                         }
                         await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                         return RedirectToLocal(returnUrl);
@@ -428,8 +436,10 @@ namespace SmartRoom.Web.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Home", new { area = "" });
         }
+
+        
 
         //
         // GET: /Account/ExternalLoginFailure

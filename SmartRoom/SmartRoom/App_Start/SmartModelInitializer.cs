@@ -16,9 +16,9 @@ namespace SmartRoom.Web
 
             
             // Check to see if Role Exists, if not create it
-            if (!RoleManager.RoleExists("Admins"))
+            if (!RoleManager.RoleExists("Admin"))
             {
-                RoleManager.Create(new IdentityRole("Admins"));
+                RoleManager.Create(new IdentityRole("Admin"));
             }
 
             if (!RoleManager.RoleExists("Student"))

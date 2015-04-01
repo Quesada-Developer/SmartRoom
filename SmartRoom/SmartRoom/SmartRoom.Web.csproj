@@ -231,7 +231,6 @@
     <Compile Include="App_Start\YoutubeLiveDetail.cs" />
     <Compile Include="Areas\Classroom\classroomAreaRegistration.cs" />
     <Compile Include="Areas\Classroom\Controllers\CoursesController.cs" />
-    <Compile Include="Areas\Classroom\Controllers\HeaderController.cs" />
     <Compile Include="Areas\YouTube\Controllers\BroadcastController.cs" />
     <Compile Include="Areas\YouTube\Controllers\VideoController.cs" />
     <Compile Include="Areas\YouTube\Controllers\YouTubeController.cs" />
