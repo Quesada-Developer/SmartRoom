@@ -15,6 +15,8 @@ using System.Net;
 
 namespace SmartRoom.Web.Controllers
 {
+    using settings = Properties.Settings;
+    
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;
@@ -162,11 +164,11 @@ namespace SmartRoom.Web.Controllers
                 {
 
                     // Add custom user claims here
-                    if (model.Email.Contains("@students.kennesaw.edu"))
+                    if (model.Email.Contains(settings.Default.UniversityStudentDomain))
                     {
                         await UserManager.AddToRoleAsync(user.Id, "Student");
                     }
-                    else if (model.Email.Contains("@kennesaw.edu"))
+                    else if (model.Email.Contains(settings.Default.UniversityTeacherDomain))
                     {
                         await UserManager.AddToRoleAsync(user.Id, "Teacher");
                     }
@@ -365,9 +367,9 @@ namespace SmartRoom.Web.Controllers
                 case SignInStatus.Failure:
                 default:
                     // If the user does not have an account, then prompt the user to create an account
-                    if (!loginInfo.Email.Contains("kennesaw.edu"))
+                    if (!loginInfo.Email.Contains(Properties.Settings.Default.UniversityDomain))
                     {
-                        ViewBag.Error = "Email must be a KSU email.";
+                        ViewBag.Error = "Email must be a a valid University email.";
                         return View("ExternalLoginFailure");
                     }
                     ViewBag.ReturnUrl = returnUrl;
@@ -392,7 +394,7 @@ namespace SmartRoom.Web.Controllers
             {
                 // Get the information about the user from the external login provider
                 var info = await AuthenticationManager.GetExternalLoginInfoAsync();
-                if (info == null || !model.Email.Contains("kennesaw.edu"))
+                if (info == null || !model.Email.Contains(settings.Default.UniversityDomain))
                 {
                     return View("ExternalLoginFailure");
                 }
@@ -404,11 +406,11 @@ namespace SmartRoom.Web.Controllers
                     if (result.Succeeded)
                     {
                         // Add custom user claims here
-                        if (model.Email.Contains("@students.kennesaw.edu"))
+                        if (model.Email.Contains(settings.Default.UniversityStudentDomain))
                         {
                             await UserManager.AddToRoleAsync(user.Id, "Student");
                         }
-                        else if (model.Email.Contains("@kennesaw.edu"))
+                        else if (model.Email.Contains(settings.Default.UniversityTeacherDomain))
                         {
                             await UserManager.AddToRoleAsync(user.Id, "Teacher");
                         }
