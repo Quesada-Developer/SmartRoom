@@ -63,7 +63,8 @@ namespace SmartRoom.Web.Areas.YouTube.Controllers
             liveStream.Cdn.Format = CDNFormat;
             liveStream.Cdn.IngestionType = CDNIngestionType;
 
-            liveStream.Status.StreamStatus = "active";
+            liveStream.Status = new LiveStreamStatus();
+             liveStream.Status.StreamStatus = "active";
 
 
             LiveStream returnedStream = youtube.LiveStreams.Insert(liveStream, "snippet,cdn,status").Execute();
@@ -144,15 +145,84 @@ namespace SmartRoom.Web.Areas.YouTube.Controllers
             throw new System.ArgumentException("Parameter must belong to user and not be null", "Invalid");
         }
 
+        // needs to be tested
+        public async Task<Boolean> updateStream(String streamId, String kind, String snippetTitle, String CDNFormat, String CDNIngestionType)
+        {
+            Boolean flag = false;
 
-        // Redo
-        public async Task<String> deleteBroadcast(String broadcastId)
+            youtube = new YouTubeService(await youtubeAuthen.getInitializer());
+
+            IList<LiveStream> stream = await listStream();
+
+            for (int i = 0; i < stream.Count; i++)
+            {
+                if (stream[i].Id == streamId)
+                {
+                    LiveStream updateStream = new LiveStream();
+
+            // Set stream kind
+                    updateStream.Kind = kind;
+
+            // Set stream's snippet and title.
+                    updateStream.Snippet = new LiveStreamSnippet();
+                    updateStream.Snippet.Title = snippetTitle;
+
+            //Set stream's Cdn
+                    updateStream.Cdn = new CdnSettings();
+                    updateStream.Cdn.Format = CDNFormat;
+                    updateStream.Cdn.IngestionType = CDNIngestionType;
+
+                    updateStream.Status = new LiveStreamStatus();
+                    updateStream.Status.StreamStatus = "active";
+
+                    LiveStreamsResource.UpdateRequest liveStreamsUpdate = youtube.LiveStreams.Update(updateStream, "snippet,cdn,status") ;
+
+                    LiveStream streamResponse = liveStreamsUpdate.Execute();
+
+                    flag = true; 
+
+                    return flag;
+
+                }
+            }
+            throw new System.ArgumentException("Parameter must belong to user and not be null", "Invalid");
+        }
+
+
+        // Needs to be tested
+        public async Task<Boolean> deleteBroadcast(String broadcastId)
         {
             youtube = new YouTubeService(await youtubeAuthen.getInitializer());
 
-            
+            Boolean flag = true;
 
-            return broadcast;
+            LiveBroadcastsResource.DeleteRequest liveBroadcastDelete = youtube.LiveBroadcasts.Delete(broadcastId);
+            String broadcastResponse = liveBroadcastDelete.Execute();
+            if (broadcastResponse.Length <= 0 || string.IsNullOrEmpty(broadcastResponse)) {
+
+                flag = false;
+            }
+
+            return flag;
+
+        }
+
+        // Needs to be tested
+        public async Task<Boolean> deleteStream(String streamId)
+        {
+            youtube = new YouTubeService(await youtubeAuthen.getInitializer());
+
+            Boolean flag = true;
+
+            LiveStreamsResource.DeleteRequest liveStreamDelete = youtube.LiveStreams.Delete(streamId);
+            String streamResponse = liveStreamDelete.Execute();
+            if (streamResponse.Length <= 0 || string.IsNullOrEmpty(streamResponse))
+            {
+
+                flag = false;
+            }
+
+            return flag;
 
         }
 
