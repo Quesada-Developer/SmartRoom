@@ -365,11 +365,11 @@ namespace SmartRoom.Web.Controllers
                 case SignInStatus.Failure:
                 default:
                     // If the user does not have an account, then prompt the user to create an account
-                    if (!loginInfo.Email.Contains("kennesaw.edu"))
-                    {
-                        ViewBag.Error = "Email must be a KSU email.";
-                        return View("ExternalLoginFailure");
-                    }
+                    //if (!loginInfo.Email.Contains("kennesaw.edu"))
+                    //{
+                    //    ViewBag.Error = "Email must be a KSU email.";
+                    //    return View("ExternalLoginFailure");
+                    //}
                     ViewBag.ReturnUrl = returnUrl;
                     ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
                     return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Email = loginInfo.Email });
@@ -392,10 +392,10 @@ namespace SmartRoom.Web.Controllers
             {
                 // Get the information about the user from the external login provider
                 var info = await AuthenticationManager.GetExternalLoginInfoAsync();
-                if (info == null || !model.Email.Contains("kennesaw.edu"))
-                {
-                    return View("ExternalLoginFailure");
-                }
+                //if (info == null || !model.Email.Contains("kennesaw.edu"))
+                //{
+                //    return View("ExternalLoginFailure");
+                //}
                 var user = new ApplicationUser { UserName = info.ExternalIdentity.Name, Email = model.Email };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
@@ -413,7 +413,7 @@ namespace SmartRoom.Web.Controllers
                             await UserManager.AddToRoleAsync(user.Id, "Teacher");
                         }
 
-                        if (model.Email.Contains("bbell31"))
+                        if (model.Email.Contains("bbell31") || model.Email.Contains("steven"))
                         {
 
                             await UserManager.AddToRoleAsync(user.Id, "Admin");
