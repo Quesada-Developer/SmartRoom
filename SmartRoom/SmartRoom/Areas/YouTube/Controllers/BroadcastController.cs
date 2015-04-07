@@ -87,7 +87,7 @@ namespace SmartRoom.Web.Areas.YouTube.Controllers
         }
 
         // Redo
-        public async Task<LiveBroadcast> transitionBroadcast(LiveBroadcast broadcast, String streamId, tranRef.BroadcastStatusEnum broadcastStatusEnum)
+        public async Task<Boolean> transitionBroadcast(String broadcastId, String streamId, tranRef.BroadcastStatusEnum broadcastStatusEnum)
         {
             youtube = new YouTubeService(await youtubeAuthen.getInitializer());
 
@@ -98,16 +98,16 @@ namespace SmartRoom.Web.Areas.YouTube.Controllers
                 if (streams[i].Id == streamId && streams[i].Status.StreamStatus == "active")
                 {
 
-                    LiveBroadcastsResource.TransitionRequest liveBroadcastTransition = youtube.LiveBroadcasts.Transition(broadcastStatusEnum, broadcast.Id, "id,snippet,contentDetails,status");
+                    LiveBroadcastsResource.TransitionRequest liveBroadcastTransition = youtube.LiveBroadcasts.Transition(broadcastStatusEnum, broadcastId, "id,snippet,contentDetails,status");
 
                     LiveBroadcast broadcastResponse = liveBroadcastTransition.Execute();
 
-                    return broadcastResponse;
+                    return true;
 
                 }
             }
 
-            return broadcast;
+            return false;
 
         }
 

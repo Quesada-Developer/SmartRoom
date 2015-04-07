@@ -59,7 +59,8 @@ namespace SmartRoom.Web.Areas.YouTube.Controllers
             BroadcastController liveController = new BroadcastController();
 
             youtubelivedetail.StreamCDNIngestionType = "rtmp";
-
+            youtubelivedetail.BroadcastKind = "youtube#liveBroadcast";
+            youtubelivedetail.StreamKind = "youtube#liveStream";
             // Create broadcast and stream for YoutubeLive
             LiveBroadcast broadcast = await liveController.createBroadcast(youtubelivedetail.BroadcastKind, youtubelivedetail.BroadcastTitle, youtubelivedetail.BroadcastScheduledStartTime, youtubelivedetail.BroadcastScheduledEndTime, youtubelivedetail.BroadcastStatus);
             LiveStream stream = await liveController.createStream(youtubelivedetail.StreamKind, youtubelivedetail.StreamSnippetTitle, youtubelivedetail.StreamCDNFormat, youtubelivedetail.StreamCDNIngestionType);
@@ -69,8 +70,12 @@ namespace SmartRoom.Web.Areas.YouTube.Controllers
 
             // Values to-be inserted updated
             youtubelivedetail.BroadcastId = bindedBroadcast.Id;
+            youtubelivedetail.BroadcastchannelId = bindedBroadcast.ContentDetails.BoundStreamId;
+            youtubelivedetail.StreamName = stream.Cdn.IngestionInfo.StreamName;
+            youtubelivedetail.StreamStatus = stream.Status.StreamStatus;
             youtubelivedetail.StreamId = stream.Id;
             youtubelivedetail.StreamCDNIngestionUrl = stream.Cdn.IngestionInfo.IngestionAddress;
+          
             String id = (bindedBroadcast.ContentDetails.MonitorStream.EmbedHtml).ToString();
             
             //substring for browser
@@ -118,6 +123,39 @@ namespace SmartRoom.Web.Areas.YouTube.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include="Id,CourseId,BroadcastId,BroadcastKind,BroadcastTitle,BroadcastDescription,BroadcastScheduledStartTime,BroadcastScheduledEndTime,BroadcastStatus,BroadcastchannelId,BroadcastlifeCycleStatus,BroadcastEmbededhtml,StreamId,StreamKind,StreamName,StreamStatus,StreamSnippetTitle,StreamCDNFormat,StreamCDNIngestionType,StreamCDNIngestionUrl,StreamcontentclosedCaptionsIngestionUrl")] YoutubeLiveDetail youtubelivedetail)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(youtubelivedetail).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            ViewBag.CourseId = new SelectList(db.Courses, "Id", "Title", youtubelivedetail.CourseId);
+            return View(youtubelivedetail);
+        }
+
+        // GET: /Youtube/Edit/5
+        public ActionResult Transition(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            YoutubeLiveDetail youtubelivedetail = db.YoutubeLiveDetails.Find(id);
+            if (youtubelivedetail == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.CourseId = new SelectList(db.Courses, "Id", "Title", youtubelivedetail.CourseId);
+            return View(youtubelivedetail);
+        }
+
+        // POST: /Youtube/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Transition([Bind(Include = "Id,CourseId,BroadcastId,BroadcastKind,BroadcastTitle,BroadcastDescription,BroadcastScheduledStartTime,BroadcastScheduledEndTime,BroadcastStatus,BroadcastchannelId,BroadcastlifeCycleStatus,BroadcastEmbededhtml,StreamId,StreamKind,StreamName,StreamStatus,StreamSnippetTitle,StreamCDNFormat,StreamCDNIngestionType,StreamCDNIngestionUrl,StreamcontentclosedCaptionsIngestionUrl")] YoutubeLiveDetail youtubelivedetail)
         {
             if (ModelState.IsValid)
             {
