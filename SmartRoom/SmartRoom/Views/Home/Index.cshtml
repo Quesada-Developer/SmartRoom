@@ -30,12 +30,14 @@
             <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
         </div>
     </div>*@
-<li>@Html.ActionLink("Classroom Index", "Index", "Courses", new { Area = "Classroom" }, new { })</li>
-<li>@Html.ActionLink("Classroom Create", "Create", "Courses", new { Area = "Classroom" }, new { })</li>
-<li>@Html.ActionLink("Classroom Delete", "Delete", "Courses", new { Area = "Classroom" }, new { })</li>
-<li>@Html.ActionLink("Classroom Edit", "Edit", "Courses", new { Area = "Classroom" }, new { })</li>
-<li>@Html.ActionLink("YouTube Index", "Index", "YouTube", new { Area = "YouTube" }, new { })</li>
-<li>@Html.ActionLink("YouTube Create", "Create", "YouTube", new { Area = "YouTube" }, new { })</li>
+<ul>
+    <li>@Html.ActionLink("Classroom Index", "Index", "Courses", new { Area = "Classroom" }, new { })</li>
+    <li>@Html.ActionLink("Classroom Create", "Create", "Courses", new { Area = "Classroom" }, new { })</li>
+    <li>@Html.ActionLink("Classroom Delete", "Delete", "Courses", new { Area = "Classroom" }, new { })</li>
+    <li>@Html.ActionLink("Classroom Edit", "Edit", "Courses", new { Area = "Classroom" }, new { })</li>
+    <li>@Html.ActionLink("YouTube Index", "Index", "YouTube", new { Area = "YouTube" }, new { })</li>
+    <li>@Html.ActionLink("YouTube Create", "Create", "YouTube", new { Area = "YouTube" }, new { })</li>
+</ul>
 <ul id="sortable">
 
     @if (Model.Count() > 0)
