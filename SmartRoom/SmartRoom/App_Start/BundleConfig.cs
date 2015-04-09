@@ -26,6 +26,26 @@ namespace SmartRoom.Web
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
-        }
+            bundles.Add(new ScriptBundle("~/js").Include(
+                     "~/Scripts/jquery-*",
+                     "~/Scripts/globalize.js", //The Globalize library
+                     "~/Scripts/bootstrap.js",
+                     "~/Scripts/bootstrap-datepicker.js", //This is the brand new internationalised Bootstrap Datepicker 
+                     "~/Scripts/jquery.validate.js",
+                     "~/Scripts/jquery.validate.unobtrusive.js",
+                     "~/Scripts/jquery.validate.unobtrusive-custom-for-bootstrap.js",
+                     "~/Scripts/jquery.validate.globalize.js" //My jQuery Validate extension which depends on Globalize
+                     ));
+
+                    bundles.Add(new StyleBundle("~/content/css").Include(
+                "~/Content/bootstrap.css",
+                "~/Content/bootstrap-datepicker.css"
+                ));
+
+            bundles.Add(new StyleBundle("~/content/css-responsive").Include(
+                "~/Content/bootstrap-responsive.css"
+                ));
+        }      
+
     }
 }
