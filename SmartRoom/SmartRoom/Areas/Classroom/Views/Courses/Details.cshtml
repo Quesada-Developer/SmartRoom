@@ -4,9 +4,6 @@
 	ViewBag.Title = "Details";
 }
 
-<div>
-	@Html.Action("_Header", "Header")
-</div>
 <h2>Details</h2>
 <div>
 	<h4>Course</h4>
@@ -81,7 +78,7 @@
 		</dt>
 
 		<dd>
-			@Html.DisplayFor(model => model.CreatedBy)
+			@Html.DisplayFor(model => model.CreatedBy.UserName)
 		</dd>
 
 		<dt>
@@ -91,8 +88,17 @@
 		<dd>
 			@Html.DisplayFor(model => model.CreateDate)
 		</dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.RegistrationCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RegistrationCode)
+        </dd>
 
 	</dl>
+    <hr />
+    @Html.Partial("Partial/_UserRelationships", Model.UserRelationships)
 </div>
 <p>
 	@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |

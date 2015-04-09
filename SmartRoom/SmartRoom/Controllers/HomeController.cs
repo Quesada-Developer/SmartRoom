@@ -23,7 +23,7 @@ namespace SmartRoom.Web.Controllers
             List<Course> CourseList = new List<Course>();
             try
             {
-                CourseList = model.Users.Find(User.Identity.GetUserId()).Course.ToList();
+                CourseList = model.Users.Find(User.Identity.GetUserId()).Courses.ToList();
             }
             catch(Exception e)
             {

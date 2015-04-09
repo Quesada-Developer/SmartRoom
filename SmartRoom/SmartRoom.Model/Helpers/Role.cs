@@ -5,8 +5,10 @@ using System.Web;
 
 namespace SmartRoom.Database.Helpers
 {
-    public enum Role
+
+    //NotAuthorized is used in methods as a return value so thrrows are not used
+    public enum CourseRole
     {
-        professor = 0, student = 1, nonStudentRole = 2, visitor = 3
+        owner = 0, professor = 1, nonStudentRole = 2, student = 3, visitor = 4, NotAuthorized = 404 
     }
 }

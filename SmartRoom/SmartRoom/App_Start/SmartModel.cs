@@ -3,6 +3,7 @@ using Google.Apis.Services;
 using Google.Apis.Util;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using SmartRoom.Database.Helpers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -68,7 +69,7 @@ namespace SmartRoom.Web
     {
         public ApplicationUser()
         {
-            Course = new List<Course>();
+            Courses = new List<Course>();
         }
         /// <summary>
         /// <example>await Account.UserManager.FindById(User.Identity.GetUserId()).GoogleAuthentication.GetInitializer()</example>
@@ -84,7 +85,24 @@ namespace SmartRoom.Web
         }
         //public virtual ICollection<UserRelationship> UserRelationships { get; set; }
 
-        public virtual ICollection<Course> Course { get; set; }
+        public virtual List<Course> Courses { get; set; }
+        public IEnumerable<Course> CoursesByRole(CourseRole Role)
+        {
+            return Courses.Where(obj => obj.UserRelationships.All(obj2 => obj2.AccountId.Equals(Id)));
+        }
+
+        /// <summary>
+        /// Returns the <see cref="CourseRole"/> for the Course sent. If user can not access the course returned is <see cref="CourseRole.NotAuthorized"/>
+        /// </summary>
+        /// <param name="Course"></param>
+        /// <returns>Returns CourseRole for Course or <see cref="CourseRole.NotAuthorized"/></returns>
+        public CourseRole RoleFromCourse(Course Course)
+        {
+            var list = Courses[Course.Id].UserRelationships.Where(obj => obj.AccountId == Id).ToList();
+            if (list != null && list.Count > 0)
+                return list.FirstOrDefault().AccountRole;
+            return CourseRole.NotAuthorized;
+        }
     }
     public class SmartModel : IdentityDbContext<ApplicationUser>
     {
@@ -106,6 +124,7 @@ namespace SmartRoom.Web
         //public DbSet<UserRelationship> ClassRoles { get; set; }
         public DbSet<CourseOption> CourseOptions { get; set; }
         public DbSet<YoutubeLiveDetail> YoutubeLiveDetails { get; set; }
+        public DbSet<UserRelationship> UserRelationships { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

@@ -12,6 +12,7 @@ using SmartRoom.Web.Models;
 using SmartRoom.Database;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Net;
+using System.Collections.Generic;
 
 namespace SmartRoom.Web.Controllers
 {
@@ -173,7 +174,7 @@ namespace SmartRoom.Web.Controllers
 
                     if (model.Email.Contains("bbell31"))
                     {
-
+                        
                         await UserManager.AddToRoleAsync(user.Id, "Teacher");
                     }
 
