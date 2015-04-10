@@ -1,14 +1,13 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
+using SmartRoom.Web.App_Start;
+using SmartRoom.Web.Models;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
-using SmartRoom.Web.Models;
-using Microsoft.AspNet.Identity.EntityFramework;
-using SmartRoom.Web.App_Start;
 
 namespace SmartRoom.Web.Controllers
 {

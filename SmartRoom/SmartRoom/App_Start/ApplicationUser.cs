@@ -1,13 +1,11 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using SmartRoom.Database.Helpers;
-using System;
+using SmartRoom.Web.Helpers;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using System.Web;
 
 namespace SmartRoom.Web.App_Start
 {

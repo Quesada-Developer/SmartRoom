@@ -246,6 +246,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\Campus.cs" />
+    <Compile Include="Helpers\Role.cs" />
+    <Compile Include="Helpers\Terms.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\DashBoard.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -1228,21 +1231,10 @@
     <Folder Include="Areas\Classroom\Models\" />
     <Folder Include="Areas\Classroom\Views\Shared\" />
     <Folder Include="Areas\YouTube\Views\Video\" />
-    <Folder Include="Helper\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\SmartRoom.DAL\SmartRoom.DAL.csproj">
-      <Project>{c2315410-db89-449c-8f65-83adcc75b99a}</Project>
-      <Name>SmartRoom.DAL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SmartRoom.Model\SmartRoom.Database.csproj">
-      <Project>{8d24f5cf-787f-4cf6-b4a7-0d52038da9fe}</Project>
-      <Name>SmartRoom.Database</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

@@ -1,19 +1,7 @@
-using Google.Apis.Auth.OAuth2;
-using Google.Apis.Services;
-using Google.Apis.Util;
-using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using SmartRoom.Database.Helpers;
+
 using SmartRoom.Web.App_Start;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace SmartRoom.Web
 {
