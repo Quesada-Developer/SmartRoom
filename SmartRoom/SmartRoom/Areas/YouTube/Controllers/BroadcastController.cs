@@ -4,10 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-// 
 
 namespace SmartRoom.Web.Areas.YouTube.Controllers
 {
+    using SmartRoom.Web.App_Start;
     using tranRef = Google.Apis.YouTube.v3.LiveBroadcastsResource.TransitionRequest;
     public class BroadcastController : Controller
     {

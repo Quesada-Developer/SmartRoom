@@ -3,7 +3,7 @@ using Google.Apis.Services;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace SmartRoom.Web
+namespace SmartRoom.Web.App_Start
 {
     public class Authen
     {

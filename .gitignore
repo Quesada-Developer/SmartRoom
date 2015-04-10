@@ -22,6 +22,8 @@ build/
 bld/
 [Bb]in/
 [Oo]bj/
+obj/Debug
+obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
 
 # Visual Studo 2015 cache/options directory
 .vs/
