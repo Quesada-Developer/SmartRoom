@@ -33,11 +33,13 @@ namespace SmartRoom.Web
         /// <summary>
         /// Start time
         /// </summary>
+        [DataType(DataType.DateTime)]
         public DateTime BroadcastScheduledStartTime { get; set; } 
 
         /// <summary>
         /// End Time
         /// </summary>
+        [DataType(DataType.DateTime)]
         public DateTime BroadcastScheduledEndTime { get; set; } 
 
         /// <summary>

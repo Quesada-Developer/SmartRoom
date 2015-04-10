@@ -368,11 +368,11 @@ namespace SmartRoom.Web.Controllers
                 case SignInStatus.Failure:
                 default:
                     // If the user does not have an account, then prompt the user to create an account
-                    if (!loginInfo.Email.Contains(Properties.Settings.Default.UniversityDomain))
+                  /*  if (!loginInfo.Email.Contains(Properties.Settings.Default.UniversityDomain))
                     {
                         ViewBag.Error = "Email must be a a valid University email.";
                         return View("ExternalLoginFailure");
-                    }
+                    }*/
                     ViewBag.ReturnUrl = returnUrl;
                     ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
                     return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Email = loginInfo.Email });
@@ -395,10 +395,10 @@ namespace SmartRoom.Web.Controllers
             {
                 // Get the information about the user from the external login provider
                 var info = await AuthenticationManager.GetExternalLoginInfoAsync();
-                if (info == null || !model.Email.Contains(settings.Default.UniversityDomain))
+               /* if (info == null || !model.Email.Contains(settings.Default.UniversityDomain))
                 {
                     return View("ExternalLoginFailure");
-                }
+                }*/
                 var user = new ApplicationUser { UserName = info.ExternalIdentity.Name, Email = model.Email };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
