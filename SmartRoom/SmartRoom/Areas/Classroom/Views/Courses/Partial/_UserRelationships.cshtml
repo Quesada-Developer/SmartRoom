@@ -1,0 +1,38 @@
+﻿@model IEnumerable<SmartRoom.Web.UserRelationship>
+
+<p>
+    @* @Html.ActionLink("Create New", "Create") *@
+</p>
+<br />
+<h3 class="text-center">Course Users</h3>
+<br />
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Account.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AccountRole)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Account.UserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AccountRole)
+        </td>
+        <td>
+            @*
+    @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+    @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+    @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            *@
+        </td>
+    </tr>
+}
+
+</table>

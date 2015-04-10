@@ -1,0 +1,184 @@
+﻿@model SmartRoom.Web.YoutubeLiveDetail
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>YoutubeLiveDetail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Course.Subject)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Course.Subject)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BroadcastId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BroadcastId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BroadcastKind)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BroadcastKind)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BroadcastTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BroadcastTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BroadcastDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BroadcastDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BroadcastScheduledStartTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BroadcastScheduledStartTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BroadcastScheduledEndTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BroadcastScheduledEndTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BroadcastStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BroadcastStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BroadcastchannelId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BroadcastchannelId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BroadcastlifeCycleStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BroadcastlifeCycleStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BroadcastEmbededhtml)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BroadcastEmbededhtml)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StreamId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StreamId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StreamKind)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StreamKind)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StreamName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StreamName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StreamStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StreamStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StreamSnippetTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StreamSnippetTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StreamCDNFormat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StreamCDNFormat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StreamCDNIngestionType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StreamCDNIngestionType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StreamCDNIngestionUrl)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StreamCDNIngestionUrl)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StreamcontentclosedCaptionsIngestionUrl)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StreamcontentclosedCaptionsIngestionUrl)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
