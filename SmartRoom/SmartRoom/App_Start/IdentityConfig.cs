@@ -11,6 +11,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using SmartRoom.Web.Models;
+using SmartRoom.Web.App_Start;
 
 namespace SmartRoom.Web
 {
