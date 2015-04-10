@@ -1,3 +1,6 @@
-﻿$(document).$(function () {
-    $('#datetimepicker1').datetimepicker();
-});
+﻿    //$(function () {
+    //    $('#datetimepicker').datetimepicker();
+    //});
+    $(function() {
+        $('input').filter('.datepicker').datetimepicker();
+    });
