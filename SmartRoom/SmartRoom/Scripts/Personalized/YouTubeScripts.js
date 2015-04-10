@@ -2,5 +2,5 @@
     //    $('#datetimepicker').datetimepicker();
     //});
     $(function() {
-        $('input').filter('.datepicker').datetimepicker();
+        $('.datepicker').datetimepicker();
     });

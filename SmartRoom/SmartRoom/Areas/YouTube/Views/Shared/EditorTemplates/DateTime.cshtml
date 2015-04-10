@@ -6,4 +6,7 @@
     var htmlAttributes = ViewData["htmlAttributes"] ?? new { };
 }
 
-@Html.TextBox("", string.Format("{0:yyyy-MM-dd HH:mm}", Model.HasValue ? Model : null), htmlAttributes)
+        @Html.TextBox("", string.Format("{0:MM-DD-yyyy HH:mm}", Model.HasValue ? Model : null), htmlAttributes)
+
+     
+
