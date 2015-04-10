@@ -70,7 +70,9 @@ textarea {
         padding: 1px;
         float: left;
         width: 20%;
-        height: 10%;
+        min-width:15%;
+        height: 20%;
+        min-height:15%;
         font-size: 16px;
         text-align: center;
         border-style: solid;

@@ -2,7 +2,10 @@
 @{
     ViewBag.Title = "Dashboard";
 }
-
+@section Scripts
+{
+    @Scripts.Render("~/Scripts/Personalized/dragDrop.js")
+}
 @*<div class="jumbotron">
         <h1>Smar</h1>
         <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
@@ -46,8 +49,14 @@
         {
             <li class="ui-state-default">
                 @Html.ActionLink(Html.DisplayFor(modelItem => item.Title).ToString(), "Details", "Courses", new { Area = "Classroom", id = item.Id }, null)
+                <hr />
             </li>
         }
     }
-
+@if (User.IsInRole("Teacher"))
+{
+    <li>
+        @Html.ActionLink("Add Classroom", "Create", "Courses", new { Area = "Classroom"}, new { })
+    </li>
+}
 </ul>
