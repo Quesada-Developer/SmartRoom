@@ -327,7 +327,6 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Areas\Classroom\Views\Header\_Header.cshtml" />
     <Content Include="Areas\YouTube\Views\YouTube\Transition.cshtml" />
-    <Content Include="Areas\YouTube\Views\Shared\EditorTemplates\DateTime.cshtml" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
@@ -1224,6 +1223,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Classroom\Models\" />
     <Folder Include="Areas\Classroom\Views\Shared\" />
+    <Folder Include="Areas\YouTube\Views\Shared\EditorTemplates\" />
     <Folder Include="Areas\YouTube\Views\Video\" />
     <Folder Include="Helper\" />
   </ItemGroup>
