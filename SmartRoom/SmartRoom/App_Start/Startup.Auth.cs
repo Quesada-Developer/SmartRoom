@@ -4,6 +4,7 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
+using SmartRoom.Web.App_Start;
 using System;
 
 namespace SmartRoom.Web

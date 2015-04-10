@@ -217,20 +217,25 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\ApplicationUser.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\ClassDate.cs" />
     <Compile Include="App_Start\Course.cs" />
     <Compile Include="App_Start\CourseOption.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\GoogleAuthentication.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\SmartModel.cs" />
     <Compile Include="App_Start\SmartModelInitializer.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\Syllabus.cs" />
     <Compile Include="App_Start\UserRelationship.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="App_Start\YoutubeLiveDetail.cs" />
     <Compile Include="Areas\Classroom\classroomAreaRegistration.cs" />
     <Compile Include="Areas\Classroom\Controllers\CoursesController.cs" />
+    <Compile Include="Areas\Classroom\Models\AccountDDLModel.cs" />
     <Compile Include="Areas\YouTube\Controllers\BroadcastController.cs" />
     <Compile Include="Areas\YouTube\Controllers\VideoController.cs" />
     <Compile Include="Areas\YouTube\Controllers\YouTubeController.cs" />
@@ -243,9 +248,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\Campus.cs" />
+    <Compile Include="Helpers\LetterGrade.cs" />
+    <Compile Include="App_Start\GradeDistribution.cs" />
+    <Compile Include="Helpers\Role.cs" />
+    <Compile Include="Helpers\Terms.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\DashBoard.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -253,10 +262,13 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Settings.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\YouTube\Views\Shared\mglass.png" />
+    <Content Include="Content\bootstrap-datetimepicker.css" />
+    <Content Include="Content\bootstrap-datetimepicker.min.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -325,7 +337,6 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Areas\Classroom\Views\Header\_Header.cshtml" />
     <Content Include="Areas\YouTube\Views\YouTube\Transition.cshtml" />
-    <Content Include="Areas\YouTube\Views\Shared\EditorTemplates\DateTime.cshtml" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
@@ -371,6 +382,8 @@
     <Content Include="Content\bootstrap\alerts.less" />
     <Content Include="Content\less\bootstrap-datetimepicker-build.less" />
     <Content Include="Content\less\_bootstrap-datetimepicker.less" />
+    <Content Include="Areas\YouTube\Views\Shared\EditorTemplates\DateTime.cshtml" />
+    <Content Include="Areas\Classroom\Views\Courses\Partial\_AdminCreate.cshtml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -1165,6 +1178,8 @@
     <Content Include="Scripts\ng-sortable.min.js" />
     <Content Include="Scripts\npm.js" />
     <Content Include="Scripts\Personalized\dragDrop.js" />
+    <Content Include="Scripts\Personalized\Shared\LayoutScript.js" />
+    <Content Include="Scripts\Personalized\YouTubeScripts.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -1218,24 +1233,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Classroom\Models\" />
     <Folder Include="Areas\Classroom\Views\Shared\" />
     <Folder Include="Areas\YouTube\Views\Video\" />
-    <Folder Include="Helper\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\SmartRoom.DAL\SmartRoom.DAL.csproj">
-      <Project>{c2315410-db89-449c-8f65-83adcc75b99a}</Project>
-      <Name>SmartRoom.DAL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SmartRoom.Model\SmartRoom.Database.csproj">
-      <Project>{8d24f5cf-787f-4cf6-b4a7-0d52038da9fe}</Project>
-      <Name>SmartRoom.Database</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

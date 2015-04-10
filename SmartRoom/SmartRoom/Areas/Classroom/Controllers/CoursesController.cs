@@ -1,14 +1,13 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using SmartRoom.Web.App_Start;
+using SmartRoom.Web.Controllers;
+using SmartRoom.Web.Helpers;
+using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using SmartRoom.Database;
-using Microsoft.AspNet.Identity;
-using SmartRoom.Web.Controllers;
 
 namespace SmartRoom.Web.Areas.Classroom.Controllers
 {
@@ -23,7 +22,7 @@ namespace SmartRoom.Web.Areas.Classroom.Controllers
         {
             string _UserId = User.Identity.GetUserId();
             var list = db.Users.Find(_UserId);
-            List<Course> Courses = (list != null)? list.CoursesByRole(Database.Helpers.CourseRole.owner).ToList(): new List<Course>();
+            List<Course> Courses = (list != null)? list.CoursesByRole(CourseRole.owner).ToList(): new List<Course>();
             return View(Courses);
         }
 
@@ -77,15 +76,14 @@ namespace SmartRoom.Web.Areas.Classroom.Controllers
         public ActionResult Create([Bind(Include="Id,Subject,CourseNumber,Section,Title,StartDate,EndDate,Location,Term,CreateDate")] Course course)
         {
             course.CreatedById = db.Users.Find(User.Identity.GetUserId()).Id;
+            course.isActive = true;
             var errors = ModelState.Values.SelectMany(v => v.Errors);
             if (ModelState.IsValid)
             {
-                UserRelationship _UserRelationship = new UserRelationship() { AccountId = course.CreatedById, AccountRole = Database.Helpers.CourseRole.owner };
+                UserRelationship _UserRelationship = new UserRelationship() { AccountId = course.CreatedById, AccountRole = CourseRole.owner };
                 db.UserRelationships.Add(_UserRelationship);
                 course.UserRelationships.Add(_UserRelationship);
-                db.SaveChanges();
                 db.Courses.Add(course);
-                db.SaveChanges();
                 db.Users.Find(User.Identity.GetUserId()).Courses.Add(course);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -107,7 +105,7 @@ namespace SmartRoom.Web.Areas.Classroom.Controllers
             Course course = db.Courses.Find(id);// db.Courses.Where(obj => obj.Id == id).FirstOrDefault();
             
             //User is owner of course or is a admin
-            if(!course.UserRelationships.Any(obj => obj.AccountId.Equals(_UserId) && obj.AccountRole == Database.Helpers.CourseRole.owner) || !User.IsInRole("Admin"))
+            if(!course.UserRelationships.Any(obj => obj.AccountId.Equals(_UserId) && obj.AccountRole == CourseRole.owner) || !User.IsInRole("Admin"))
             {
                 return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
             }
@@ -158,11 +156,10 @@ namespace SmartRoom.Web.Areas.Classroom.Controllers
         [Authorize(Roles = "Teacher,Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
-            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            /*Course course = db.Users.Find(User.Identity.GetUserId()).Courses.Where(obj => obj.Id == id).FirstOrDefault();
-            db.Courses.Remove(course);
+            Course course = db.Users.Find(User.Identity.GetUserId()).Courses.Where(obj => obj.Id == id).FirstOrDefault();
+            course.isActive = false;
             db.SaveChanges();
-            return RedirectToAction("Index");*/
+            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

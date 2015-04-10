@@ -1,17 +1,11 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using System.Data;
+﻿using Google.Apis.YouTube.v3.Data;
+using SmartRoom.Web.App_Start;
+using System;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
+using System.Threading.Tasks;
 using System.Web.Mvc;
-using SmartRoom.Database;
-
-using Google.Apis.YouTube.v3;
-using Google.Apis.YouTube.v3.Data;
 namespace SmartRoom.Web.Areas.YouTube.Controllers
 {
     public class YouTubeController : Controller

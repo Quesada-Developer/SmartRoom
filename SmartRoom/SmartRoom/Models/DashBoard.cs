@@ -1,7 +1,5 @@
-﻿using System;
+﻿using SmartRoom.Web.App_Start;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace SmartRoom.Web.Models
 {

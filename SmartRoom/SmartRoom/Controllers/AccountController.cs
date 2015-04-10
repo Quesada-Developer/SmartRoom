@@ -1,21 +1,16 @@
-﻿using System;
-using System.Globalization;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using System.Web;
-using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
+﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using SmartRoom.Web.Models;
-using SmartRoom.Database;
-using Microsoft.AspNet.Identity.EntityFramework;
+using System.Linq;
 using System.Net;
-using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.Web;
+using System.Web.Mvc;
 
 namespace SmartRoom.Web.Controllers
 {
+    using SmartRoom.Web.App_Start;
     using settings = Properties.Settings;
     
     public class AccountController : Controller
@@ -368,11 +363,11 @@ namespace SmartRoom.Web.Controllers
                 case SignInStatus.Failure:
                 default:
                     // If the user does not have an account, then prompt the user to create an account
-                    if (!loginInfo.Email.Contains(Properties.Settings.Default.UniversityDomain))
+                  /*  if (!loginInfo.Email.Contains(Properties.Settings.Default.UniversityDomain))
                     {
                         ViewBag.Error = "Email must be a a valid University email.";
                         return View("ExternalLoginFailure");
-                    }
+                    }*/
                     ViewBag.ReturnUrl = returnUrl;
                     ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
                     return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Email = loginInfo.Email });
@@ -395,10 +390,10 @@ namespace SmartRoom.Web.Controllers
             {
                 // Get the information about the user from the external login provider
                 var info = await AuthenticationManager.GetExternalLoginInfoAsync();
-                if (info == null || !model.Email.Contains(settings.Default.UniversityDomain))
+               /* if (info == null || !model.Email.Contains(settings.Default.UniversityDomain))
                 {
                     return View("ExternalLoginFailure");
-                }
+                }*/
                 var user = new ApplicationUser { UserName = info.ExternalIdentity.Name, Email = model.Email };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)

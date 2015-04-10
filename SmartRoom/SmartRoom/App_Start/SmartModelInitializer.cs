@@ -1,14 +1,8 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.AspNet.Identity.Owin;
-using SmartRoom.Database.Helpers;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity;
-using System.Net;
-using System.Linq;
 
-namespace SmartRoom.Web
+namespace SmartRoom.Web.App_Start
 {
     class SmartModelInitializer : DropCreateDatabaseIfModelChanges<SmartModel>
     {

@@ -7,7 +7,7 @@ using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace SmartRoom.Web
+namespace SmartRoom.Web.App_Start
 {
     public class EmailService : IIdentityMessageService
     {
