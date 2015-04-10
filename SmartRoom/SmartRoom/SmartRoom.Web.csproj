@@ -372,6 +372,7 @@
     <Content Include="Content\bootstrap\alerts.less" />
     <Content Include="Content\less\bootstrap-datetimepicker-build.less" />
     <Content Include="Content\less\_bootstrap-datetimepicker.less" />
+    <Content Include="Areas\YouTube\Views\Shared\EditorTemplates\DateTime.cshtml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -1223,7 +1224,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Classroom\Models\" />
     <Folder Include="Areas\Classroom\Views\Shared\" />
-    <Folder Include="Areas\YouTube\Views\Shared\EditorTemplates\" />
     <Folder Include="Areas\YouTube\Views\Video\" />
     <Folder Include="Helper\" />
   </ItemGroup>
