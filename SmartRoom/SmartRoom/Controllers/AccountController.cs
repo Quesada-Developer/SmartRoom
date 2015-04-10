@@ -17,6 +17,7 @@ using System.Collections.Generic;
 namespace SmartRoom.Web.Controllers
 {
     using settings = Properties.Settings;
+    using SmartRoom.Web.App_Start;
     
     public class AccountController : Controller
     {

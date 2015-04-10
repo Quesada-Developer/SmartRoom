@@ -8,6 +8,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using SmartRoom.Web.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
+using SmartRoom.Web.App_Start;
 
 namespace SmartRoom.Web.Controllers
 {

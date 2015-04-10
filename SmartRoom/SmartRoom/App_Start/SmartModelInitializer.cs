@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Net;
 using System.Linq;
+using SmartRoom.Web.App_Start;
 
 namespace SmartRoom.Web
 {
