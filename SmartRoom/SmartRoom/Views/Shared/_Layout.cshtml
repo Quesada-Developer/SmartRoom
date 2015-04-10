@@ -6,34 +6,10 @@
     <title>@ViewBag.Title - SmartRoom</title>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
     @Scripts.Render("~/Scripts/jquery-ui-1.11.4.min.js")
     @Styles.Render("~/Content/css")
-
-    <style>
-    </style>
-    <script>
-        $(function () {
-            $("#sortable").sortable();
-            $("#sortable").disableSelection();
-        });
-        function startTime() {
-            var today = new Date();
-            var h = today.getHours();
-            var m = today.getMinutes();
-            var s = today.getSeconds();
-            m = checkTime(m);
-            s = checkTime(s);
-            document.getElementById('clock').innerHTML = h + ":" + m + ":" + s;
-            var t = setTimeout(function () { startTime() }, 500);
-            document.getElementById('date').innerHTML = (new Date()).toDateString();
-        }
-
-        function checkTime(i) {
-            if (i < 10) { i = "0" + i };  // add zero in front of numbers < 10
-            return i;
-        }
-    </script>
+    @Scripts.Render("~/Scripts/Personalized/Shared/LayoutScript.js")
+    @RenderSection("scripts", required: false)
 
 </head>
 <body onload="startTime()">
@@ -48,14 +24,7 @@
                 @Html.ActionLink("SmartRoom", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    @*<li>@Html.ActionLink("Home", "Index", "Home", new { Area = "" }, new{})))</li>
-                        <li>@Html.ActionLink("About", "About", "Home", new { Area = "" }, new{}))</li>
-                        <li>@Html.ActionLink("Courses", "Index", "Courses", new { Area = "Classroom" }, new { }))</li>
-                        <li>@Html.ActionLink("YouTube Demo", "Create", "YoutubeLive", new { Area = "" }, new { }))</li>
-                        <li>@Html.ActionLink("YouTube Presentation", "Index", "YoutubeLive", new { Area = "" }, new { }))</li>
-                        <li>@Html.ActionLink("Contact", "Contact", "Home", new { Area = "" }, new { })))</li>*@
-                </ul>
+                <ul class="nav navbar-nav"></ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
@@ -70,7 +39,7 @@
             <div class="navbar-text navbar-right" id="clock">
             </div>
             <div class="navbar-text navbar-left" id="date"></div>
-            </div>
+        </div>
     </div>
 </body>
 </html>

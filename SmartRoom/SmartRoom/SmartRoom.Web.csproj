@@ -1165,6 +1165,8 @@
     <Content Include="Scripts\ng-sortable.min.js" />
     <Content Include="Scripts\npm.js" />
     <Content Include="Scripts\Personalized\dragDrop.js" />
+    <Content Include="Scripts\Personalized\Shared\LayoutScript.js" />
+    <Content Include="Scripts\Personalized\YouTubeScripts.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
