@@ -1,0 +1,7 @@
+﻿@model SmartRoom.Web.Areas.Classroom.Models.AccountDDLModel
+    <div class="form-group">
+        @Html.LabelFor(model => model.SelectedUser, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.SelectedUser, Model.Users)
+        </div>
+    </div>
