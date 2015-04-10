@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNet.Identity;
-using SmartRoom.Web.App_Start;
 using SmartRoom.Web.Controllers;
 using SmartRoom.Web.Helpers;
 using System;
@@ -76,14 +75,15 @@ namespace SmartRoom.Web.Areas.Classroom.Controllers
         public ActionResult Create([Bind(Include="Id,Subject,CourseNumber,Section,Title,StartDate,EndDate,Location,Term,CreateDate")] Course course)
         {
             course.CreatedById = db.Users.Find(User.Identity.GetUserId()).Id;
-            course.isActive = true;
             var errors = ModelState.Values.SelectMany(v => v.Errors);
             if (ModelState.IsValid)
             {
                 UserRelationship _UserRelationship = new UserRelationship() { AccountId = course.CreatedById, AccountRole = CourseRole.owner };
                 db.UserRelationships.Add(_UserRelationship);
                 course.UserRelationships.Add(_UserRelationship);
+                db.SaveChanges();
                 db.Courses.Add(course);
+                db.SaveChanges();
                 db.Users.Find(User.Identity.GetUserId()).Courses.Add(course);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -156,10 +156,11 @@ namespace SmartRoom.Web.Areas.Classroom.Controllers
         [Authorize(Roles = "Teacher,Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
-            Course course = db.Users.Find(User.Identity.GetUserId()).Courses.Where(obj => obj.Id == id).FirstOrDefault();
-            course.isActive = false;
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            /*Course course = db.Users.Find(User.Identity.GetUserId()).Courses.Where(obj => obj.Id == id).FirstOrDefault();
+            db.Courses.Remove(course);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index");*/
         }
 
         protected override void Dispose(bool disposing)

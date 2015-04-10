@@ -1,4 +1,4 @@
-﻿@model SmartRoom.Web.App_Start.Course
+﻿@model SmartRoom.Web.Course
 
 @{
 	ViewBag.Title = "Details";
@@ -88,17 +88,17 @@
 		<dd>
 			@Html.DisplayFor(model => model.CreateDate)
 		</dd>
-		<dt>
-			@Html.DisplayNameFor(model => model.RegistrationCode)
-		</dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.RegistrationCode)
+        </dt>
 
-		<dd>
-			@Html.DisplayFor(model => model.RegistrationCode)
-		</dd>
+        <dd>
+            @Html.DisplayFor(model => model.RegistrationCode)
+        </dd>
 
 	</dl>
-	<hr />
-	@Html.Partial("Partial/_UserRelationships", Model.UserRelationships)
+    <hr />
+    @Html.Partial("Partial/_UserRelationships", Model.UserRelationships)
 </div>
 <p>
 	@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |

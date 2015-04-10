@@ -1,6 +1,6 @@
 ﻿using System.Web.Optimization;
 
-namespace SmartRoom.Web.App_Start
+namespace SmartRoom.Web
 {
     public class BundleConfig
     {

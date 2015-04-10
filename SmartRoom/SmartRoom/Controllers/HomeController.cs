@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNet.Identity;
-using SmartRoom.Web.App_Start;
 using System;
 using System.Collections.Generic;
 using System.Linq;

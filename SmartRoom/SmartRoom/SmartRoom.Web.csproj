@@ -219,7 +219,6 @@
   <ItemGroup>
     <Compile Include="App_Start\ApplicationUser.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
-    <Compile Include="App_Start\ClassDate.cs" />
     <Compile Include="App_Start\Course.cs" />
     <Compile Include="App_Start\CourseOption.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -235,7 +234,6 @@
     <Compile Include="App_Start\YoutubeLiveDetail.cs" />
     <Compile Include="Areas\Classroom\classroomAreaRegistration.cs" />
     <Compile Include="Areas\Classroom\Controllers\CoursesController.cs" />
-    <Compile Include="Areas\Classroom\Models\AccountDDLModel.cs" />
     <Compile Include="Areas\YouTube\Controllers\BroadcastController.cs" />
     <Compile Include="Areas\YouTube\Controllers\VideoController.cs" />
     <Compile Include="Areas\YouTube\Controllers\YouTubeController.cs" />
@@ -249,12 +247,11 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\Campus.cs" />
-    <Compile Include="Helpers\LetterGrade.cs" />
-    <Compile Include="App_Start\GradeDistribution.cs" />
     <Compile Include="Helpers\Role.cs" />
     <Compile Include="Helpers\Terms.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\DashBoard.cs" />
+    <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -262,7 +259,6 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Settings.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -383,7 +379,6 @@
     <Content Include="Content\less\bootstrap-datetimepicker-build.less" />
     <Content Include="Content\less\_bootstrap-datetimepicker.less" />
     <Content Include="Areas\YouTube\Views\Shared\EditorTemplates\DateTime.cshtml" />
-    <Content Include="Areas\Classroom\Views\Courses\Partial\_AdminCreate.cshtml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -1233,6 +1228,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Classroom\Models\" />
     <Folder Include="Areas\Classroom\Views\Shared\" />
     <Folder Include="Areas\YouTube\Views\Video\" />
   </ItemGroup>
