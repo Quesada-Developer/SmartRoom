@@ -1,10 +1,9 @@
-﻿using SmartRoom.Database.Helpers;
+﻿
+using SmartRoom.Web.App_Start;
+using SmartRoom.Web.Helpers;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Web;
 
 namespace SmartRoom.Web
 {

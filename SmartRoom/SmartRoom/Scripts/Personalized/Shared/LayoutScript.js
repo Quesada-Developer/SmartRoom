@@ -1,8 +1,4 @@
-﻿$(function () {
-    $("#sortable").sortable();
-    $("#sortable").disableSelection();
-});
-function startTime() {
+﻿function startTime() {
     var today = new Date();
     var h = today.getHours();
     var m = today.getMinutes();

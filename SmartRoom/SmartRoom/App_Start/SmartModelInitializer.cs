@@ -1,12 +1,7 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.AspNet.Identity.Owin;
-using SmartRoom.Database.Helpers;
-using System;
-using System.Collections.Generic;
+using SmartRoom.Web.App_Start;
 using System.Data.Entity;
-using System.Net;
-using System.Linq;
 
 namespace SmartRoom.Web
 {

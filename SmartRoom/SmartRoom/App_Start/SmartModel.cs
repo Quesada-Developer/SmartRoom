@@ -1,109 +1,10 @@
-using Google.Apis.Auth.OAuth2;
-using Google.Apis.Services;
-using Google.Apis.Util;
-using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using SmartRoom.Database.Helpers;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+
+using SmartRoom.Web.App_Start;
 using System.Data.Entity;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace SmartRoom.Web
 {
-
-
-    public class GoogleAuthentication
-    {
-        private ClientSecrets ClientSecret;
-        private readonly string AuthURL = "https://accounts.google.com/o/oauth2/auth";
-        private readonly string TokenURL = "https://accounts.google.com/o/oauth2/token";
-        private readonly string ClientEmail = "1084733801830-4j2fje2ku2b6tkpa4v9v6cbbt08jeiql@developer.gserviceaccount.com";
-        private UserCredential Credential;
-        private string[] Scope;
-
-        public GoogleAuthentication()
-        {
-            ClientSecret.ClientSecret = "WIeQIEArSTs1P_drjOQvsSiC";
-            ClientSecret.ClientId = "1084733801830-4j2fje2ku2b6tkpa4v9v6cbbt08jeiql.apps.googleusercontent.com";
-            Scope = new[] {
-                    "https://www.googleapis.com/auth/youtube",  
-                    "https://www.googleapis.com/auth/plus.login",
-                    "https://www.googleapis.com/auth/calendar"
-                };
-        }
-
-        private async void Authorize()
-        {
-            
-            Credential = await GoogleWebAuthorizationBroker.AuthorizeAsync(
-                ClientSecret,
-                Scope,
-                "user",
-                CancellationToken.None
-                );
-        }
-        public async Task<BaseClientService.Initializer> GetInitializer()
-        {
-            if (Credential == null)
-                Authorize();
-            else if (Credential.Token.IsExpired(SystemClock.Default))
-            {
-                Boolean tokenRefreshed = await Credential.RefreshTokenAsync(CancellationToken.None);
-            }
-            
-            return new BaseClientService.Initializer()
-            {
-                HttpClientInitializer = Credential,
-                ApplicationName = Properties.Settings.Default.ApplicationName
-            };
-        }
-    }
-
-    public class ApplicationUser : IdentityUser
-    {
-        public ApplicationUser()
-        {
-            Courses = new List<Course>();
-        }
-        /// <summary>
-        /// <example>await Account.UserManager.FindById(User.Identity.GetUserId()).GoogleAuthentication.GetInitializer()</example>
-        /// </summary>
-        [NotMapped]
-        public GoogleAuthentication GoogleAuthentication { get; set; }
-        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
-        {
-            // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
-            var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
-            
-            return userIdentity;
-        }
-        //public virtual ICollection<UserRelationship> UserRelationships { get; set; }
-
-        public virtual List<Course> Courses { get; set; }
-        public IEnumerable<Course> CoursesByRole(CourseRole Role)
-        {
-            return Courses.Where(obj => obj.UserRelationships.All(obj2 => obj2.AccountId.Equals(Id)));
-        }
-
-        /// <summary>
-        /// Returns the <see cref="CourseRole"/> for the Course sent. If user can not access the course returned is <see cref="CourseRole.NotAuthorized"/>
-        /// </summary>
-        /// <param name="Course"></param>
-        /// <returns>Returns CourseRole for Course or <see cref="CourseRole.NotAuthorized"/></returns>
-        public CourseRole RoleFromCourse(Course Course)
-        {
-            var list = Courses[Course.Id].UserRelationships.Where(obj => obj.AccountId == Id).ToList();
-            if (list != null && list.Count > 0)
-                return list.FirstOrDefault().AccountRole;
-            return CourseRole.NotAuthorized;
-        }
-    }
     public class SmartModel : IdentityDbContext<ApplicationUser>
     {
         // Your context has been configured to use a 'SmartModel' connection string from your application's 
@@ -119,9 +20,7 @@ namespace SmartRoom.Web
             //base.Configuration.LazyLoadingEnabled = true;
             System.Data.Entity.Database.SetInitializer<SmartModel>(new SmartModelInitializer());
         }
-        //public DbSet<Account> Accounts { get; set; }
         public DbSet<Course> Courses { get; set; }
-        //public DbSet<UserRelationship> ClassRoles { get; set; }
         public DbSet<CourseOption> CourseOptions { get; set; }
         public DbSet<YoutubeLiveDetail> YoutubeLiveDetails { get; set; }
         public DbSet<UserRelationship> UserRelationships { get; set; }

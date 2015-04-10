@@ -1,21 +1,16 @@
-﻿using System;
-using System.Globalization;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using System.Web;
-using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
+﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using SmartRoom.Web.Models;
-using SmartRoom.Database;
-using Microsoft.AspNet.Identity.EntityFramework;
+using System.Linq;
 using System.Net;
-using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.Web;
+using System.Web.Mvc;
 
 namespace SmartRoom.Web.Controllers
 {
+    using SmartRoom.Web.App_Start;
     using settings = Properties.Settings;
     
     public class AccountController : Controller

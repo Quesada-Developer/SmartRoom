@@ -217,15 +217,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\ApplicationUser.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\Course.cs" />
     <Compile Include="App_Start\CourseOption.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\GoogleAuthentication.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\SmartModel.cs" />
     <Compile Include="App_Start\SmartModelInitializer.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\Syllabus.cs" />
     <Compile Include="App_Start\UserRelationship.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="App_Start\YoutubeLiveDetail.cs" />
@@ -243,6 +246,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\Campus.cs" />
+    <Compile Include="Helpers\Role.cs" />
+    <Compile Include="Helpers\Terms.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\DashBoard.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -1225,21 +1231,10 @@
     <Folder Include="Areas\Classroom\Models\" />
     <Folder Include="Areas\Classroom\Views\Shared\" />
     <Folder Include="Areas\YouTube\Views\Video\" />
-    <Folder Include="Helper\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\SmartRoom.DAL\SmartRoom.DAL.csproj">
-      <Project>{c2315410-db89-449c-8f65-83adcc75b99a}</Project>
-      <Name>SmartRoom.DAL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SmartRoom.Model\SmartRoom.Database.csproj">
-      <Project>{8d24f5cf-787f-4cf6-b4a7-0d52038da9fe}</Project>
-      <Name>SmartRoom.Database</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
