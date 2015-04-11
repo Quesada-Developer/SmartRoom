@@ -18,23 +18,41 @@ namespace SmartRoom.Web.App_Start
         public virtual ApplicationUser Professor { get; set; }
 
         public string OfficeLocation { get; set; }
+        [DataType(DataType.PhoneNumber)]
         public string OfficePhone { get; set; }
+        [DataType(DataType.PhoneNumber)]
         public string CellPhone { get; set; }
+        [DataType(DataType.PhoneNumber)]
         public string EmergencyPhone { get; set; }
+        [DataType(DataType.EmailAddress)]
         public string EmailAddress { get; set; }
 
-        public List<DayOfWeek> MeetingDays { get; set; }
+        public bool Monday { get; set; }
+        public bool Tuesday { get; set; }
+        public bool Wednesday { get; set; }
+        public bool Thursday { get; set; }
+        public bool Friday { get; set; }
+        public bool Saturday { get; set; }
+        public bool Sunday { get; set; }
+        [DisplayFormat(DataFormatString = "{0:t}")]
+        [DataType(DataType.Time)]
         public DateTime MeetingTime { get; set; }
 
+        [DataType(DataType.MultilineText)]
         public string GeneralInformation { get; set; }
+        [DataType(DataType.MultilineText)]
         public string CourseDescription { get; set; }
+        [DataType(DataType.MultilineText)]
         public string AttendancePolicy { get; set; }
+        [DataType(DataType.MultilineText)]
         public string AssignmentInformation { get; set; }
+        [DataType(DataType.MultilineText)]
         public string AcademicIntegrityStatement { get; set; }
-        public List<string> AdditionalInformation { get; set; }
 
-        public List<string> RequiredMaterial { get; set; }
-        public List<GradeDistribution> GradeDistributions { get; set; }
-        public List<ClassDate> ClassDates { get; set; }
+        public virtual List<AdditionalInformation> AdditionalInformation { get; set; }
+        public virtual List<GradeDistribution> GradeDistributions { get; set; }
+        public virtual List<ClassDate> ClassDates { get; set; }
+
+        public bool isActive { get; set; }
     }
 }

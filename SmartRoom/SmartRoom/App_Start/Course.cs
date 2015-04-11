@@ -72,5 +72,6 @@ namespace SmartRoom.Web.App_Start
         public virtual ICollection<YoutubeLiveDetail> YoutubeLiveDetails { get; set; }
 
         public virtual List<UserRelationship> UserRelationships { get; set; }
+        public virtual ICollection<Syllabus> Syllabi { get; set; }
     }
 }
