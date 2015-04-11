@@ -1,12 +1,13 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
+using SmartRoom.Web.App_Start;
+using SmartRoom.Web.Models;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
-using SmartRoom.Web.Models;
 
 namespace SmartRoom.Web.Controllers
 {
@@ -50,6 +51,25 @@ namespace SmartRoom.Web.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin")]
+        public ActionResult TeacherRole(bool Add)
+        {
+            
+            var store = new UserStore<ApplicationUser>(new SmartModel());
+
+            if (Add)
+                SignInManager.UserManager.AddToRole(User.Identity.GetUserId(), "Teacher");
+
+            else
+                SignInManager.UserManager.RemoveFromRole(User.Identity.GetUserId(), "Teacher");
+            SignInManager.UserManager.Update(UserManager.FindById(User.Identity.GetUserId()));
+            var ctx = store.Context;
+            ctx.SaveChanges();
+
+
+            return RedirectToAction("Index", "Manage", new { area = "" });
+        }
+
         //
         // GET: /Manage/Index
         public async Task<ActionResult> Index(ManageMessageId? message)
@@ -62,7 +82,7 @@ namespace SmartRoom.Web.Controllers
                 : message == ManageMessageId.AddPhoneSuccess ? "Your phone number was added."
                 : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
                 : "";
-
+            
             var userId = User.Identity.GetUserId();
             var model = new IndexViewModel
             {

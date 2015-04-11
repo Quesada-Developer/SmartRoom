@@ -7,12 +7,15 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using SmartRoom.Database;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace SmartRoom.Web.Controllers
 {
     public class CoursesController : Controller
     {
         private SmartModel db = new SmartModel();
+        AccountController Account = new AccountController();
 
         // GET: Courses
         public ActionResult Index()
@@ -50,8 +53,12 @@ namespace SmartRoom.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Subject,CourseNumber,Section,Title,StartDate,EndDate,Location,Term,CreatedBy,CreateDate,ModifedBy,ModifiedDate")] Course course)
         {
+            course.CreatedBy = Account.UserManager.FindById(User.Identity.GetUserId());
             if (ModelState.IsValid)
             {
+                UserRelationship _UserRelationship = new UserRelationship() { Account = course.CreatedBy, AccountRole = Database.Helpers.CourseRole.owner };
+                db.UserRelationships.Add(_UserRelationship);
+                course.UserRelationships.Add(_UserRelationship);
                 db.Courses.Add(course);
                 db.SaveChanges();
                 return RedirectToAction("Index");

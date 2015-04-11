@@ -1,0 +1,235 @@
+﻿@model SmartRoom.Web.YoutubeLiveDetail
+
+@{
+    ViewBag.Title = "Transition";
+}
+
+<h2>Transition</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>YoutubeLiveDetail</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CourseId, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CourseId)
+                @Html.ValidationMessageFor(model => model.CourseId)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BroadcastId, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BroadcastId)
+                @Html.ValidationMessageFor(model => model.BroadcastId)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BroadcastKind, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BroadcastKind)
+                @Html.ValidationMessageFor(model => model.BroadcastKind)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BroadcastTitle, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BroadcastTitle)
+                @Html.ValidationMessageFor(model => model.BroadcastTitle)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BroadcastDescription, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BroadcastDescription)
+                @Html.ValidationMessageFor(model => model.BroadcastDescription)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BroadcastScheduledStartTime, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BroadcastScheduledStartTime)
+                @Html.ValidationMessageFor(model => model.BroadcastScheduledStartTime)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BroadcastScheduledEndTime, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BroadcastScheduledEndTime)
+                @Html.ValidationMessageFor(model => model.BroadcastScheduledEndTime)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BroadcastStatus, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BroadcastStatus)
+                @Html.ValidationMessageFor(model => model.BroadcastStatus)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BroadcastchannelId, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BroadcastchannelId)
+                @Html.ValidationMessageFor(model => model.BroadcastchannelId)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BroadcastlifeCycleStatus, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BroadcastlifeCycleStatus)
+                @Html.ValidationMessageFor(model => model.BroadcastlifeCycleStatus)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BroadcastEmbededhtml, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BroadcastEmbededhtml)
+                @Html.ValidationMessageFor(model => model.BroadcastEmbededhtml)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.StreamId, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.StreamId)
+                @Html.ValidationMessageFor(model => model.StreamId)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.StreamKind, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.StreamKind)
+                @Html.ValidationMessageFor(model => model.StreamKind)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.StreamName, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.StreamName)
+                @Html.ValidationMessageFor(model => model.StreamName)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.StreamStatus, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.StreamStatus)
+                @Html.ValidationMessageFor(model => model.StreamStatus)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.StreamSnippetTitle, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.StreamSnippetTitle)
+                @Html.ValidationMessageFor(model => model.StreamSnippetTitle)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.StreamCDNFormat, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.StreamCDNFormat)
+                @Html.ValidationMessageFor(model => model.StreamCDNFormat)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.StreamCDNIngestionType, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.StreamCDNIngestionType)
+                @Html.ValidationMessageFor(model => model.StreamCDNIngestionType)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.StreamCDNIngestionUrl, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.StreamCDNIngestionUrl)
+                @Html.ValidationMessageFor(model => model.StreamCDNIngestionUrl)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.StreamcontentclosedCaptionsIngestionUrl, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.StreamcontentclosedCaptionsIngestionUrl)
+                @Html.ValidationMessageFor(model => model.StreamcontentclosedCaptionsIngestionUrl)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+<div>
+    <body>
+        // 1. The 'widget' div element contains the upload widget.
+        //    The 'player' div element contains the player IFrame.
+        <div id="widget"></div>
+        <div id="player"></div>
+
+        <script>
+            // 2. Asynchronously load the Upload Widget and Player API code.
+            var tag = document.createElement('script');
+            tag.src = "https://www.youtube.com/iframe_api";
+            var firstScriptTag = document.getElementsByTagName('script')[0];
+            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+            // 3. Define global variables for the widget and the player.
+            // The function loads the widget after the JavaScript code has
+            // downloaded and defines event handlers for callback notifications
+            // related to the widget.
+            var widget;
+            var player;
+            function onYouTubeIframeAPIReady() {
+                widget = new YT.UploadWidget('widget', {
+                    width: 500,
+                    events: {
+                        'onUploadSuccess': onUploadSuccess,
+                        'onProcessingComplete': onProcessingComplete
+                    }
+                });
+            }
+
+            // 4. This function is called when a video has been successfully uploaded.
+            function onUploadSuccess(event) {
+                alert('Video ID ' + event.data.videoId + ' was uploaded and is currently being processed.');
+            }
+
+            // 5. This function is called when a video has been successfully processed.
+            function onProcessingComplete(event) {
+                player = new YT.Player('player', {
+                    height: 390,
+                    width: 640,
+                    videoId: event.data.videoId,
+                    events: {}
+                });
+            }
+        </script>
+    </body>
+</div>
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

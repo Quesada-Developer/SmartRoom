@@ -25,14 +25,23 @@
             @if (User.IsInRole("Student"))
             {
                 <p>Student Access</p>
+                
             }
             @if (User.IsInRole("Teacher"))
             {
                 <p>Teacher Access</p>
+                if (User.IsInRole("Admin"))
+                {
+                    @Html.ActionLink("Remove Teacher Role", "TeacherRole", "Manage", new { area = "", Add = false }, new { })
+                }
             }
             @if (User.IsInRole("Admin"))
             {
                 <p>Admin Access</p>
+                if (!User.IsInRole("Teacher"))
+                {
+                    @Html.ActionLink("Add Teacher Role", "TeacherRole", "Manage", new { area = "", Add = true }, new { })
+                }
             }
         </dd>
         <dt>External Logins:</dt>
@@ -90,7 +99,7 @@
                     <input type="submit" value="Enable" class="btn btn-link" />
                     </text>
                 }
-            }*@
-        </dd>
+            }
+        </dd>*@
     </dl>
 </div>

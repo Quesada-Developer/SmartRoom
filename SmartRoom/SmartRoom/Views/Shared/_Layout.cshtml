@@ -4,54 +4,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - SmartRoom</title>
-    @Styles.Render("~/Content/css")
-
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
     @Scripts.Render("~/Scripts/jquery-ui-1.11.4.min.js")
-    <style>
-        #sortable {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            width: 100%;
-        }
-
-            #sortable li {
-                margin: 3px 3px 3px 0;
-                padding: 1px;
-                float: left;
-                width: 20%;
-                height: 10%;
-                font-size: 16px;
-                text-align: center;
-    border-style: solid;
-    border-width: 2px;
-            }
-    </style>
-    <script>
-        $(function () {
-            $("#sortable").sortable();
-            $("#sortable").disableSelection();
-        });
-        function startTime() {
-            var today = new Date();
-            var h = today.getHours();
-            var m = today.getMinutes();
-            var s = today.getSeconds();
-            m = checkTime(m);
-            s = checkTime(s);
-            document.getElementById('clock').innerHTML = h + ":" + m + ":" + s;
-            var t = setTimeout(function () { startTime() }, 500);
-            document.getElementById('date').innerHTML = (new Date()).toDateString();
-        }
-
-        function checkTime(i) {
-            if (i < 10) { i = "0" + i };  // add zero in front of numbers < 10
-            return i;
-        }
-    </script>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/Scripts/Personalized/Shared/LayoutScript.js")
+    @RenderSection("scripts", required: false)
 
 </head>
 <body onload="startTime()">
@@ -66,14 +24,7 @@
                 @Html.ActionLink("SmartRoom", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    @*<li>@Html.ActionLink("Home", "Index", "Home", new { Area = "" }, new{})))</li>
-                        <li>@Html.ActionLink("About", "About", "Home", new { Area = "" }, new{}))</li>
-                        <li>@Html.ActionLink("Courses", "Index", "Courses", new { Area = "Classroom" }, new { }))</li>
-                        <li>@Html.ActionLink("YouTube Demo", "Create", "YoutubeLive", new { Area = "" }, new { }))</li>
-                        <li>@Html.ActionLink("YouTube Presentation", "Index", "YoutubeLive", new { Area = "" }, new { }))</li>
-                        <li>@Html.ActionLink("Contact", "Contact", "Home", new { Area = "" }, new { })))</li>*@
-                </ul>
+                <ul class="nav navbar-nav"></ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
@@ -88,7 +39,7 @@
             <div class="navbar-text navbar-right" id="clock">
             </div>
             <div class="navbar-text navbar-left" id="date"></div>
-            </div>
+        </div>
     </div>
 </body>
 </html>

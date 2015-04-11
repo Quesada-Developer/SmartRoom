@@ -22,6 +22,10 @@ build/
 bld/
 [Bb]in/
 [Oo]bj/
+obj/Debug
+SmartRoom/SmartRoom/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+SmartRoom/SmartRoom/obj/Debug/*
+SmartRoom/SmartRoom/obj/*
 
 # Visual Studo 2015 cache/options directory
 .vs/
