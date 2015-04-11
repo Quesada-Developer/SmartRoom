@@ -31,5 +31,32 @@ namespace SmartRoom.Web.Properties {
                 return ((string)(this["ApplicationName"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("kennesaw.edu")]
+        public string UniversityDomain {
+            get {
+                return ((string)(this["UniversityDomain"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("@kennesaw.edu")]
+        public string UniversityTeacherDomain {
+            get {
+                return ((string)(this["UniversityTeacherDomain"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("@students.kennesaw.edu")]
+        public string UniversityStudentDomain {
+            get {
+                return ((string)(this["UniversityStudentDomain"]));
+            }
+        }
     }
 }

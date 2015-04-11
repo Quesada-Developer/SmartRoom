@@ -4,12 +4,15 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - SmartRoom</title>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/Scripts/jquery-ui-1.11.4.min.js")
     @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
-    @Scripts.Render("~/Scripts/YouTubePlayer")
+    @Scripts.Render("~/Scripts/Personalized/Shared/LayoutScript.js")
+    @RenderSection("scripts", required: false)
 
 </head>
-<body>
+<body onload="startTime()">
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -21,28 +24,22 @@
                 @Html.ActionLink("SmartRoom", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home", new { Area = "" }, new{})))</li>
-                    <li>@Html.ActionLink("About", "About", "Home", new { Area = "" }, new{}))</li>
-                    <li>@Html.ActionLink("Courses", "Index", "Courses", new { Area = "Classroom" }, new { }))</li>
-                    <li>@Html.ActionLink("YouTube Demo", "Create", "YoutubeLive", new { Area = "" }, new { }))</li>
-                    <li>@Html.ActionLink("YouTube Presentation", "Index", "YoutubeLive", new { Area = "" }, new { }))</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home", new { Area = "" }, new { })))</li>
-                </ul>
+                <ul class="nav navbar-nav"></ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
     <div class="container body-content">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - SmartRoom</p>
-        </footer>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+
+    <div class="navbar navbar-inverse navbar-fixed-bottom">
+        <div class="container">
+            <div class="navbar-text navbar-right" id="clock">
+            </div>
+            <div class="navbar-text navbar-left" id="date"></div>
+        </div>
+    </div>
 </body>
 </html>

@@ -1,10 +1,8 @@
-﻿using SmartRoom.Web.Models;
+﻿using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
 
 namespace SmartRoom.Web.Controllers
 {
@@ -19,10 +17,18 @@ namespace SmartRoom.Web.Controllers
             //var account = new AccountController();
             //account.UserManager.
             //var user = UserManager.FindById(User.Identity.GetUserId());
-            var a = model.Users.Find(User.Identity.GetUserId()).Course;
-            
+            //var a = model.Users.Find(User.Identity.GetUserId()).Course;
+            List<Course> CourseList = new List<Course>();
+            try
+            {
+                CourseList = model.Users.Find(User.Identity.GetUserId()).Courses.ToList();
+            }
+            catch(Exception e)
+            {
 
-            return View();
+            }
+
+            return View(CourseList);
         }
 
         public ActionResult About()

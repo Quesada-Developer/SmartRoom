@@ -1,15 +1,19 @@
-﻿@model SmartRoom.Database.Tables.YoutubeLiveDetail
+﻿@model SmartRoom.Web.YoutubeLiveDetail
 
 @{
     ViewBag.Title = "Create";
 }
-
+@section scripts{
+    @Scripts.Render("~/Scripts/Personalized/YouTubeScripts.js")
+    @Scripts.Render("~/Scripts/Moment.js")
+    @Scripts.Render("~/Scripts/bootstrap.js")
+    @Scripts.Render("~/Scripts/bootstrap-datetimepicker.min.js")
+        
+}
+<head title="Youtube">
+    <link rel="stylesheet" href="/Content/bootstrap-datetimepicker.css" />
+</head>
 <h2>Create</h2>
-model.BroadcastKind = "youtube#liveBroadcast";
-model.StreamKind = "youtube#liveStream";
-
-<h2>Create</h2>
-
 
 @using (Html.BeginForm())
 {
@@ -27,27 +31,6 @@ model.StreamKind = "youtube#liveStream";
                 @Html.ValidationMessageFor(model => model.CourseId)
             </div>
         </div>
-
-        <!--  <div class="form-group">
-              @Html.LabelFor(model => model.BroadcastId, new { @class = "control-label col-md-2" })
-              <div class="col-md-10">
-                  @Html.EditorFor(model => model.BroadcastId)
-                  @Html.ValidationMessageFor(model => model.BroadcastId)
-              </div>
-          </div>  -->
-        <!--   <div class="form-group">
-               @Html.LabelFor(model => model.BroadcastKind, new { @class = "control-label col-md-2" })
-               <div class="col-md-10">
-                   @Html.DropDownListFor(model => model.BroadcastKind, new SelectList(
-                     new List<Object>{
-                          new { value = "youtube#liveBroadcast" , text = "Live broadcast for stream"  }
-                       },
-                     "value",
-                     "text",
-                      2))
-               </div>
-           </div> -->
-
         <div class="form-group">
             @Html.LabelFor(model => model.BroadcastTitle, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -58,27 +41,38 @@ model.StreamKind = "youtube#liveStream";
 
         <div class="form-group">
             @Html.LabelFor(model => model.BroadcastDescription, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-8">
                 @Html.EditorFor(model => model.BroadcastDescription)
                 @Html.ValidationMessageFor(model => model.BroadcastDescription)
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group" >
             @Html.LabelFor(model => model.BroadcastScheduledStartTime, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.BroadcastScheduledStartTime)
+            <div class='col-sm-6'>
+                <div class="input-group date datepicker">
+                    @Html.EditorFor(model => model.BroadcastScheduledStartTime, "DateTime", new { htmlAttributes = new { @id = "starDate", @class = "form-control" } })
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+
                 @Html.ValidationMessageFor(model => model.BroadcastScheduledStartTime)
             </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.BroadcastScheduledEndTime, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.BroadcastScheduledEndTime)
-                @Html.ValidationMessageFor(model => model.BroadcastScheduledEndTime)
             </div>
-        </div>
+
+        <div class="form-group" >
+            @Html.LabelFor(model => model.BroadcastScheduledEndTime, new { @class = "control-label col-md-2" })
+            <div class='col-sm-6'>
+                <div class="input-group date datepicker">
+                    @Html.EditorFor(model => model.BroadcastScheduledEndTime, "DateTime", new { htmlAttributes = new { @id = "endDate", @class = "form-control" } })
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                 </div>
+                    @Html.ValidationMessageFor(model => model.BroadcastScheduledEndTime)
+                </div>
+            </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.BroadcastStatus, new { @class = "control-label col-md-2" })
@@ -94,62 +88,6 @@ model.StreamKind = "youtube#liveStream";
                    2))
             </div>
         </div>
-
-        <!--  <div class="form-group">
-              @Html.LabelFor(model => model.BroadcastchannelId, new { @class = "control-label col-md-2" })
-              <div class="col-md-10">
-                  @Html.EditorFor(model => model.BroadcastchannelId)
-                  @Html.ValidationMessageFor(model => model.BroadcastchannelId)
-              </div>
-          </div> -->
-        <!--  <div class="form-group">
-              @Html.LabelFor(model => model.BroadcastlifeCycleStatus, new { @class = "control-label col-md-2" })
-              <div class="col-md-10">
-                  @Html.EditorFor(model => model.BroadcastlifeCycleStatus)
-                  @Html.ValidationMessageFor(model => model.BroadcastlifeCycleStatus)
-              </div>
-          </div> -->
-        <!--    <div class="form-group">
-                @Html.LabelFor(model => model.BroadcastEmbededhtml, new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.BroadcastEmbededhtml)
-                    @Html.ValidationMessageFor(model => model.BroadcastEmbededhtml)
-                </div>
-            </div> -->
-        <!--   <div class="form-group">
-               @Html.LabelFor(model => model.StreamId, new { @class = "control-label col-md-2" })
-               <div class="col-md-10">
-                   @Html.EditorFor(model => model.StreamId)
-                   @Html.ValidationMessageFor(model => model.StreamId)
-               </div>
-           </div> -->
-        <!--  <div class="form-group">
-              @Html.LabelFor(model => model.StreamKind, new { @class = "control-label col-md-2" })
-              <div class="col-md-10">
-                  @Html.DropDownListFor(model => model.StreamKind, new SelectList(
-                    new List<Object>{
-                         new { value = "youtube#liveStream" , text = "Stream for live broadcast"  }
-                      },
-                    "value",
-                    "text",
-                     2))
-              </div>
-          </div> -->
-        <!--  <div class="form-group">
-            @Html.LabelFor(model => model.StreamName, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.StreamName)
-                @Html.ValidationMessageFor(model => model.StreamName)
-            </div>
-        </div> -->
-        <!--  <div class="form-group">
-              @Html.LabelFor(model => model.StreamStatus, new { @class = "control-label col-md-2" })
-              <div class="col-md-10">
-                  @Html.EditorFor(model => model.StreamStatus)
-                  @Html.ValidationMessageFor(model => model.StreamStatus)
-              </div>
-          </div> -->
-
         <div class="form-group">
             @Html.LabelFor(model => model.StreamSnippetTitle, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -175,45 +113,15 @@ model.StreamKind = "youtube#liveStream";
             </div>
         </div>
 
-        <!--  <div class="form-group">
-              @Html.LabelFor(model => model.StreamCDNIngestionType, new { @class = "control-label col-md-2" })
-              <div class="col-md-10">
-                  @Html.DropDownListFor(model => model.StreamCDNIngestionType, new SelectList(
-                    new List<Object>{
-                         new { value = "rtmp" , text = "Real Time Messaging Protocol(Only Type available for Streaming)"  }
-                      },
-                    "value",
-                    "text",
-                     2))
-              </div>
-          </div> -->
-        <!--  <div class="form-group">
-              @Html.LabelFor(model => model.StreamCDNIngestionUrl, new { @class = "control-label col-md-2" })
-              <div class="col-md-10">
-                  @Html.EditorFor(model => model.StreamCDNIngestionUrl)
-                  @Html.ValidationMessageFor(model => model.StreamCDNIngestionUrl)
-              </div>
-          </div> -->
-        <!-- <div class="form-group">
-            @Html.LabelFor(model => model.StreamcontentclosedCaptionsIngestionUrl, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.StreamcontentclosedCaptionsIngestionUrl)
-                @Html.ValidationMessageFor(model => model.StreamcontentclosedCaptionsIngestionUrl)
-            </div>
-        </div> -->
-
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>
         </div>
+
     </div>
 }
 
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}

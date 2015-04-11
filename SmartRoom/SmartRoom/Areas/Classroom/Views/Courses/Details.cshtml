@@ -1,98 +1,106 @@
 ﻿@model SmartRoom.Web.Course
 
 @{
-    ViewBag.Title = "Details";
+	ViewBag.Title = "Details";
 }
 
 <h2>Details</h2>
-
 <div>
-    <h4>Course</h4>
+	<h4>Course</h4>
 	<hr />
-    <dl class="dl-horizontal">
+	<dl class="dl-horizontal">
+		<dt>
+			@Html.DisplayNameFor(model => model.Subject)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Subject)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.CourseNumber)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.CourseNumber)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.Section)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Section)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.Title)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Title)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.StartDate)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.StartDate)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.EndDate)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.EndDate)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.Location)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Location)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.Term)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Term)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.CreatedBy)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.CreatedBy.UserName)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.CreateDate)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.CreateDate)
+		</dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Subject)
+            @Html.DisplayNameFor(model => model.RegistrationCode)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Subject)
+            @Html.DisplayFor(model => model.RegistrationCode)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CourseNumber)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CourseNumber)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Section)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Section)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.StartDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.StartDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.EndDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.EndDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Location)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Location)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Term)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Term)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CreatedBy)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CreatedBy)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CreateDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CreateDate)
-        </dd>
-
-    </dl>
+	</dl>
+    <hr />
+    @Html.Partial("Partial/_UserRelationships", Model.UserRelationships)
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+	@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+	@Html.ActionLink("Back to List", "Index")
 </p>
