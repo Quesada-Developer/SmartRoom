@@ -3,7 +3,7 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace SmartRoom.Web
+namespace SmartRoom.Web.App_Start
 {
     public class YoutubeLiveDetail {
 
