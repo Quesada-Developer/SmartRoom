@@ -1,9 +1,8 @@
 using Microsoft.AspNet.Identity.EntityFramework;
 
-using SmartRoom.Web.App_Start;
 using System.Data.Entity;
 
-namespace SmartRoom.Web
+namespace SmartRoom.Web.App_Start
 {
     public class SmartModel : IdentityDbContext<ApplicationUser>
     {
@@ -24,6 +23,9 @@ namespace SmartRoom.Web
         public DbSet<CourseOption> CourseOptions { get; set; }
         public DbSet<YoutubeLiveDetail> YoutubeLiveDetails { get; set; }
         public DbSet<UserRelationship> UserRelationships { get; set; }
+        public DbSet<Syllabus> Syllabi { get; set; }
+        public DbSet<GradeDistribution> GradeDistributions { get; set; }
+        public DbSet<ClassDate> ClassDates { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -36,11 +38,6 @@ namespace SmartRoom.Web
         {
             return new SmartModel();
         }
-
-        // Add a DbSet for each entity type that you want to include in your model. For more information 
-        // on configuring and using a Code First model, see http://go.microsoft.com/fwlink/?LinkId=390109.
-
-        // public virtual DbSet<MyEntity> MyEntities { get; set; }
     }
 
 }

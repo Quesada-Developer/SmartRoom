@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace SmartRoom.Web
+namespace SmartRoom.Web.App_Start
 {
     public class FilterConfig
     {

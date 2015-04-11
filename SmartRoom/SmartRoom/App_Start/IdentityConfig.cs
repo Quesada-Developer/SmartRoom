@@ -3,12 +3,11 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
-using SmartRoom.Web.App_Start;
 using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace SmartRoom.Web
+namespace SmartRoom.Web.App_Start
 {
     public class EmailService : IIdentityMessageService
     {

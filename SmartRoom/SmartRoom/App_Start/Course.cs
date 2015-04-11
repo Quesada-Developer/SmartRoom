@@ -1,5 +1,4 @@
 ﻿
-using SmartRoom.Web.App_Start;
 using SmartRoom.Web.Helpers;
 using System;
 using System.Collections.Generic;
@@ -7,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 
-namespace SmartRoom.Web
+namespace SmartRoom.Web.App_Start
 {
     public class Course
     {
@@ -53,7 +52,8 @@ namespace SmartRoom.Web
         public Campus Location { get; set; }
         [Required]
         public Terms Term { get; set; }
-        
+        [Required]
+        public bool isActive { get; set; }
 
         public string CreatedById { get; set; }
         public virtual ApplicationUser CreatedBy { get; set; }
