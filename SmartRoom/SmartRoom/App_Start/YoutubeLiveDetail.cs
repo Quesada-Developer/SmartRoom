@@ -14,6 +14,7 @@ namespace SmartRoom.Web.App_Start
 
         [Display(Name = "Course")]
         public int CourseId { get; set; }
+        [Display(Name = "Course")]
         public virtual Course Course { get; set; }
 
         /// <summary>
@@ -24,8 +25,10 @@ namespace SmartRoom.Web.App_Start
         /// <summary>
         /// youtube#liveBroadcast
         /// </summary>
-        public String BroadcastKind { get; set; } 
+        public String BroadcastKind { get; set; }
+        [Display(Name = "Title")]
         public String BroadcastTitle { get; set; }
+        [Display(Name = "Description")]
         public String BroadcastDescription { get; set; }
         
         /// <summary>
@@ -80,6 +83,7 @@ namespace SmartRoom.Web.App_Start
         [Display(Name = "Stream Name")]
         public String StreamName { get; set; } 
         public String StreamStatus { get; set; }
+        [Display(Name = "Snippet Title")]
         public String StreamSnippetTitle { get; set; }
 
         /// <summary>
