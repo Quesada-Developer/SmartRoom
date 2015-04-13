@@ -4,12 +4,15 @@
     ViewBag.Title = "Create";
 }
 @section scripts{
+
     @Scripts.Render("~/Scripts/Personalized/YouTubeScript.js")
     @Scripts.Render("~/Scripts/Moment.js")
     @Scripts.Render("~/Scripts/bootstrap.js")
     @Scripts.Render("~/Scripts/bootstrap-datetimepicker.min.js")
-
+   
 }
+
+<link rel="stylesheet" href="/Content/bootstrap-datetimepicker.css" />
 
 <h2>Create</h2>
 
@@ -47,16 +50,26 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.BroadcastScheduledStartTime, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.BroadcastScheduledStartTime, "DateTime", new { htmlAttributes = new { @id = "stardDate", @class = "datetimepicker" } })
-                @Html.ValidationMessageFor(model => model.BroadcastScheduledStartTime)
-            </div>
+            <div class="col-md-6">
+                <div class="input-group date  datetimepicker">
+                    @Html.EditorFor(model => model.BroadcastScheduledStartTime, "DateTime", new { htmlAttributes = new { @id = "stardDate", @class = "form-control" } })
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+                    @Html.ValidationMessageFor(model => model.BroadcastScheduledStartTime)
+                </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.BroadcastScheduledEndTime)
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.BroadcastScheduledEndTime, "DateTime", new { htmlAttributes = new { @id = "endDate", @class = "datetimepicker" } })
+            @Html.LabelFor(model => model.BroadcastScheduledEndTime, new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                <div class="input-group date datetimepicker">
+                    @Html.EditorFor(model => model.BroadcastScheduledEndTime, "DateTime", new { htmlAttributes = new { @id = "endDate", @class = "form-control" } })
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
                 @Html.ValidationMessageFor(model => model.BroadcastScheduledEndTime)
             </div>
         </div>

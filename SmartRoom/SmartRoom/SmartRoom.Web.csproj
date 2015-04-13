@@ -250,7 +250,6 @@
     <Compile Include="Areas\YouTube\Controllers\BroadcastController.cs" />
     <Compile Include="Areas\YouTube\Controllers\VideoController.cs" />
     <Compile Include="Areas\YouTube\Controllers\YouTubeController.cs" />
-    <Compile Include="Areas\YouTube\Models\Model.cs" />
     <Compile Include="Areas\YouTube\YouTubeAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -1280,6 +1279,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Classroom\Views\Shared\" />
     <Folder Include="Areas\Forms\Views\Syllabus\" />
+    <Folder Include="Areas\YouTube\Models\" />
     <Folder Include="Areas\YouTube\Views\Video\" />
   </ItemGroup>
   <ItemGroup>

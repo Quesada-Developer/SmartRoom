@@ -1,4 +1,4 @@
 ﻿
 $(function () {
-    $('input').filter('.datetimepicker').datetimepicker();
+    $('.datetimepicker').datetimepicker();
 });
