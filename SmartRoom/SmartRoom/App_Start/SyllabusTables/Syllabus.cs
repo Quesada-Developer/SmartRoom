@@ -38,18 +38,18 @@ namespace SmartRoom.Web.App_Start
         [DataType(DataType.Time)]
         public DateTime MeetingTime { get; set; }
 
-        [DataType(DataType.MultilineText)]
-        public string GeneralInformation { get; set; }
-        [DataType(DataType.MultilineText)]
-        public string CourseDescription { get; set; }
-        [DataType(DataType.MultilineText)]
-        public string AttendancePolicy { get; set; }
-        [DataType(DataType.MultilineText)]
-        public string AssignmentInformation { get; set; }
-        [DataType(DataType.MultilineText)]
-        public string AcademicIntegrityStatement { get; set; }
+        //[DataType(DataType.MultilineText)]
+        //public string GeneralInformation { get; set; }
+        //[DataType(DataType.MultilineText)]
+        //public string CourseDescription { get; set; }
+        //[DataType(DataType.MultilineText)]
+        //public string AttendancePolicy { get; set; }
+        //[DataType(DataType.MultilineText)]
+        //public string AssignmentInformation { get; set; }
+        //[DataType(DataType.MultilineText)]
+        //public string AcademicIntegrityStatement { get; set; }
 
-        public virtual List<AdditionalInformation> AdditionalInformation { get; set; }
+        public virtual List<Information> AdditionalInformation { get; set; }
         public virtual List<GradeDistribution> GradeDistributions { get; set; }
         public virtual List<ClassDate> ClassDates { get; set; }
 

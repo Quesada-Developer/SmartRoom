@@ -11,6 +11,6 @@ namespace SmartRoom.Web.Areas.Forms.Models
         public Syllabus syllabus { get; set; }
         public IEnumerable<GradeDistribution> gradeDistribution { get; set; }
         public IEnumerable<ClassDate> classDate { get; set; }
-        public IEnumerable<AdditionalInformation> additionalInformation { get; set; }
+        public IEnumerable<Information> additionalInformation { get; set; }
     }
 }

@@ -7,12 +7,14 @@ using System.Web;
 
 namespace SmartRoom.Web.App_Start
 {
-    public class AdditionalInformation
+    public class Information
     {
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        public string TextBlock { get; set; }
+        public string InformationTitle { get; set; }
+        [DataType(DataType.MultilineText)]
+        public string InformationText { get; set; }
     }
 }
