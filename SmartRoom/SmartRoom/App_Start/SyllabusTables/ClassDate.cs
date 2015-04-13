@@ -20,7 +20,7 @@ namespace SmartRoom.Web.App_Start
         public bool isActive { get; set; }
 
         public int InfoId { get; set; }
-        public virtual AdditionalInformation Info{ get; set; }
+        public virtual Information Info{ get; set; }
 
     }
 }

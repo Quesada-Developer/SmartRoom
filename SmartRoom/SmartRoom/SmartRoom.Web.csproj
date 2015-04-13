@@ -226,7 +226,7 @@
     <Compile Include="App_Start\ApplicationUser.cs" />
     <Compile Include="App_Start\Authen.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
-    <Compile Include="App_Start\SyllabusTables\AdditionalInformation.cs" />
+    <Compile Include="App_Start\SyllabusTables\Information.cs" />
     <Compile Include="App_Start\SyllabusTables\ClassDate.cs" />
     <Compile Include="App_Start\Course.cs" />
     <Compile Include="App_Start\CourseOption.cs" />
