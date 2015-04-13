@@ -42,6 +42,7 @@ textarea {
     padding: 3px;
     margin: 5px;
     text-align: center;
+
 }
 
 /* Styles go here */
@@ -61,6 +62,7 @@ textarea {
 
 #sortable-container {
     display: inline-block;
+
 }
 
 .column {
@@ -73,6 +75,7 @@ textarea {
     margin: 0;
     padding: 0;
     width: 100%;
+
 }
 
     #sortable li {
@@ -86,15 +89,29 @@ textarea {
         font-size: 16px;
         text-align: center;
         border-style: solid;
-        border-width: 2px;
+        background-color: #fff;
+        background-image: none;
+        border: 5px solid #1F6474;
+        border-radius: 4px;  
     }
 
+.form-horizontal {
+
+        text-align: center;
+        border-style: solid;
+        background-color: #fff;
+        background-image: none;
+        border: 5px solid #1F6474;
+        border-radius: 4px;
+
+}
 
 /* Youtube Styles */
 
 .datetimepicker {
     
     max-width: 210px;
+    
 
 }
 
