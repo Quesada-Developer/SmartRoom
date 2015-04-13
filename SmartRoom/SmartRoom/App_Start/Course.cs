@@ -35,6 +35,7 @@ namespace SmartRoom.Web.App_Start
         public int Id { get; set; }
         [Required]
         [StringLength(8, MinimumLength = 2)]
+        [Display(Name = "Test")]
         public string Subject { get; set; }
         [Required]
         public int CourseNumber { get; set; }
@@ -72,5 +73,6 @@ namespace SmartRoom.Web.App_Start
         public virtual ICollection<YoutubeLiveDetail> YoutubeLiveDetails { get; set; }
 
         public virtual List<UserRelationship> UserRelationships { get; set; }
+        public virtual ICollection<Syllabus> Syllabi { get; set; }
     }
 }

@@ -27,9 +27,9 @@ namespace SmartRoom.Web.App_Start
 
             return userIdentity;
         }
-        //public virtual ICollection<UserRelationship> UserRelationships { get; set; }
 
         public virtual List<Course> Courses { get; set; }
+        public virtual List<Syllabus> Syllabi { get; set; }
         public IEnumerable<Course> CoursesByRole(CourseRole Role)
         {
             return Courses.Where(obj => obj.UserRelationships.All(obj2 => obj2.AccountId.Equals(Id)));
