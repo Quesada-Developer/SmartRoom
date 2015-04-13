@@ -429,6 +429,7 @@
     <Content Include="Content\bootstrap\bootstrap.less" />
     <Content Include="Content\bootstrap\badges.less" />
     <Content Include="Content\bootstrap\alerts.less" />
+    <Content Include="Areas\Forms\Views\Syllabus\Create.cshtml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -1279,7 +1280,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Classroom\Views\Shared\" />
-    <Folder Include="Areas\Forms\Views\Syllabus\" />
     <Folder Include="Areas\YouTube\Views\Video\" />
   </ItemGroup>
   <ItemGroup>
