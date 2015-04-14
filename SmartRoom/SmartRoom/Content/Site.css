@@ -27,15 +27,15 @@ html{
 input,
 select,
 textarea {
-    height: 34px;
-    padding: 6px 12px;
-    font-size: 14px;
-    line-height: 1.42857143;
-    color: #555;
-    background-color: #fff;
-    background-image: none;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+  height: 34px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;   
 }
 
 .index-course {
@@ -47,6 +47,7 @@ textarea {
     padding: 3px;
     margin: 5px;
     text-align: center;
+
 }
 
 /* Styles go here */
@@ -67,6 +68,7 @@ textarea {
 
 #sortable-container {
     display: inline-block;
+
 }
 
 .column {
@@ -102,6 +104,16 @@ textarea {
         margin-top:0px;
     }
 
+.form-horizontal {
+
+        text-align: center;
+        border-style: solid;
+        background-color: #fff;
+        background-image: none;
+        border: 5px solid #1F6474;
+        border-radius: 4px;
+
+}
 
 /* Youtube Styles */
 
@@ -122,7 +134,7 @@ textarea {
         font-size: 16px;
         color: #8ce4fa;
     }
-
+    
 a.navbar-brand {
     background: url("images/Logo.png") no-repeat top left;
     display: block;
