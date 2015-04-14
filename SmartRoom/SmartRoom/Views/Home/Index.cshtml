@@ -5,7 +5,8 @@
 @section Scripts
 {
     @Scripts.Render("~/Scripts/Personalized/dragDrop.js")
-}@if (User.IsInRole("Admin"))
+}
+@if (User.IsInRole("Admin"))
 {
     <ul>
         <li>@Html.ActionLink("Classroom Index", "Index", "Courses", new { Area = "Classroom" }, new { })</li>
@@ -14,6 +15,7 @@
         <li>@Html.ActionLink("Classroom Edit", "Edit", "Courses", new { Area = "Classroom" }, new { })</li>
         <li>@Html.ActionLink("YouTube Index", "Index", "YouTube", new { Area = "YouTube" }, new { })</li>
         <li>@Html.ActionLink("YouTube Create", "Create", "YouTube", new { Area = "YouTube" }, new { })</li>
+        <li>@Html.ActionLink("Syllabus Create", "Create", "Syllabus", new { Area = "Forms" }, new { })</li>
     </ul>}
 <ul id="sortable">
 
@@ -21,7 +23,7 @@
     {
         foreach (var item in Model)
         {
-            <li class="ui-state-default">
+            <li class="ui-state-default class-container">
                 @Html.ActionLink(Html.DisplayFor(modelItem => item.Title).ToString(), "Details", "Courses", new { Area = "Classroom", id = item.Id }, null)
                 <hr />
             </li>
