@@ -8,7 +8,7 @@
 }
 @if (User.IsInRole("Admin"))
 {
-    <ul>
+  <ul>
         <li>@Html.ActionLink("Classroom Index", "Index", "Courses", new { Area = "Classroom" }, new { })</li>
         <li>@Html.ActionLink("Classroom Create", "Create", "Courses", new { Area = "Classroom" }, new { })</li>
         <li>@Html.ActionLink("Classroom Delete", "Delete", "Courses", new { Area = "Classroom" }, new { })</li>
@@ -16,7 +16,8 @@
         <li>@Html.ActionLink("YouTube Index", "Index", "YouTube", new { Area = "YouTube" }, new { })</li>
         <li>@Html.ActionLink("YouTube Create", "Create", "YouTube", new { Area = "YouTube" }, new { })</li>
         <li>@Html.ActionLink("Syllabus Create", "Create", "Syllabus", new { Area = "Forms" }, new { })</li>
-    </ul>}
+    </ul> 
+      } 
 <ul id="sortable">
 
     @if (Model.Count() > 0)
