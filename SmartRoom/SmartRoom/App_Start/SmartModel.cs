@@ -26,6 +26,7 @@ namespace SmartRoom.Web.App_Start
         public DbSet<Syllabus> Syllabi { get; set; }
         public DbSet<GradeDistribution> GradeDistributions { get; set; }
         public DbSet<ClassDate> ClassDates { get; set; }
+        public DbSet<Information> AdditionalInformations { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

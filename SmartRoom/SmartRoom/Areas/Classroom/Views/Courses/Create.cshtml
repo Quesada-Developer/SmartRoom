@@ -3,14 +3,19 @@
 @{
     ViewBag.Title = "Create";
 }
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Scripts/Personalized/CreateScript.js")
+    @Styles.Render("~/Content/jquery-ui.css")
+}
 
 <h2>Create</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Course</h4>
         <hr />
@@ -51,7 +56,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.StartDate, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.StartDate)
+                @Html.EditorFor(model => model.StartDate, null, new { htmlAttributes = new { @id = "startDate", @class = "datepicker" } })
                 @Html.ValidationMessageFor(model => model.StartDate)
             </div>
         </div>
@@ -59,7 +64,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.EndDate, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.EndDate)
+                @Html.EditorFor(model => model.EndDate, null, new { htmlAttributes = new { @id = "endDate", @class = "datepicker" } })
                 @Html.ValidationMessageFor(model => model.EndDate)
             </div>
         </div>
@@ -80,7 +85,7 @@
             </div>
         </div>
 
-       
+
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
@@ -93,7 +98,3 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
