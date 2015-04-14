@@ -5,7 +5,8 @@
 @section Scripts
 {
     @Scripts.Render("~/Scripts/Personalized/dragDrop.js")
-}@if (User.IsInRole("Admin"))
+}
+@if (User.IsInRole("Admin"))
 {
     <ul>
         <li>@Html.ActionLink("Classroom Index", "Index", "Courses", new { Area = "Classroom" }, new { })</li>
@@ -22,7 +23,7 @@
     {
         foreach (var item in Model)
         {
-            <li class="ui-state-default">
+            <li class="ui-state-default class-container">
                 @Html.ActionLink(Html.DisplayFor(modelItem => item.Title).ToString(), "Details", "Courses", new { Area = "Classroom", id = item.Id }, null)
                 <hr />
             </li>

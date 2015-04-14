@@ -35,7 +35,7 @@ namespace SmartRoom.Web.App_Start
         public int Id { get; set; }
         [Required]
         [StringLength(8, MinimumLength = 2)]
-        [Display(Name = "Test")]
+        //[Display(Name = "Test")]
         public string Subject { get; set; }
         [Required]
         public int CourseNumber { get; set; }

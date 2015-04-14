@@ -250,7 +250,6 @@
     <Compile Include="Areas\YouTube\Controllers\BroadcastController.cs" />
     <Compile Include="Areas\YouTube\Controllers\VideoController.cs" />
     <Compile Include="Areas\YouTube\Controllers\YouTubeController.cs" />
-    <Compile Include="Areas\YouTube\Models\Model.cs" />
     <Compile Include="Areas\YouTube\YouTubeAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -283,6 +282,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\images\Logo.png" />
     <Content Include="Content\jquery-ui.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\themes\base\accordion.css" />
@@ -429,7 +429,6 @@
     <Content Include="Content\bootstrap\bootstrap.less" />
     <Content Include="Content\bootstrap\badges.less" />
     <Content Include="Content\bootstrap\alerts.less" />
-    <Content Include="Areas\Forms\Views\Syllabus\Create.cshtml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -1280,6 +1279,8 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Classroom\Views\Shared\" />
+    <Folder Include="Areas\Forms\Views\Syllabus\" />
+    <Folder Include="Areas\YouTube\Models\" />
     <Folder Include="Areas\YouTube\Views\Video\" />
   </ItemGroup>
   <ItemGroup>

@@ -9,7 +9,23 @@
             <li>
                 @Html.ActionLink("Hello " + User.Identity.Name, "Index", new { area = "", controller = "Manage" }, htmlAttributes: new { title = "Manage" })
             </li>
-            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+            <li>
+
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a href="#" data-toggle="dropdown" class="dropdown-toggle"><span class="glyphicon glyphicon-asterisk" /></a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Settings", "Index", new { area = "", controller = "Manage" }, htmlAttributes: new { title = "Manage" })</li>
+                                <li><a href="javascript:void(0)" onclick="EnableSortable();" class="toggle">Enable Class Arrangement</a> </li>
+                                <li><a href="javascript:void(0)" onclick="DisableSortable();" class="toggle" style="display:none;">Disable Class Arrangement</a> </li>
+                                <li class="divider"></li>
+                                <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </li>
         </ul>
     }
 }

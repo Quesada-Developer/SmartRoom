@@ -12,7 +12,9 @@ namespace SmartRoom.Web.App_Start
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
+        [Display(Name = "Course")]
         public int CourseId { get; set; }
+        [Display(Name = "Course")]
         public virtual Course Course { get; set; }
 
         /// <summary>
@@ -23,25 +25,30 @@ namespace SmartRoom.Web.App_Start
         /// <summary>
         /// youtube#liveBroadcast
         /// </summary>
-        public String BroadcastKind { get; set; } 
+        public String BroadcastKind { get; set; }
+        [Display(Name = "Title")]
         public String BroadcastTitle { get; set; }
+        [Display(Name = "Description")]
         public String BroadcastDescription { get; set; }
         
         /// <summary>
         /// Start time
         /// </summary>
+        [Display(Name = "Start Time")]
         [DataType(DataType.DateTime)]
         public DateTime BroadcastScheduledStartTime { get; set; } 
 
         /// <summary>
         /// End Time
         /// </summary>
+        [Display(Name = "End Time")]
         [DataType(DataType.DateTime)]
         public DateTime BroadcastScheduledEndTime { get; set; } 
 
         /// <summary>
         /// Private, Public, Unlisted
         /// </summary>
+        [Display(Name = "Status")]
         public String BroadcastStatus { get; set; } 
 
         /// <summary>
@@ -52,6 +59,7 @@ namespace SmartRoom.Web.App_Start
         /// <summary>
         /// abandoned, complete, created, live, liveStarting, ready, reclaimed, revoked, testStarting, testing
         /// </summary>
+        [Display(Name = "Broadcast Status")]
         public String BroadcastlifeCycleStatus { get; set; } 
         
         /// <summary>
@@ -72,13 +80,16 @@ namespace SmartRoom.Web.App_Start
         /// <summary>
         /// RTMP stream name Youtube assigns to a video stream
         /// </summary>
+        [Display(Name = "Stream Name")]
         public String StreamName { get; set; } 
         public String StreamStatus { get; set; }
+        [Display(Name = "Snippet Title")]
         public String StreamSnippetTitle { get; set; }
 
         /// <summary>
         /// Format 1080p, 240p, 360p, 480p, 720p
         /// </summary>
+        [Display(Name = "Stream Format")]
         public String StreamCDNFormat { get; set; } 
 
         /// <summary>

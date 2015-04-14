@@ -1,12 +1,19 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    height:100%
 }
-
+html{
+    height:100%
+}
 /* Set padding to keep content from hitting the edges */
 .body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+    padding: 15px;
+    box-shadow: 0 0 8px 8px #9ec0c8;
+    height:100%;
+    background-color: #d5e6ea;
+    margin-left:15%;
+    margin-right:15%;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -20,7 +27,15 @@
 input,
 select,
 textarea {
-   
+  height: 34px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;   
 }
 
 .index-course {
@@ -32,6 +47,7 @@ textarea {
     padding: 3px;
     margin: 5px;
     text-align: center;
+
 }
 
 /* Styles go here */
@@ -49,20 +65,25 @@ textarea {
     border: 1px dotted #0000ff !important;
 }
 
+
 #sortable-container {
     display: inline-block;
+
 }
 
 .column {
     border: 1px solid #000000;
     border-radius: 5px;
 }
-
+.ui-sortable-helper{
+    opacity:0.5;
+}
 #sortable {
     list-style-type: none;
     margin: 0;
     padding: 0;
     width: 100%;
+    height: 100%;
 }
 
     #sortable li {
@@ -70,11 +91,68 @@ textarea {
         padding: 1px;
         float: left;
         width: 20%;
-        min-width:15%;
-        height: 20%;
-        min-height:15%;
+        min-width: 15%;
+        height: 15%;
+        min-height: 10%;
         font-size: 16px;
         text-align: center;
         border-style: solid;
-        border-width: 2px;
+        border-width: 3px;
     }
+    #sortable hr
+    {
+        margin-top:0px;
+    }
+
+.form-horizontal {
+
+        text-align: center;
+        border-style: solid;
+        background-color: #fff;
+        background-image: none;
+        border: 5px solid #1F6474;
+        border-radius: 4px;
+
+}
+
+/* Youtube Styles */
+
+.datetimepicker {
+    max-width: 210px;
+}
+
+.navbar-inverse {
+    background-color: #3cb3cf;
+}
+
+    .navbar-inverse .navbar-nav li a {
+        color: #8ce4fa;
+        font-size: 16px;
+    }
+
+    .navbar-inverse .navbar-text {
+        font-size: 16px;
+        color: #8ce4fa;
+    }
+    
+a.navbar-brand {
+    background: url("images/Logo.png") no-repeat top left;
+    display: block;
+    background-size: 200px;
+    width: 200px;
+    text-indent: -9999px; /* hides the link text */
+}
+
+.class-container{
+    background-color:white;
+    border-radius:10px;
+    border-color: #8ce4fa;
+    border-style: solid;
+    border-width: 15px;
+}
+
+.container{
+    width:90%;
+    margin-left:5%;
+    margin-right:5%;
+}
