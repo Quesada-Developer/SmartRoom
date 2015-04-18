@@ -11,9 +11,10 @@ namespace SmartRoom.Web.App_Start
 {
     public class ApplicationUser : IdentityUser
     {
+        private readonly SmartModel db = new SmartModel();
         public ApplicationUser()
         {
-            Courses = new List<Course>();
+            
         }
         /// <summary>
         /// <example>await Account.UserManager.FindById(User.Identity.GetUserId()).GoogleAuthentication.GetInitializer()</example>
@@ -29,10 +30,12 @@ namespace SmartRoom.Web.App_Start
         }
 
         public virtual List<Course> Courses { get; set; }
+        //return db.Courses.Where(obj => obj.UserRelationships.Any(ur => ur.AccountId == Id && !ur.IsDeleted)).ToList();
+
         public virtual List<Syllabus> Syllabi { get; set; }
         public IEnumerable<Course> CoursesByRole(CourseRole Role)
         {
-            return Courses.Where(obj => obj.UserRelationships.All(obj2 => obj2.AccountId.Equals(Id)));
+            return db.Courses.Where(obj => obj.UserRelationships.All(obj2 => obj2.AccountId.Equals(Id) && obj2.AccountRole == Role));
         }
 
         /// <summary>
@@ -42,7 +45,7 @@ namespace SmartRoom.Web.App_Start
         /// <returns>Returns CourseRole for Course or <see cref="CourseRole.NotAuthorized"/></returns>
         public CourseRole RoleFromCourse(Course Course)
         {
-            var list = Courses[Course.Id].UserRelationships.Where(obj => obj.AccountId == Id).ToList();
+            var list = db.Courses.Where(obj => obj.Id == Course.Id).First().UserRelationships.Where(obj => obj.AccountId == Id).ToList();
             if (list != null && list.Count > 0)
                 return list.FirstOrDefault().AccountRole;
             return CourseRole.NotAuthorized;

@@ -244,6 +244,7 @@
     <Compile Include="Areas\Classroom\classroomAreaRegistration.cs" />
     <Compile Include="Areas\Classroom\Controllers\CoursesController.cs" />
     <Compile Include="Areas\Classroom\Models\AccountDDLModel.cs" />
+    <Compile Include="Areas\Classroom\Models\CoursesViewModels.cs" />
     <Compile Include="Areas\Forms\Controllers\SyllabusController.cs" />
     <Compile Include="Areas\Forms\FormsAreaRegistration.cs" />
     <Compile Include="Areas\Forms\Models\CompleteSyllabusModel.cs" />
@@ -429,6 +430,9 @@
     <Content Include="Content\bootstrap\bootstrap.less" />
     <Content Include="Content\bootstrap\badges.less" />
     <Content Include="Content\bootstrap\alerts.less" />
+    <Content Include="Areas\Classroom\Views\Courses\Partial\_AddUserRelationships.cshtml" />
+    <Content Include="Areas\Classroom\Views\View111.cshtml" />
+    <Content Include="Areas\Classroom\Views\Courses\Partial\_DeleteUserRelationship.cshtml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -1275,6 +1279,7 @@
     <Content Include="Scripts\angular-animate.min.js.map" />
     <Content Include="Scripts\angular.min.js.map" />
     <Content Include="Areas\Classroom\Views\Courses\Partial\_UserRelationships.cshtml" />
+    <Content Include="Areas\Classroom\Views\Courses\Enroll.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

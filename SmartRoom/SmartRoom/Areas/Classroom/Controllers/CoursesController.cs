@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNet.Identity;
 using SmartRoom.Web.App_Start;
+using SmartRoom.Web.Areas.Classroom.Models;
 using SmartRoom.Web.Controllers;
 using SmartRoom.Web.Helpers;
 using System;
@@ -26,6 +27,153 @@ namespace SmartRoom.Web.Areas.Classroom.Controllers
             return View(Courses);
         }
 
+        //
+        // GET: /Manage/AddPhoneNumber
+        public ActionResult Enroll()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public string DeleteUserFromCourse(RemoveUserFromCourse model)
+        {
+            if (ModelState.IsValid)
+            {
+
+                if (!db.Courses.ToList().Any(obj => obj.UserRelationships.Any(u => u.AccountId.Equals(model.AccountId))))
+                {
+                    //user is not in course 
+                    Response.StatusCode = 400;
+                    return "User is not part of this course";
+                }
+
+                if (db.Courses.ToList().Any(obj => obj.UserRelationships.Any(u => u.AccountId.Equals(User.Identity.GetUserId()) && u.AccountRole == CourseRole.owner)))
+                {
+                    var course = db.Courses.Find(model.CourseId).UserRelationships.Where(obj => obj.AccountId == model.AccountId && obj.Course.Id == model.CourseId).ToList();
+                    if(!(course.Count > 0))
+                    {
+                        //course is not found 
+                        Response.StatusCode = 400;
+                        return "Error removing user";
+                    }
+                    var c = db.UserRelationships.Find(course[0].Id);
+                    c.IsDeleted = true;
+                    c.ModifedBy = User.Identity.GetUserId();
+                    c.ModifiedDate = DateTime.Now;
+
+                    db.SaveChanges();
+                    //db.Users.Find(model.AccountId).Courses.Remove(db.Courses.Find(model.CourseId));
+                    db.SaveChanges();
+
+                    Response.StatusCode = 200;
+                    return "User " + db.Users.Find(model.AccountId).UserName + " has been removed. Refresh the page to update list.";
+                }
+                else
+                {
+                    Response.StatusCode = 403;
+                    return "You can not make changes to this course";
+                }
+            }
+            Response.StatusCode = 400;
+            return "All values are required";
+            return "DONE/NOT! " + model.CourseId + " - " + model.AccountId + " -> " + model.RequestorAccountId;
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public string AddUserFromModeal(AddUserToCourse model)
+        {
+            if (ModelState.IsValid)
+            {
+
+                if (db.Courses.ToList().Any(obj => obj.UserRelationships.Any(u => !u.IsDeleted && u.AccountId.Equals(model.AccountId))))
+                {
+                    //user is in course already
+                    Response.StatusCode = 400;
+                    return "User is already part of this course";
+                }
+
+                if(db.Courses.ToList().Any(obj => obj.UserRelationships.Any(u => u.AccountId.Equals(User.Identity.GetUserId()) && u.AccountRole == CourseRole.owner)))
+                {
+                    UserRelationship _UserRelationship;
+                    if(db.Courses.Find(model.CourseId).UserRelationships.Any(obj => obj.AccountId == model.AccountId && obj.IsDeleted == true))
+                    {
+                        _UserRelationship = db.Courses.Find(model.CourseId).UserRelationships.Where(obj => obj.AccountId == model.AccountId && obj.IsDeleted == true).ToList()[0];
+                        _UserRelationship.IsDeleted = false;
+                        _UserRelationship.ModifiedDate = DateTime.Now;
+                        _UserRelationship.ModifedBy = User.Identity.GetUserId();
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+
+                    
+                    _UserRelationship = new UserRelationship() {
+                        AccountId = model.AccountId, 
+                        AccountRole = (CourseRole)model.AccountRole, 
+                        CreateDate = DateTime.Now, 
+                        /*CreatedBy = User.Identity.GetUserId(),*/ 
+                        Course = db.Courses.Find(model.CourseId) 
+                    };
+                    db.UserRelationships.Add(_UserRelationship);
+                    db.Courses.Find(model.CourseId).UserRelationships.Add(_UserRelationship);
+                    db.Users.Find(model.AccountId).Courses.Add(db.Courses.Find(model.CourseId));
+                    db.SaveChanges();
+                }
+                    
+
+                    Response.StatusCode = 200;
+                    return "User " + db.Users.Find(model.AccountId).UserName + " has been added. Refresh the page to update list.";
+                }
+                else
+                {
+                    Response.StatusCode = 403;
+                    return "You can not make changes to this course";
+                }
+                Response.StatusCode = 201;
+                return "IsValid";
+            }
+            Response.StatusCode = 400;
+            return "All values are required";
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public string EnrollInPage(string couse, string user)
+        {
+            return "error";
+        }
+        
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Enroll(EnrollViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                if (!db.Courses.Any(obj => obj.RegistrationCode.Equals(model.RegistrationCode)))
+                {
+                    ModelState.AddModelError("RegistrationCode", "Invalid Registration Code");
+                    return View(model);
+                }
+                Course course = db.Courses.Where(obj => obj.RegistrationCode.Equals(model.RegistrationCode)).FirstOrDefault();
+                if(course.UserRelationships.Any(c => c.AccountId.Equals(User.Identity.GetUserId())))
+                {
+                    ModelState.AddModelError("RegistrationCode", "You can have already register for this course.");
+                    return View(model);
+                }
+                UserRelationship _UserRelationship = new UserRelationship() { AccountId = User.Identity.GetUserId(), AccountRole = CourseRole.student };
+                db.UserRelationships.Add(_UserRelationship);
+                course.UserRelationships.Add(_UserRelationship);
+                db.Users.Find(User.Identity.GetUserId()).Courses.Add(course);
+                db.SaveChanges();
+                return RedirectToAction("Details", new { id = course.Id });
+            }
+
+            return View(model);
+        }
+
+
         /*
          * Get User Courses
          * db.Users.Find(User.Identity.GetUserId()).Courses
@@ -48,15 +196,15 @@ namespace SmartRoom.Web.Areas.Classroom.Controllers
             }
             string _UserId = User.Identity.GetUserId();
             Course course = db.Courses.Find(id);// db.Courses.Where(obj => obj.Id == id).FirstOrDefault();
-
-            if (!course.UserRelationships.Any(obj => obj.AccountId.Equals(_UserId)))
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
-            }
             if (course == null)
             {
                 return HttpNotFound();
             }
+            if (!course.UserRelationships.Any(obj => obj.AccountId.Equals(_UserId)))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+            }
+            
             return View(course);
         }
 

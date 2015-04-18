@@ -10,9 +10,9 @@ html{
 .body-content {
     padding: 15px;
     box-shadow: 0 0 8px 8px #9ec0c8;
-    height:100%;
     background-color: #d5e6ea;
     margin-left:15%;
+    margin-bottom:15%;
     margin-right:15%;
 }
 

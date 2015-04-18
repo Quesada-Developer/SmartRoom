@@ -14,4 +14,12 @@ namespace SmartRoom.Web.Areas.Classroom.Models
         public int SelectedUser { get; set; }
         public IEnumerable<SelectListItem> Users { get; set; }
     }
+
+
+    public class EnrollViewModel
+    {
+        [Required]
+        [Display(Name = "RegistrationCode")]
+        public string RegistrationCode { get; set; }
+    }
 }
