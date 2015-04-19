@@ -55,9 +55,9 @@ textarea {
 .as-sortable-item,
 .as-sortable-placeholder {
     width: 124px;
-        margin: 2px;
-        border: 1px solid #ff0000;
-        border-radius: 5px;
+    margin: 2px;
+    border: 1px solid #ff0000;
+    border-radius: 5px;
     list-style: none;
 }
 
@@ -132,6 +132,8 @@ textarea {
 }
 .col-md-10 input{
     width:75%
+        text-align: center;
+
 }
 /* Youtube Styles */
 
