@@ -55,9 +55,9 @@ textarea {
 .as-sortable-item,
 .as-sortable-placeholder {
     width: 124px;
-    margin: 2px;
-    border: 1px solid #ff0000;
-    border-radius: 5px;
+        margin: 2px;
+        border: 1px solid #ff0000;
+        border-radius: 5px;
     list-style: none;
 }
 
@@ -87,34 +87,52 @@ textarea {
 }
 
     #sortable li {
-        margin: 3px 3px 3px 0;
+        margin: 8px;
         padding: 1px;
         float: left;
-        width: 20%;
-        min-width: 15%;
-        height: 15%;
+        width: 22%;
+        height: 25%;
         min-height: 10%;
         font-size: 16px;
         text-align: center;
         border-style: solid;
         border-width: 3px;
+    box-shadow: 0 0 4px 4px #afc9cf;
     }
     #sortable hr
     {
         margin-top:0px;
+        margin-bottom:10px;
     }
 
 .form-horizontal {
 
-        text-align: center;
+        text-align: left;
         border-style: solid;
         background-color: #fff;
         background-image: none;
-        border: 5px solid #1F6474;
-        border-radius: 4px;
-
+        border: 5px solid #8ce4fa;
+        border-radius: 10px;
+        padding:15px;
+        width:50%;
+        margin-left:auto;
+        margin-right:auto;
 }
-
+@media (min-width: 768px) {
+    .form-horizontal .control-label {
+        text-align: left;
+        width:25%;
+    }
+}
+@media (min-width: 992px) {
+    .col-md-10 {
+        width:75%;
+        text-align:right;
+    }
+}
+.col-md-10 input{
+    width:75%
+}
 /* Youtube Styles */
 
 .datetimepicker {
@@ -149,10 +167,25 @@ a.navbar-brand {
     border-color: #8ce4fa;
     border-style: solid;
     border-width: 15px;
+    color:#8ce4fa;
 }
 
 .container{
     width:90%;
     margin-left:5%;
     margin-right:5%;
+}
+
+.col-md-10 .btn-default{
+    width:auto;
+}
+
+.class-container .glyphicon{
+    font-size:200%;
+    color:#8ce4fa;
+}
+.class-container a{
+    text-decoration:none;
+    color:#8ce4fa;
+    font-weight:700;
 }
