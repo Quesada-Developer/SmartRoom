@@ -11,6 +11,7 @@ namespace SmartRoom.Web.App_Start
         public UserRelationship()
         {
             CreateDate = DateTime.Now;
+            IsDeleted = false;
         }
 
         [Key]
@@ -29,8 +30,9 @@ namespace SmartRoom.Web.App_Start
         public DateTime CreateDate { get; set; }
 
 
-        public int ModifedBy { get; set; }
+        public string ModifedBy { get; set; }
         [Column(TypeName = "DateTime2")]
         public DateTime ModifiedDate { get; set; }
+        public bool IsDeleted { get; set; }
     }
 }

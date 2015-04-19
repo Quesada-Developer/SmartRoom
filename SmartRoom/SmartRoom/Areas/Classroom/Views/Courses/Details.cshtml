@@ -4,6 +4,7 @@
 	ViewBag.Title = "Details";
 }
 @Html.Partial("~/Areas/Classroom/Views/Header/_Header.cshtml")
+<div id="alert_placeholder"></div>
 <h2>Details</h2>
 <div>
 	<h4>Course</h4>
@@ -98,9 +99,12 @@
 
 	</dl>
 	<hr />
-	@Html.Partial("Partial/_UserRelationships", Model.UserRelationships)
+	@Html.Partial("Partial/_UserRelationships", Model.UserRelationships.Where(obj => !obj.IsDeleted))
+	@Html.Partial("Partial/_AddUserRelationships", new SmartRoom.Web.Areas.Classroom.Models.AddUserToCourse(){ CourseId = Model.Id})
+	
 </div>
+<hr />
 <p>
-	@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-	@Html.ActionLink("Back to List", "Index")
+	@Html.ActionLink("Edit Course", "Edit", new { id = Model.Id }) |
+	@Html.ActionLink("Back to Course List", "Index")
 </p>

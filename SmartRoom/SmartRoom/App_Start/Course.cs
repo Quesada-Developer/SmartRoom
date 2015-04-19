@@ -31,13 +31,14 @@ namespace SmartRoom.Web.App_Start
             else
                 RegistrationCode = result;
         }
+        [Display(Name = "Registration Code")]
         public string RegistrationCode { get; private set; }
         public int Id { get; set; }
         [Required]
         [StringLength(8, MinimumLength = 2)]
-        //[Display(Name = "Test")]
         public string Subject { get; set; }
         [Required]
+        [Display(Name = "Course Number")]
         public int CourseNumber { get; set; }
         [Required]
         [StringLength(3, MinimumLength = 2)]
@@ -46,8 +47,10 @@ namespace SmartRoom.Web.App_Start
         [StringLength(50, MinimumLength = 5)]
         public string Title { get; set; }
         [Required]
+        [Display(Name = "Start Date")]
         public DateTime StartDate { get; set; }
         [Required]
+        [Display(Name = "End Date")]
         public DateTime EndDate { get; set; }
         [Required]
         public Campus Location { get; set; }
@@ -55,10 +58,12 @@ namespace SmartRoom.Web.App_Start
         public Terms Term { get; set; }
         [Required]
         public bool isActive { get; set; }
-
+        [Display(Name = "Created By")]
         public string CreatedById { get; set; }
+        [Display(Name = "Created By")]
         public virtual ApplicationUser CreatedBy { get; set; }
         [Required]
+        [Display(Name = "Created")]
         [Column(TypeName = "DateTime2")]
         public DateTime CreateDate { get; set; }
 
