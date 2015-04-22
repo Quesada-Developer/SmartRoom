@@ -6,17 +6,7 @@
 {
     @Scripts.Render("~/Scripts/Personalized/dragDrop.js")
 }
-@*@if (User.IsInRole("Admin"))
-{
-    <ul>
-        <li>@Html.ActionLink("Classroom Index", "Index", "Courses", new { Area = "Classroom" }, new { })</li>
-        <li>@Html.ActionLink("Classroom Create", "Create", "Courses", new { Area = "Classroom" }, new { })</li>
-        <li>@Html.ActionLink("Classroom Delete", "Delete", "Courses", new { Area = "Classroom" }, new { })</li>
-        <li>@Html.ActionLink("Classroom Edit", "Edit", "Courses", new { Area = "Classroom" }, new { })</li>
-        <li>@Html.ActionLink("YouTube Index", "Index", "YouTube", new { Area = "YouTube" }, new { })</li>
-        <li>@Html.ActionLink("YouTube Create", "Create", "YouTube", new { Area = "YouTube" }, new { })</li>
-        <li>@Html.ActionLink("Syllabus Create", "Create", "Syllabus", new { Area = "Forms" }, new { })</li>
-    </ul>}*@
+
 <ul id="sortable">
 
     @if (Model.Count() > 0)
@@ -26,15 +16,17 @@
             <li class="ui-state-default class-container">
                 @Html.ActionLink(HttpUtility.HtmlDecode(Html.DisplayFor(modelItem => item.Title) + " - " + Html.DisplayFor(modelItem => item.Section)), "Details", "Courses", new { Area = "Classroom", id = item.Id }, null)
                 <hr />
+                @Html.DisplayFor(model => item.Subject) 
+                @Html.DisplayFor(model => item.CourseNumber)
             </li>
         }
     }
-    @if (User.IsInRole("Teacher"))
+    @if (User.IsInRole("Teacher") || User.IsInRole("Admin"))
     {
         <li class="class-container">
             @Html.ActionLink("Add Classroom", "Create", "Courses", new { Area = "Classroom", id = "create-course" }, new { })
             <hr />
-            <br>
+            <br />
             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
         </li>
     }

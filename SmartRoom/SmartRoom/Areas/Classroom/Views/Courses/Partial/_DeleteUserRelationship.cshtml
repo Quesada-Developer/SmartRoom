@@ -1,14 +1,14 @@
 ﻿@model SmartRoom.Web.Areas.Classroom.Models.RemoveUserFromCourse
 
 
-    @using (Html.BeginForm("DeleteUserFromCourse", "Courses"))
+    @using (Html.BeginForm("DeleteUserFromCourse", "Courses", FormMethod.Post, new { id = "DeleteUser" }))
     {
         @Html.AntiForgeryToken()
         <div class="form-actions no-color">
             @Html.HiddenFor(model => model.AccountId)
             @Html.HiddenFor(model => model.RequestorAccountId)
             @Html.HiddenFor(model => model.CourseId)
-            
+
             <input type="submit" value="Delete" class="btn btn-default" />
         </div>
     }
