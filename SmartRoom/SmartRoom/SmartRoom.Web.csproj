@@ -437,6 +437,7 @@
     <Content Include="Areas\Forms\Views\Syllabus\Edit.cshtml" />
     <Content Include="Areas\Forms\Views\Syllabus\Index.cshtml" />
     <Content Include="Areas\Forms\Views\Shared\_AdditionalInformationRow.cshtml" />
+    <Content Include="Areas\Classroom\Views\Courses\Partial\_CourseMenu.cshtml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
