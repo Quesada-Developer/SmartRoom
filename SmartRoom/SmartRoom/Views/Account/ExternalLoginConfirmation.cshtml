@@ -2,29 +2,38 @@
 @{
     ViewBag.Title = "Register";
 }
-<h2>@ViewBag.Title.</h2>
 <h3>Associate your @ViewBag.LoginProvider account.</h3>
 
-@using (Html.BeginForm("ExternalLoginConfirmation", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+@using (Html.BeginForm("ExternalLoginConfirmation", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "", role = "form" }))
 {
     @Html.AntiForgeryToken()
 
-    <h4>Association Form</h4>
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <p class="text-info">
         You've successfully authenticated with <strong>@ViewBag.LoginProvider</strong>.
+        If your teacher gave you a registration code you may enter it here. You can also add courses later.
         Click the Register button to finish logging in.
     </p>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @readonly = "readonly" })
+    <br />
+    @Html.HiddenFor(m => m.Email);
+    <div class="form-group row">
+        @Html.LabelFor(m => m.Email, new { @class = "col-md-4 control-label" })
+        <div class="col-md-8">
+            @Html.DisplayFor(m => m.Email, new { @class = "form-control", @readonly = "readonly" })
             @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
         </div>
     </div>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
+    <div class="form-group row">
+        <label class="col-md-4 control-label">Registration Code (Optional)</label>
+        <div class="col-md-8">
+            @Html.EditorFor(m => m.RegistrationCode, new { @class = "form-control", @readonly = "readonly" })
+            <p class="margin-top: 6px; padding: 0 1px; font-size: 11px; line-height: 15px; color: #999;"></p>
+            @Html.ValidationMessageFor(m => m.RegistrationCode, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group row" style="padding:15px;">
+        <div class="pull-right">
             <input type="submit" class="btn btn-default" value="Register" />
         </div>
     </div>

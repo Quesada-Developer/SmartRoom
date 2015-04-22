@@ -1,0 +1,146 @@
+﻿@model SmartRoom.Web.App_Start.Syllabus
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Syllabus</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Course.RegistrationCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Course.RegistrationCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Professor.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Professor.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OfficeLocation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OfficeLocation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OfficePhone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OfficePhone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CellPhone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CellPhone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmergencyPhone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmergencyPhone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmailAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmailAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Monday)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Monday)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tuesday)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tuesday)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Wednesday)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Wednesday)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Thursday)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Thursday)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Friday)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Friday)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Saturday)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Saturday)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sunday)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sunday)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MeetingTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MeetingTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.isActive)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.isActive)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

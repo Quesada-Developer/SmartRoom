@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<SmartRoom.Web.App_Start.UserRelationship>
+@using Microsoft.AspNet.Identity
 
 <p>
     @* @Html.ActionLink("Create New", "Create") *@
@@ -26,13 +27,31 @@
             @Html.DisplayFor(modelItem => item.AccountRole)
         </td>
         <td>
-            @*
-    @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-    @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-    @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-            *@
-        </td>
+                @Html.Partial("Partial/_DeleteUserRelationship", new SmartRoom.Web.Areas.Classroom.Models.RemoveUserFromCourse() { CourseId = item.Course.Id, AccountId = item.AccountId, RequestorAccountId = HttpContext.Current.User.Identity.GetUserId() })
+</td>
     </tr>
 }
 
 </table>
+
+    <script>
+        $( document ).ready(function() {
+    $("form").submit(function () { // you can use any selector that match your form
+        $.ajax({
+            url: this.action,
+            type: this.method,
+            data: $(this).serialize()
+        }).done(function (data) {
+            $('#AddUser').modal('hide');
+            UpdateUsers();
+            $('#alert_placeholder').html('<div class="alert alert-success" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>' + data + '</div>')
+        })
+        .fail(function (jqXHR, textStatus) {
+            $('#alert_placeholder_adduser').html('<div class="alert alert-danger" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>' + jqXHR.responseText + '</div>')
+        })
+        ;
+        $('#alert_placeholder').html('<div class="alert alert-danger" role="alert">error</div>')
+        return false; // prevent the form submission
+    });
+        });
+</script>

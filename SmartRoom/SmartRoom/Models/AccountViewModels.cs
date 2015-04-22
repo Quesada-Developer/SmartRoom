@@ -5,9 +5,10 @@ namespace SmartRoom.Web.Models
 {
     public class ExternalLoginConfirmationViewModel
     {
-        [Required]
         [Display(Name = "Email")]
         public string Email { get; set; }
+        [Display(Name = "Registration Code")]
+        public string RegistrationCode { get; set; }
     }
 
     public class ExternalLoginListViewModel
@@ -101,6 +102,7 @@ namespace SmartRoom.Web.Models
 
         public string Code { get; set; }
     }
+
 
     public class ForgotPasswordViewModel
     {

@@ -7,6 +7,12 @@ namespace SmartRoom.Web.App_Start
 {
     public class Syllabus
     {
+
+        public Syllabus()
+        {
+            AdditionalInformation = new List<Information>();
+        }
+
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
@@ -19,10 +25,13 @@ namespace SmartRoom.Web.App_Start
 
         public string OfficeLocation { get; set; }
         [DataType(DataType.PhoneNumber)]
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4}).*$", ErrorMessage = "Not a valid number")]
         public string OfficePhone { get; set; }
         [DataType(DataType.PhoneNumber)]
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4}).*$", ErrorMessage = "Not a valid number")]
         public string CellPhone { get; set; }
         [DataType(DataType.PhoneNumber)]
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4}).*$", ErrorMessage = "Not a valid number")]
         public string EmergencyPhone { get; set; }
         [DataType(DataType.EmailAddress)]
         public string EmailAddress { get; set; }

@@ -5,6 +5,10 @@
     {
         @Html.AntiForgeryToken()
 
+
+    
+        
+
         <ul class="nav navbar-nav navbar-right">
             <li>
                 @Html.ActionLink("Hello " + User.Identity.Name, "Index", new { area = "", controller = "Manage" }, htmlAttributes: new { title = "Manage" })
@@ -16,6 +20,18 @@
                         <li class="dropdown">
                             <a href="#" data-toggle="dropdown" class="dropdown-toggle"><span class="glyphicon glyphicon-asterisk" /></a>
                             <ul class="dropdown-menu">
+
+                                @if (User.IsInRole("Admin"))
+                                {
+                                    <li>@Html.ActionLink("Create Classroom", "Create", "Courses", new { Area = "Classroom" }, new { })</li>
+                                }
+
+                                @if (User.IsInRole("Teacher") || User.IsInRole("Admin"))
+                                {
+                                    <li>@Html.ActionLink("Create YouTube ", "Create", "YouTube", new { Area = "YouTube" }, new { })</li>
+                                    <li>@Html.ActionLink("Create Syllabus ", "Create", "Syllabus", new { Area = "Forms" }, new { })</li>
+                                }
+                                <li class="divider"></li>
                                 <li>@Html.ActionLink("Settings", "Index", new { area = "", controller = "Manage" }, htmlAttributes: new { title = "Manage" })</li>
                                 <li><a href="javascript:void(0)" onclick="EnableSortable();" class="toggle">Enable Class Arrangement</a> </li>
                                 <li><a href="javascript:void(0)" onclick="DisableSortable();" class="toggle" style="display:none;">Disable Class Arrangement</a> </li>
@@ -27,12 +43,12 @@
                 </div>
             </li>
         </ul>
-    }
-}
-else
-{
-    <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-        <li>@Html.ActionLink("Log in", "Login", "Account", new { @returnUrl = Url.Action(ViewContext.RouteData.Values["action"].ToString()) }, htmlAttributes: new { id = "loginLink" })</li>
-    </ul>
-}
+        }
+        }
+        else
+        {
+        <ul class="nav navbar-nav navbar-right">
+            <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+            <li>@Html.ActionLink("Log in", "Login", "Account", new { @returnUrl = Url.Action(ViewContext.RouteData.Values["action"].ToString()) }, htmlAttributes: new { id = "loginLink" })</li>
+        </ul>
+        }

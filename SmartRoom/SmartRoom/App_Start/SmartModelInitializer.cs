@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Collections.Generic;
 using System.Data.Entity;
 
 namespace SmartRoom.Web.App_Start
@@ -28,14 +29,20 @@ namespace SmartRoom.Web.App_Start
                 RoleManager.Create(new IdentityRole("Teacher"));
             }
 
-/*
+
             var accounts = new List<ApplicationUser> {
-            new ApplicationUser{ UserName="Francisco Quesada", Email="jquesada@students.kennesaw.edu"},
+                new ApplicationUser{ UserName="Sample Student One", Email="student1@students.kennesaw.edu"},
+                new ApplicationUser{ UserName="Sample Student Two", Email="student2@students.kennesaw.edu"},
+                new ApplicationUser{ UserName="Sample Student Three", Email="student3@students.kennesaw.edu"},
+            /*new ApplicationUser{ UserName="Francisco Quesada", Email="jquesada@students.kennesaw.edu"},
             new ApplicationUser{ UserName="Steven Carver", Email="scarver6@students.kennesaw.edu"},
             new ApplicationUser{ UserName="Christopher Nordike", Email="cnordike@students.kennesaw.edu"},
             new ApplicationUser{ UserName="Elizabeth Bever", Email="ebevers@students.kennesaw.edu"},
-            new ApplicationUser{ UserName="Brandon Bell", Email="bbell31@students.kennesaw.edu"},
+            new ApplicationUser{ UserName="Brandon Bell", Email="bbell31@students.kennesaw.edu"},*/
             };
+            accounts.ForEach(s => context.Users.Add(s));
+            context.SaveChanges();
+           /* 
             accounts.ForEach(s => context.Users.Add(s));
             context.SaveChanges();
             accounts.ForEach(s => UserManager.CreateAsync(s));
