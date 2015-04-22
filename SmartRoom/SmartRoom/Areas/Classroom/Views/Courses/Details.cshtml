@@ -1,106 +1,114 @@
 ﻿@model SmartRoom.Web.App_Start.Course
 
 @{
-	ViewBag.Title = "Details";
+    ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
-<div>
-	<h4>Course</h4>
-	<hr />
-	<dl class="dl-horizontal">
-		<dt>
-			@Html.DisplayNameFor(model => model.Subject)
-		</dt>
+@* This are is viewed by all users. *@
 
-		<dd>
-			@Html.DisplayFor(model => model.Subject)
-		</dd>
+<div id="alert_placeholder"></div>
+<div class="row">
+    <div class="col-sm-4 pull-left">
+        @Html.Partial("Partial/_CourseMenu", Model.UserRelationships.Where(x => x.AccountId.Equals(User.Identity.GetUserId())))
 
-		<dt>
-			@Html.DisplayNameFor(model => model.CourseNumber)
-		</dt>
-
-		<dd>
-			@Html.DisplayFor(model => model.CourseNumber)
-		</dd>
-
-		<dt>
-			@Html.DisplayNameFor(model => model.Section)
-		</dt>
-
-		<dd>
-			@Html.DisplayFor(model => model.Section)
-		</dd>
-
-		<dt>
-			@Html.DisplayNameFor(model => model.Title)
-		</dt>
-
-		<dd>
-			@Html.DisplayFor(model => model.Title)
-		</dd>
-
-		<dt>
-			@Html.DisplayNameFor(model => model.StartDate)
-		</dt>
-
-		<dd>
-			@Html.DisplayFor(model => model.StartDate)
-		</dd>
-
-		<dt>
-			@Html.DisplayNameFor(model => model.EndDate)
-		</dt>
-
-		<dd>
-			@Html.DisplayFor(model => model.EndDate)
-		</dd>
-
-		<dt>
-			@Html.DisplayNameFor(model => model.Location)
-		</dt>
-
-		<dd>
-			@Html.DisplayFor(model => model.Location)
-		</dd>
-
-		<dt>
-			@Html.DisplayNameFor(model => model.Term)
-		</dt>
-
-		<dd>
-			@Html.DisplayFor(model => model.Term)
-		</dd>
-
-		<dt>
-			@Html.DisplayNameFor(model => model.CreatedBy)
-		</dt>
-
-		<dd>
-			@Html.DisplayFor(model => model.CreatedBy.UserName)
-		</dd>
-
-		<dt>
-			@Html.DisplayNameFor(model => model.CreateDate)
-		</dt>
-
-		<dd>
-			@Html.DisplayFor(model => model.CreateDate)
-		</dd>
-		<dt>
-			@Html.DisplayNameFor(model => model.RegistrationCode)
-		</dt>
-
-		<dd>
-			@Html.DisplayFor(model => model.RegistrationCode)
-		</dd>
-
-	</dl>
-	<hr />
-	@Html.Partial("Partial/_UserRelationships", Model.UserRelationships)
+    </div>
 </div>
-<p>
-	@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-	@Html.ActionLink("Back to List", "Index")
-</p>
+<hr />
+<div class="row">
+    <div class="col-sm-6">
+        <h2 title="@Html.DisplayNameFor(model => model.Title)">@Html.DisplayFor(model => model.Title)</h2>
+        <h4 title="@Html.DisplayNameFor(model => model.Subject) : @Html.DisplayNameFor(model => model.CourseNumber)">@Html.DisplayFor(model => model.Subject) @Html.DisplayFor(model => model.CourseNumber)</h4>
+
+
+    </div>
+    <div class="col-sm-6">
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Term)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Term)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Location)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Location)
+                </dd>
+            </dl>
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.StartDate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.StartDate)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.EndDate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.EndDate)
+            </dd>
+        </dl>
+    </div>
+</div>
+<hr />
+
+@if (Model.UserRelationships.Any(obj => obj.AccountId.Equals(User.Identity.GetUserId()) && obj.AccountRole == SmartRoom.Web.Helpers.CourseRole.professor))
+{
+    
+}
+
+
+@if (Model.UserRelationships.Any(obj => obj.AccountId.Equals(User.Identity.GetUserId()) && obj.AccountRole == SmartRoom.Web.Helpers.CourseRole.owner))
+{
+    @* This Section is viewed by admins only. *@
+    <div class="row">
+        <div class="col-sm-12">
+
+            @Html.Hidden("CourseId", Model.Id)
+            <div id="UserSection">
+                @Html.Partial("Partial/_UserRelationships", Model.UserRelationships.Where(obj => obj.IsActive))
+            </div>
+            <dl class="dl-horizontal">
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.RegistrationCode)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.RegistrationCode)
+                </dd>
+
+            </dl>
+
+        </div>
+        <hr />
+
+    </div>
+
+}
+
+<script>
+    function UpdateUsers() {
+        var xmlhttp;
+        if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        }
+        else {// code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                document.getElementById("UserSection").innerHTML = xmlhttp.responseText;
+            }
+        }
+        xmlhttp.open("GET", "../GetUsers/?CourseId=" + $("#CourseId").val(), true);
+        xmlhttp.send();
+    }
+</script>

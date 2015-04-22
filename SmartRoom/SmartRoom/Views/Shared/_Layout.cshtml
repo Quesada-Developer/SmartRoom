@@ -13,6 +13,7 @@
 
 </head>
 <body onload="startTime()">
+    <div class="background">
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -24,11 +25,12 @@
                 @Html.ActionLink("SmartRoom", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav"></ul>
+                    
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
+        <div class="wrapper">
     <div class="body-content">
         @RenderBody()
     </div>
@@ -39,6 +41,8 @@
             <div class="navbar-text navbar-right" id="clock">
             </div>
             <div class="navbar-text navbar-left" id="date"></div>
+        </div>
+    </div>
         </div>
     </div>
 </body>
