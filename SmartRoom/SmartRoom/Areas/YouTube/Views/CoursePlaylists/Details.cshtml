@@ -1,0 +1,45 @@
+﻿@model SmartRoom.Web.App_Start.CoursePlaylist
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CoursePlaylist</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Course.RegistrationCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Course.RegistrationCode)
+        </dd>
+
+
+        <dd style="display:none;" id="playlist">
+            @Html.DisplayFor(model => model.PlaylistId)
+            
+        </dd>
+
+        <iframe id="player" width="560" height="315" src="" frameborder="0" allowfullscreen></iframe>
+ 
+        <script>
+            // 2. This code loads the IFrame Player API code asynchronously.
+            var tag = document.createElement('script');
+
+            var Id1 = document.getElementById('playlist').textContent;
+
+            document.getElementById('player').setAttribute('src','https://www.youtube.com/embed/videoseries?list=' + Id1.trim);
+
+
+            </script>
+
+    </dl>  
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CoursePlaylistId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
