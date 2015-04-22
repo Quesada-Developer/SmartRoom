@@ -26,8 +26,14 @@
             <li class="ui-state-default class-container">
                 @Html.ActionLink(HttpUtility.HtmlDecode(Html.DisplayFor(modelItem => item.Title) + " - " + Html.DisplayFor(modelItem => item.Section)), "Details", "Courses", new { Area = "Classroom", id = item.Id }, null)
                 <hr />
-                @Html.DisplayFor(model => item.Subject) 
-                @Html.DisplayFor(model => item.CourseNumber)
+                
+                @{List<SmartRoom.Web.App_Start.Announcement> list = item.Announcements.Where(x => x.PublishOn >= DateTime.Now).OrderBy(x => x.PublishOn).Take(3).ToList();}
+                @for (int i = 0; i < list.Count(); i++ )
+                {
+                    @Html.DisplayFor(model => list[i].PublishOn); <text> - </text>
+                    @Html.DisplayFor(model => list[i].NewsTitle);<br />
+                }
+                
             </li>
         }
     }

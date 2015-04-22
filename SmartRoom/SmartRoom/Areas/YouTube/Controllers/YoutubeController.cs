@@ -36,10 +36,14 @@ namespace SmartRoom.Web.Areas.YouTube.Controllers
             return View(youtubelivedetail);
         }
 
-        // GET: /Youtube/Create
-        public ActionResult Create()
+        // GET: /Youtube/Create/Id
+        public ActionResult Create(int? id)
         {
-            ViewBag.CourseId = new SelectList(db.Courses, "Id", "Title");
+            if(id != null)
+                ViewBag.CourseId = new SelectList(db.Courses.Where(x => x.Id == id).Select(x => x), "Id", "Title");
+            else
+                ViewBag.CourseId = new SelectList(db.Courses, "Id", "Title");
+
             return View();
         }
 
