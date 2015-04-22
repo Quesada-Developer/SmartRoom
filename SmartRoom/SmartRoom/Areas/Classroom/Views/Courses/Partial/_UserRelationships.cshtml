@@ -27,27 +27,23 @@
             @Html.DisplayFor(modelItem => item.AccountRole)
         </td>
         <td>
-            
-            @Html.Partial("Partial/_DeleteUserRelationship", new SmartRoom.Web.Areas.Classroom.Models.RemoveUserFromCourse() { CourseId = item.Course.Id, AccountId = item.AccountId, RequestorAccountId = HttpContext.Current.User.Identity.GetUserId()})
-                    @*
-                            RemoveUserFromCourse
-                @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-                    *@
+                @Html.Partial("Partial/_DeleteUserRelationship", new SmartRoom.Web.Areas.Classroom.Models.RemoveUserFromCourse() { CourseId = item.Course.Id, AccountId = item.AccountId, RequestorAccountId = HttpContext.Current.User.Identity.GetUserId() })
 </td>
     </tr>
 }
 
 </table>
-<script>
-    $('form').submit(function () { // you can use any selector that match your form
+
+    <script>
+        $( document ).ready(function() {
+    $("form").submit(function () { // you can use any selector that match your form
         $.ajax({
             url: this.action,
             type: this.method,
             data: $(this).serialize()
         }).done(function (data) {
             $('#AddUser').modal('hide');
+            UpdateUsers();
             $('#alert_placeholder').html('<div class="alert alert-success" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>' + data + '</div>')
         })
         .fail(function (jqXHR, textStatus) {
@@ -57,26 +53,5 @@
         $('#alert_placeholder').html('<div class="alert alert-danger" role="alert">error</div>')
         return false; // prevent the form submission
     });
+        });
 </script>
-@*
-    <script>
-        function DeleteUser(str) {
-            if (str.length == 0) {
-                document.getElementById("txtHint").innerHTML = "";
-                return;
-            } else {
-                var xmlhttp = new XMLHttpRequest();
-                xmlhttp.onreadystatechange = function () {
-                    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                        $('#alert_placeholder').html('<div class="alert alert-success" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>' + xmlhttp.responseText + '</div>')
-                    }
-                    else {
-                        $('#alert_placeholder').html('<div class="alert alert-danger" role="alert">' + xmlhttp.responseText + '</div>')
-                    }
-                }
-                xmlhttp.open("POST", "../DeleteUserFromCourse?UserId=" + str, true);
-                xmlhttp.send();
-            }
-        }
-    </script>
-*@

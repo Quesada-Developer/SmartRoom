@@ -40,6 +40,12 @@ namespace SmartRoom.Web.Areas.Classroom.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (User.Identity.GetUserId().Equals(model.AccountId))
+                {
+                    //user is not in course 
+                    Response.StatusCode = 400;
+                    return "You can't remove your self ";
+                }
 
                 if (!db.Courses.ToList().Any(obj => obj.UserRelationships.Any(u => u.AccountId.Equals(model.AccountId))))
                 {
@@ -50,24 +56,24 @@ namespace SmartRoom.Web.Areas.Classroom.Controllers
 
                 if (db.Courses.ToList().Any(obj => obj.UserRelationships.Any(u => u.AccountId.Equals(User.Identity.GetUserId()) && u.AccountRole == CourseRole.owner)))
                 {
-                    var course = db.Courses.Find(model.CourseId).UserRelationships.Where(obj => obj.AccountId == model.AccountId && obj.Course.Id == model.CourseId).ToList();
+                    var course = db.Courses.Find(model.CourseId).UserRelationships.Where(obj => obj.AccountId.Equals(model.AccountId) && obj.Course.Id == model.CourseId).ToList();
                     if(!(course.Count > 0))
                     {
                         //course is not found 
                         Response.StatusCode = 400;
                         return "Error removing user";
                     }
-                    var c = db.UserRelationships.Find(course[0].Id);
-                    c.IsActive = false;
-                    c.ModifedBy = User.Identity.GetUserId();
-                    c.ModifiedDate = DateTime.Now;
-
-                    db.SaveChanges();
-                    //db.Users.Find(model.AccountId).Courses.Remove(db.Courses.Find(model.CourseId));
+                    var c = db.UserRelationships.Where(obj => obj.AccountId.Equals(model.AccountId) && obj.Course.Id.Equals(model.CourseId)).FirstOrDefault();
+                    foreach (var r in course)
+                    {
+                        r.IsActive = false;
+                        r.ModifedBy = User.Identity.GetUserId();
+                        r.ModifiedDate = DateTime.Now;
+                    }
                     db.SaveChanges();
 
                     Response.StatusCode = 200;
-                    return "User " + db.Users.Find(model.AccountId).UserName + " has been removed. Refresh the page to update list.";
+                    return "User " + db.Users.Find(model.AccountId).UserName + " has been removed.";
                 }
                 else
                 {
@@ -77,8 +83,20 @@ namespace SmartRoom.Web.Areas.Classroom.Controllers
             }
             Response.StatusCode = 400;
             return "All values are required";
-            return "DONE/NOT! " + model.CourseId + " - " + model.AccountId + " -> " + model.RequestorAccountId;
         }
+
+        [HttpGet]
+        public ActionResult GetUsers(int CourseId)
+        {
+            var course = db.Courses.Find(CourseId);
+            if(course == null)
+            {
+                Response.StatusCode = 400;
+                return Content("Error finding course");
+            }
+            return PartialView("Partial/_UserRelationships", course.UserRelationships.Where(obj => !obj.IsDeleted));
+        }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -124,15 +142,13 @@ namespace SmartRoom.Web.Areas.Classroom.Controllers
                     
 
                     Response.StatusCode = 200;
-                    return "User " + db.Users.Find(model.AccountId).UserName + " has been added. Refresh the page to update list.";
+                    return "User " + db.Users.Find(model.AccountId).UserName + " has been added.";
                 }
                 else
                 {
                     Response.StatusCode = 403;
                     return "You can not make changes to this course";
                 }
-                Response.StatusCode = 201;
-                return "IsValid";
             }
             Response.StatusCode = 400;
             return "All values are required";
@@ -223,8 +239,8 @@ namespace SmartRoom.Web.Areas.Classroom.Controllers
         [Authorize(Roles = "Teacher,Admin")]
         public ActionResult Create([Bind(Include="Id,Subject,CourseNumber,Section,Title,StartDate,EndDate,Location,Term")] Course course)
         {
-            course.CreatedById = db.Users.Find(User.Identity.GetUserId()).Id;
-            course.isActive = true; 
+            course.CreatedById = User.Identity.GetUserId();
+            course.isActive = true;
 
             ModelState.Clear();
             TryValidateModel(course); 
@@ -233,7 +249,7 @@ namespace SmartRoom.Web.Areas.Classroom.Controllers
 
             if (ModelState.IsValid)
             {
-                UserRelationship _UserRelationship = new UserRelationship() { AccountId = course.CreatedById, AccountRole = CourseRole.owner };
+                UserRelationship _UserRelationship = new UserRelationship() { AccountId = course.CreatedById, AccountRole = CourseRole.owner, CreatedBy = User.Identity.GetUserId() };
                 db.UserRelationships.Add(_UserRelationship);
                 course.UserRelationships.Add(_UserRelationship);
                 db.Courses.Add(course);
@@ -295,7 +311,7 @@ namespace SmartRoom.Web.Areas.Classroom.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Course course = db.Users.Find(User.Identity.GetUserId()).Courses.Where(obj => obj.Id == id).FirstOrDefault(); ;
+            Course course = db.Users.Find(User.Identity.GetUserId()).Courses.Where(obj => obj.Id == id).FirstOrDefault();
             if (course == null)
             {
                 return HttpNotFound();

@@ -24,8 +24,7 @@ namespace SmartRoom.Web.App_Start
         public CourseRole AccountRole { get; set; }
 
         [Required]
-        public int CreatedById { get; set; }
-        public virtual ApplicationUser CreatedBy { get; set; }
+        public int CreatedBy { get; set; }
         [Required]
         [Column(TypeName = "DateTime2")]
         public DateTime CreateDate { get; set; }

@@ -26,17 +26,19 @@
             <li class="ui-state-default class-container">
                 @Html.ActionLink(HttpUtility.HtmlDecode(Html.DisplayFor(modelItem => item.Title) + " - " + Html.DisplayFor(modelItem => item.Section)), "Details", "Courses", new { Area = "Classroom", id = item.Id }, null)
                 <hr />
+                @Html.DisplayFor(model => item.Subject) 
+                @Html.DisplayFor(model => item.CourseNumber)
             </li>
         }
     }
-    @if (User.IsInRole("Teacher"))
+    @if (User.IsInRole("Teacher") || User.IsInRole("Admin"))
     {
         <li class="class-container">
             @Html.ActionLink("Add Classroom", "Create", "Courses", new { Area = "Classroom"}, new { })
             <hr />
             <br>
             <a href="@Url.Action("Create", "Courses", new { Area = "Classroom"})">
-                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
             </a>
         </li>
     }

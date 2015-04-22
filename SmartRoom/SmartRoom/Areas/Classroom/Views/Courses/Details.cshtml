@@ -3,44 +3,47 @@
 @{
 	ViewBag.Title = "Details";
 }
+
 <div id="alert_placeholder"></div>
-<h2>Details</h2>
-<div>
-	<h4>Course</h4>
-	<hr />
-	<dl class="dl-horizontal">
+<div class="row">
+
+
+	<div class="col-sm-4 pull-left">
+		@Html.ActionLink("Back to Course List", "Index", null, new { @class = "btn btn-primary btn-sm" })
+		</div>
+		<div class="col-sm-4 pull-right">
+			<dl class="dl-horizontal">
 		<dt>
-			@Html.DisplayNameFor(model => model.Subject)
+					@Html.DisplayNameFor(model => model.Term)
 		</dt>
 
 		<dd>
-			@Html.DisplayFor(model => model.Subject)
+					@Html.DisplayFor(model => model.Term)
 		</dd>
-
+			</dl>
+		</div>
+		<div class="col-sm-4 pull-right">
+			<dl class="dl-horizontal">
 		<dt>
-			@Html.DisplayNameFor(model => model.CourseNumber)
+					@Html.DisplayNameFor(model => model.Location)
 		</dt>
 
 		<dd>
-			@Html.DisplayFor(model => model.CourseNumber)
+					@Html.DisplayFor(model => model.Location)
 		</dd>
-
-		<dt>
-			@Html.DisplayNameFor(model => model.Section)
-		</dt>
-
-		<dd>
-			@Html.DisplayFor(model => model.Section)
-		</dd>
-
-		<dt>
-			@Html.DisplayNameFor(model => model.Title)
-		</dt>
-
-		<dd>
-			@Html.DisplayFor(model => model.Title)
-		</dd>
-
+			</dl>
+		</div>
+	</div>
+<hr />
+<div class="row">
+	<div class="col-sm-6">
+		<h2 title="@Html.DisplayNameFor(model => model.Title)">@Html.DisplayFor(model => model.Title)</h2>
+		<h4 title="@Html.DisplayNameFor(model => model.Subject) : @Html.DisplayNameFor(model => model.CourseNumber)">@Html.DisplayFor(model => model.Subject) @Html.DisplayFor(model => model.CourseNumber)</h4>
+	</div>
+	<div class="col-sm-6">
+		<br />
+		<br />
+		<dl class="dl-horizontal">
 		<dt>
 			@Html.DisplayNameFor(model => model.StartDate)
 		</dt>
@@ -56,38 +59,27 @@
 		<dd>
 			@Html.DisplayFor(model => model.EndDate)
 		</dd>
+		</dl>
+	</div>
+</div>
+<hr />
 
-		<dt>
-			@Html.DisplayNameFor(model => model.Location)
-		</dt>
 
-		<dd>
-			@Html.DisplayFor(model => model.Location)
-		</dd>
+	@* This are is viewed by all users. *@
 
-		<dt>
-			@Html.DisplayNameFor(model => model.Term)
-		</dt>
 
-		<dd>
-			@Html.DisplayFor(model => model.Term)
-		</dd>
+	@if (Model.UserRelationships.Any(obj => obj.AccountId.Equals(User.Identity.GetUserId()) && obj.AccountRole == SmartRoom.Web.Helpers.CourseRole.owner))
+	{
+		@* This Section is viewed by admins only. *@
+		<div class="row">
+			<div class="col-sm-12">
 
-		<dt>
-			@Html.DisplayNameFor(model => model.CreatedBy)
-		</dt>
+				@Html.Hidden("CourseId", Model.Id)
+				<div id="UserSection">
+					@Html.Partial("Partial/_UserRelationships", Model.UserRelationships.Where(obj => !obj.IsDeleted))
+				</div>
+				<dl class="dl-horizontal">
 
-		<dd>
-			@Html.DisplayFor(model => model.CreatedBy.UserName)
-		</dd>
-
-		<dt>
-			@Html.DisplayNameFor(model => model.CreateDate)
-		</dt>
-
-		<dd>
-			@Html.DisplayFor(model => model.CreateDate)
-		</dd>
 		<dt>
 			@Html.DisplayNameFor(model => model.RegistrationCode)
 		</dt>
@@ -97,13 +89,37 @@
 		</dd>
 
 	</dl>
+				@Html.ActionLink("Edit Course", "Edit", new { id = Model.Id }, new { @class = "btn btn-primary btn-sm", @style = "margin:10px;" })
+				@Html.Partial("Partial/_UserRelationships", Model.UserRelationships.Where(obj => obj.IsActive))
+				@Html.Partial("Partial/_AddUserRelationships", new SmartRoom.Web.Areas.Classroom.Models.AddUserToCourse() { CourseId = Model.Id })
+
+			</div>
 	<hr />
-	@Html.Partial("Partial/_UserRelationships", Model.UserRelationships.Where(obj => obj.IsActive))
-	@Html.Partial("Partial/_AddUserRelationships", new SmartRoom.Web.Areas.Classroom.Models.AddUserToCourse(){ CourseId = Model.Id})
 	
 </div>
-<hr />
-<p>
-	@Html.ActionLink("Edit Course", "Edit", new { id = Model.Id }) |
-	@Html.ActionLink("Back to Course List", "Index")
-</p>
+
+			}
+
+			<script>
+				function UpdateUsers() {
+					var xmlhttp;
+					if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+						xmlhttp = new XMLHttpRequest();
+					}
+					else {// code for IE6, IE5
+						xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+					}
+					xmlhttp.onreadystatechange = function () {
+						if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+							document.getElementById("UserSection").innerHTML = xmlhttp.responseText;
+						}
+					}
+					xmlhttp.open("GET", "../GetUsers/?CourseId=" + $("#CourseId").val(), true);
+					xmlhttp.send();
+				}
+
+
+
+
+
+			</script>
