@@ -226,6 +226,7 @@
     <Compile Include="App_Start\ApplicationUser.cs" />
     <Compile Include="App_Start\Authen.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\Announcement.cs" />
     <Compile Include="App_Start\SyllabusTables\Information.cs" />
     <Compile Include="App_Start\SyllabusTables\ClassDate.cs" />
     <Compile Include="App_Start\Course.cs" />
@@ -245,6 +246,7 @@
     <Compile Include="Areas\Classroom\Controllers\CoursesController.cs" />
     <Compile Include="Areas\Classroom\Models\AccountDDLModel.cs" />
     <Compile Include="Areas\Classroom\Models\CoursesViewModels.cs" />
+    <Compile Include="Areas\Forms\Controllers\AnnouncementsController.cs" />
     <Compile Include="Areas\Forms\Controllers\SyllabusController.cs" />
     <Compile Include="Areas\Forms\FormsAreaRegistration.cs" />
     <Compile Include="Areas\Forms\Models\CompleteSyllabusModel.cs" />
@@ -284,6 +286,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\images\Logo.png" />
+    <Content Include="Content\images\YouTube-icon-full_color.png" />
     <Content Include="Content\jquery-ui.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\themes\base\accordion.css" />
@@ -436,8 +439,12 @@
     <Content Include="Areas\Forms\Views\Syllabus\Details.cshtml" />
     <Content Include="Areas\Forms\Views\Syllabus\Edit.cshtml" />
     <Content Include="Areas\Forms\Views\Syllabus\Index.cshtml" />
-    <Content Include="Areas\Forms\Views\Shared\_AdditionalInformationRow.cshtml" />
     <Content Include="Areas\Classroom\Views\Courses\Partial\_CourseMenu.cshtml" />
+    <Content Include="Areas\Forms\Views\Announcements\Create.cshtml" />
+    <Content Include="Areas\Forms\Views\Announcements\Delete.cshtml" />
+    <Content Include="Areas\Forms\Views\Announcements\Details.cshtml" />
+    <Content Include="Areas\Forms\Views\Announcements\Edit.cshtml" />
+    <Content Include="Areas\Forms\Views\Announcements\Index.cshtml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -1290,6 +1297,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Classroom\Views\Shared\" />
+    <Folder Include="Areas\Forms\Views\Shared\" />
     <Folder Include="Areas\YouTube\Models\" />
     <Folder Include="Areas\YouTube\Views\Video\" />
   </ItemGroup>

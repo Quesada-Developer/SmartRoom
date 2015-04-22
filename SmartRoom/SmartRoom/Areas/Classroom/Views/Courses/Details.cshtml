@@ -22,22 +22,22 @@
 
     </div>
     <div class="col-sm-6">
-            <dl class="dl-horizontal">
-                <dt>
-                    @Html.DisplayNameFor(model => model.Term)
-                </dt>
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Term)
+            </dt>
 
-                <dd>
-                    @Html.DisplayFor(model => model.Term)
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.Location)
-                </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Term)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Location)
+            </dt>
 
-                <dd>
-                    @Html.DisplayFor(model => model.Location)
-                </dd>
-            </dl>
+            <dd>
+                @Html.DisplayFor(model => model.Location)
+            </dd>
+        </dl>
         <dl class="dl-horizontal">
             <dt>
                 @Html.DisplayNameFor(model => model.StartDate)
@@ -58,10 +58,47 @@
     </div>
 </div>
 <hr />
+<div>
+    <h2 title="Announcements">Announcements</h2>
+    @{List<SmartRoom.Web.App_Start.Announcement> list = Model.Announcements.Where(x => x.PublishOn >= DateTime.Now).OrderBy(x => x.PublishOn).Take(7).ToList();}
+    @for (int i = 0; i < list.Count(); i++)
+    {
+        @Html.DisplayFor(model => list[i].PublishOn); <text> - </text>
+        @Html.DisplayFor(model => list[i].NewsTitle);<br />
 
-@if (Model.UserRelationships.Any(obj => obj.AccountId.Equals(User.Identity.GetUserId()) && obj.AccountRole == SmartRoom.Web.Helpers.CourseRole.professor))
+        @Html.DisplayFor(mode => list[i].NewsText);<br />
+    }
+<a href="@Url.Action("Index", "Announcements", new { area = "Forms", id = Model.Id })">
+    <div>View All</div>
+</a>
+</div>
+<hr />
+<div class="row">
+    <img src="~/Content/images/YouTube-icon-full_color.png" width="100" />Add link to the closest valid stream link.
+</div>
+<hr />
+
+@if (Model.UserRelationships.Any(obj => obj.AccountId.Equals(User.Identity.GetUserId()) && obj.AccountRole == SmartRoom.Web.Helpers.CourseRole.owner))
 {
-    
+    <div class="row">
+        <a href="@Url.Action("Create", "YouTube", new { area = "YouTube", id = Model.Id })">
+            <div>
+                Create a new stream - WE NEED TO FORMAT THIS AS A DIV BUTTON LIKE IN THE HOME PAGE
+            </div>
+        </a>
+
+        <a href="@Url.Action("Create", "Announcements", new { area = "Forms", id = Model.Id })">
+            <div>
+                Create an announcmenet - same here
+            </div>
+        </a>
+        <a href="@Url.Action("Create","Syllabus",new{area="Forms",id = Model.Id})">
+            <div>
+                Create a syllabus - not currently implemented, on my todo list
+            </div>
+        </a>
+    </div>
+
 }
 
 

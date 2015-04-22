@@ -1,27 +1,28 @@
-﻿
-using SmartRoom.Web.Helpers;
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Web;
 
 namespace SmartRoom.Web.App_Start
 {
-    public class UserRelationship
+    public class Announcement
     {
-        public UserRelationship()
+        public Announcement()
         {
             CreateDate = DateTime.Now;
             IsActive = true;
         }
-
         [Key]
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        public string AccountId { get; set; }
-        public virtual ApplicationUser Account { get; set; }
-        public virtual Course Course { get; set; }
-        [Required]
-        public int AccountRoleId { get; set; }
-        public CourseRole AccountRole { get; set; }
+        [DisplayFormat(DataFormatString = "{0:d}")]
+        public DateTime? PublishOn { get; set; }
+
+        public string NewsTitle { get; set; }
+        [DataType(DataType.MultilineText)]
+        public string NewsText { get; set; }
 
         [Required]
         public string CreatedBy { get; set; }
@@ -32,5 +33,8 @@ namespace SmartRoom.Web.App_Start
         [Column(TypeName = "DateTime2")]
         public DateTime ModifiedDate { get; set; }
         public bool IsActive { get; set; }
+
+        public int CourseId { get; set; }
+        public virtual Course Course { get; set; }
     }
 }
