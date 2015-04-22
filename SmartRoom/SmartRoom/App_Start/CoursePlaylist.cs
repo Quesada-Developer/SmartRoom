@@ -20,6 +20,7 @@ namespace SmartRoom.Web.App_Start
         }
 
         [Key]
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int CoursePlaylistId { get; set; }
 
         [Display(Name = "Course")]
@@ -33,7 +34,7 @@ namespace SmartRoom.Web.App_Start
       
         [Display(Name = "Created By")]
         public string CreatedById { get; set; }
-        public virtual ApplicationUser CreatedBy { get; set; }
+ 
         [Required]
         [Display(Name = "Created")]
         [Column(TypeName = "DateTime2")]
@@ -41,11 +42,13 @@ namespace SmartRoom.Web.App_Start
 
         [Display(Name = "Modified Last By")]
         public string ModifedById { get; set; }
-        public virtual ApplicationUser ModifedBy { get; set; }
         [Column(TypeName = "DateTime2")]
         public DateTime? ModifiedDate { get; set; }
 
         public virtual List<UserRelationship> UserRelationships { get; set; }
+
+
+
 
     }
 }
