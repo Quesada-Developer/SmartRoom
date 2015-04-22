@@ -17,7 +17,7 @@ namespace SmartRoom.Web.Areas.YouTube.Controllers
         // GET: YouTube/CoursePlaylists
         public ActionResult Index()
         {
-            var coursePlaylist = db.CoursePlaylist.Include(c => c.Course).Include(c => c.CreatedBy).Include(c => c.ModifedBy);
+            var coursePlaylist = db.CoursePlaylists.Include(c => c.Course).Include(c => c.CreatedBy).Include(c => c.ModifedBy);
             return View(coursePlaylist.ToList());
         }
 
@@ -28,7 +28,7 @@ namespace SmartRoom.Web.Areas.YouTube.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CoursePlaylist coursePlaylist = db.CoursePlaylist.Find(id);
+            CoursePlaylist coursePlaylist = db.CoursePlaylists.Find(id);
             if (coursePlaylist == null)
             {
                 return HttpNotFound();
@@ -40,8 +40,8 @@ namespace SmartRoom.Web.Areas.YouTube.Controllers
         public ActionResult Create()
         {
             ViewBag.CourseId = new SelectList(db.Courses, "Id", "RegistrationCode");
-            ViewBag.CreatedById = new SelectList(db.ApplicationUsers, "Id", "Email");
-            ViewBag.ModifedById = new SelectList(db.ApplicationUsers, "Id", "Email");
+            ViewBag.CreatedById = new SelectList(db.Users, "Id", "Email");
+            ViewBag.ModifedById = new SelectList(db.Users, "Id", "Email");
             return View();
         }
 
@@ -54,14 +54,14 @@ namespace SmartRoom.Web.Areas.YouTube.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.CoursePlaylist.Add(coursePlaylist);
+                db.CoursePlaylists.Add(coursePlaylist);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
             ViewBag.CourseId = new SelectList(db.Courses, "Id", "RegistrationCode", coursePlaylist.CourseId);
-            ViewBag.CreatedById = new SelectList(db.ApplicationUsers, "Id", "Email", coursePlaylist.CreatedById);
-            ViewBag.ModifedById = new SelectList(db.ApplicationUsers, "Id", "Email", coursePlaylist.ModifedById);
+            ViewBag.CreatedById = new SelectList(db.Users, "Id", "Email", coursePlaylist.CreatedById);
+            ViewBag.ModifedById = new SelectList(db.Users, "Id", "Email", coursePlaylist.ModifedById);
             return View(coursePlaylist);
         }
 
@@ -72,14 +72,14 @@ namespace SmartRoom.Web.Areas.YouTube.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CoursePlaylist coursePlaylist = db.CoursePlaylist.Find(id);
+            CoursePlaylist coursePlaylist = db.CoursePlaylists.Find(id);
             if (coursePlaylist == null)
             {
                 return HttpNotFound();
             }
             ViewBag.CourseId = new SelectList(db.Courses, "Id", "RegistrationCode", coursePlaylist.CourseId);
-            ViewBag.CreatedById = new SelectList(db.ApplicationUsers, "Id", "Email", coursePlaylist.CreatedById);
-            ViewBag.ModifedById = new SelectList(db.ApplicationUsers, "Id", "Email", coursePlaylist.ModifedById);
+            ViewBag.CreatedById = new SelectList(db.Users, "Id", "Email", coursePlaylist.CreatedById);
+            ViewBag.ModifedById = new SelectList(db.Users, "Id", "Email", coursePlaylist.ModifedById);
             return View(coursePlaylist);
         }
 
@@ -97,8 +97,8 @@ namespace SmartRoom.Web.Areas.YouTube.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.CourseId = new SelectList(db.Courses, "Id", "RegistrationCode", coursePlaylist.CourseId);
-            ViewBag.CreatedById = new SelectList(db.ApplicationUsers, "Id", "Email", coursePlaylist.CreatedById);
-            ViewBag.ModifedById = new SelectList(db.ApplicationUsers, "Id", "Email", coursePlaylist.ModifedById);
+            ViewBag.CreatedById = new SelectList(db.Users, "Id", "Email", coursePlaylist.CreatedById);
+            ViewBag.ModifedById = new SelectList(db.Users, "Id", "Email", coursePlaylist.ModifedById);
             return View(coursePlaylist);
         }
 
@@ -109,7 +109,7 @@ namespace SmartRoom.Web.Areas.YouTube.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CoursePlaylist coursePlaylist = db.CoursePlaylist.Find(id);
+            CoursePlaylist coursePlaylist = db.CoursePlaylists.Find(id);
             if (coursePlaylist == null)
             {
                 return HttpNotFound();
@@ -122,8 +122,8 @@ namespace SmartRoom.Web.Areas.YouTube.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            CoursePlaylist coursePlaylist = db.CoursePlaylist.Find(id);
-            db.CoursePlaylist.Remove(coursePlaylist);
+            CoursePlaylist coursePlaylist = db.CoursePlaylists.Find(id);
+            db.CoursePlaylists.Remove(coursePlaylist);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
