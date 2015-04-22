@@ -33,6 +33,7 @@ namespace SmartRoom.Web.App_Start
         }
         [Display(Name = "Registration Code")]
         public string RegistrationCode { get; private set; }
+        [Key]
         public int Id { get; set; }
         [Required]
         [StringLength(8, MinimumLength = 2)]
@@ -58,15 +59,16 @@ namespace SmartRoom.Web.App_Start
         public Terms Term { get; set; }
         [Required]
         public bool isActive { get; set; }
+        [Required]
         [Display(Name = "Created By")]
         public string CreatedById { get; set; }
-        [Display(Name = "Created By")]
         public virtual ApplicationUser CreatedBy { get; set; }
         [Required]
         [Display(Name = "Created")]
         [Column(TypeName = "DateTime2")]
         public DateTime CreateDate { get; set; }
 
+        [Display(Name = "Modified Last By")]
         public string ModifedById { get; set; }
         public virtual ApplicationUser ModifedBy { get; set; }
         [Column(TypeName = "DateTime2")]

@@ -3,7 +3,6 @@
 @{
 	ViewBag.Title = "Details";
 }
-@Html.Partial("~/Areas/Classroom/Views/Header/_Header.cshtml")
 <div id="alert_placeholder"></div>
 <h2>Details</h2>
 <div>
@@ -99,7 +98,7 @@
 
 	</dl>
 	<hr />
-	@Html.Partial("Partial/_UserRelationships", Model.UserRelationships.Where(obj => !obj.IsDeleted))
+	@Html.Partial("Partial/_UserRelationships", Model.UserRelationships.Where(obj => obj.IsActive))
 	@Html.Partial("Partial/_AddUserRelationships", new SmartRoom.Web.Areas.Classroom.Models.AddUserToCourse(){ CourseId = Model.Id})
 	
 </div>

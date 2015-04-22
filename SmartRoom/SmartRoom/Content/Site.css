@@ -1,19 +1,26 @@
-﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
-    height:100%
-}
-html{
+﻿
+html, body {
     height:100%
 }
 /* Set padding to keep content from hitting the edges */
-.body-content {
-    padding: 15px;
+.wrapper {
+    margin-left: 5%;
+    margin-right: 5%;
+}
+.background {
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-bottom:5%;
+    min-height:100%;
+    width: 70%;
     box-shadow: 0 0 8px 8px #9ec0c8;
     background-color: #d5e6ea;
-    margin-left:15%;
-    margin-bottom:15%;
-    margin-right:15%;
+    position: absolute;
+    background-attachment: fixed;
+}
+.body-content {
+    padding: 15px;
+    padding-top: 65px;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -95,9 +102,7 @@ textarea {
         min-height: 10%;
         font-size: 16px;
         text-align: center;
-        border-style: solid;
-        border-width: 3px;
-    box-shadow: 0 0 4px 4px #afc9cf;
+        box-shadow: 0 0 4px 4px #afc9cf;
     }
     #sortable hr
     {
@@ -114,7 +119,7 @@ textarea {
         border: 5px solid #8ce4fa;
         border-radius: 10px;
         padding:15px;
-        width:50%;
+        width:75%;
         margin-left:auto;
         margin-right:auto;
 }
@@ -131,9 +136,8 @@ textarea {
     }
 }
 .col-md-10 input{
-    width:75%
-        text-align: center;
-
+    width:75%;
+        text-align: left;
 }
 /* Youtube Styles */
 
@@ -168,7 +172,7 @@ a.navbar-brand {
     border-radius:10px;
     border-color: #8ce4fa;
     border-style: solid;
-    border-width: 15px;
+    border-width: 5px;
     color:#8ce4fa;
 }
 
@@ -190,4 +194,19 @@ a.navbar-brand {
     text-decoration:none;
     color:#8ce4fa;
     font-weight:700;
+}
+
+#loginForm .form-horizontal
+{
+    width:100%
+}
+.checkbox input[type=checkbox]
+{
+    height:initial;
+    width:initial;
+    margin-left:0px;
+}
+#socialLoginForm .form-horizontal
+{
+    width:100%;
 }

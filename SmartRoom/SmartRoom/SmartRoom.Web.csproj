@@ -243,7 +243,6 @@
     <Compile Include="App_Start\YoutubeLiveDetail.cs" />
     <Compile Include="Areas\Classroom\classroomAreaRegistration.cs" />
     <Compile Include="Areas\Classroom\Controllers\CoursesController.cs" />
-    <Compile Include="Areas\Classroom\Controllers\HeaderController.cs" />
     <Compile Include="Areas\Classroom\Models\AccountDDLModel.cs" />
     <Compile Include="Areas\Classroom\Models\CoursesViewModels.cs" />
     <Compile Include="Areas\Forms\Controllers\SyllabusController.cs" />
@@ -262,7 +261,7 @@
     <Compile Include="Helpers\Campus.cs" />
     <Compile Include="Helpers\LetterGrade.cs" />
     <Compile Include="App_Start\SyllabusTables\GradeDistribution.cs" />
-    <Compile Include="Helpers\Role.cs" />
+    <Compile Include="Helpers\CourseRole.cs" />
     <Compile Include="Helpers\Terms.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\DashBoard.cs" />
@@ -348,7 +347,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Areas\Classroom\Views\Header\_Header.cshtml" />
     <Content Include="Areas\YouTube\Views\YouTube\Transition.cshtml" />
     <Content Include="Content\less\bootstrap-datetimepicker-build.less" />
     <Content Include="Content\less\_bootstrap-datetimepicker.less" />
@@ -356,7 +354,6 @@
     <Content Include="Areas\Classroom\Views\Courses\Partial\_AdminCreate.cshtml" />
     <Content Include="Areas\Forms\Views\web.config" />
     <Content Include="Areas\Forms\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Forms\Views\Shared\_Layout.cshtml" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
@@ -434,6 +431,12 @@
     <Content Include="Areas\Classroom\Views\Courses\Partial\_AddUserRelationships.cshtml" />
     <Content Include="Areas\Classroom\Views\View111.cshtml" />
     <Content Include="Areas\Classroom\Views\Courses\Partial\_DeleteUserRelationship.cshtml" />
+    <Content Include="Areas\Forms\Views\Syllabus\Create.cshtml" />
+    <Content Include="Areas\Forms\Views\Syllabus\Delete.cshtml" />
+    <Content Include="Areas\Forms\Views\Syllabus\Details.cshtml" />
+    <Content Include="Areas\Forms\Views\Syllabus\Edit.cshtml" />
+    <Content Include="Areas\Forms\Views\Syllabus\Index.cshtml" />
+    <Content Include="Areas\Forms\Views\Shared\_AdditionalInformationRow.cshtml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -1229,6 +1232,7 @@
     <Content Include="Scripts\Personalized\CreateScript.js" />
     <Content Include="Scripts\Personalized\dragDrop.js" />
     <Content Include="Scripts\Personalized\Shared\LayoutScript.js" />
+    <Content Include="Scripts\Personalized\SyllabusFormApp.js" />
     <Content Include="Scripts\Personalized\YouTubeScript.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -1285,7 +1289,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Classroom\Views\Shared\" />
-    <Folder Include="Areas\Forms\Views\Syllabus\" />
     <Folder Include="Areas\YouTube\Models\" />
     <Folder Include="Areas\YouTube\Views\Video\" />
   </ItemGroup>
@@ -1314,11 +1317,11 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>False</UseIIS>
+          <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>52953</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>https://localhost:44300/</IISUrl>
+          <IISUrl>http://localhost:52953/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

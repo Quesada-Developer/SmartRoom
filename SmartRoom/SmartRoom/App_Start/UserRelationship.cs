@@ -11,7 +11,7 @@ namespace SmartRoom.Web.App_Start
         public UserRelationship()
         {
             CreateDate = DateTime.Now;
-            IsDeleted = false;
+            IsActive = true;
         }
 
         [Key]
@@ -24,7 +24,8 @@ namespace SmartRoom.Web.App_Start
         public CourseRole AccountRole { get; set; }
 
         [Required]
-        public int CreatedBy { get; set; }
+        public int CreatedById { get; set; }
+        public virtual ApplicationUser CreatedBy { get; set; }
         [Required]
         [Column(TypeName = "DateTime2")]
         public DateTime CreateDate { get; set; }
@@ -33,6 +34,6 @@ namespace SmartRoom.Web.App_Start
         public string ModifedBy { get; set; }
         [Column(TypeName = "DateTime2")]
         public DateTime ModifiedDate { get; set; }
-        public bool IsDeleted { get; set; }
+        public bool IsActive { get; set; }
     }
 }

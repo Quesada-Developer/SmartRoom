@@ -58,7 +58,7 @@ namespace SmartRoom.Web.Areas.Classroom.Controllers
                         return "Error removing user";
                     }
                     var c = db.UserRelationships.Find(course[0].Id);
-                    c.IsDeleted = true;
+                    c.IsActive = false;
                     c.ModifedBy = User.Identity.GetUserId();
                     c.ModifiedDate = DateTime.Now;
 
@@ -87,7 +87,7 @@ namespace SmartRoom.Web.Areas.Classroom.Controllers
             if (ModelState.IsValid)
             {
 
-                if (db.Courses.ToList().Any(obj => obj.UserRelationships.Any(u => !u.IsDeleted && u.AccountId.Equals(model.AccountId))))
+                if (db.Courses.ToList().Any(obj => obj.UserRelationships.Any(u => u.IsActive && u.AccountId.Equals(model.AccountId))))
                 {
                     //user is in course already
                     Response.StatusCode = 400;
@@ -97,10 +97,10 @@ namespace SmartRoom.Web.Areas.Classroom.Controllers
                 if(db.Courses.ToList().Any(obj => obj.UserRelationships.Any(u => u.AccountId.Equals(User.Identity.GetUserId()) && u.AccountRole == CourseRole.owner)))
                 {
                     UserRelationship _UserRelationship;
-                    if(db.Courses.Find(model.CourseId).UserRelationships.Any(obj => obj.AccountId == model.AccountId && obj.IsDeleted == true))
+                    if(db.Courses.Find(model.CourseId).UserRelationships.Any(obj => obj.AccountId == model.AccountId && !obj.IsActive))
                     {
-                        _UserRelationship = db.Courses.Find(model.CourseId).UserRelationships.Where(obj => obj.AccountId == model.AccountId && obj.IsDeleted == true).ToList()[0];
-                        _UserRelationship.IsDeleted = false;
+                        _UserRelationship = db.Courses.Find(model.CourseId).UserRelationships.Where(obj => obj.AccountId == model.AccountId && !obj.IsActive).ToList()[0];
+                        _UserRelationship.IsActive = true;
                         _UserRelationship.ModifiedDate = DateTime.Now;
                         _UserRelationship.ModifedBy = User.Identity.GetUserId();
                         db.SaveChanges();
@@ -221,11 +221,16 @@ namespace SmartRoom.Web.Areas.Classroom.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Teacher,Admin")]
-        public ActionResult Create([Bind(Include="Id,Subject,CourseNumber,Section,Title,StartDate,EndDate,Location,Term,CreateDate")] Course course)
+        public ActionResult Create([Bind(Include="Id,Subject,CourseNumber,Section,Title,StartDate,EndDate,Location,Term")] Course course)
         {
             course.CreatedById = db.Users.Find(User.Identity.GetUserId()).Id;
-            course.isActive = true;
+            course.isActive = true; 
+
+            ModelState.Clear();
+            TryValidateModel(course); 
+
             var errors = ModelState.Values.SelectMany(v => v.Errors);
+
             if (ModelState.IsValid)
             {
                 UserRelationship _UserRelationship = new UserRelationship() { AccountId = course.CreatedById, AccountRole = CourseRole.owner };
@@ -234,7 +239,7 @@ namespace SmartRoom.Web.Areas.Classroom.Controllers
                 db.Courses.Add(course);
                 db.Users.Find(User.Identity.GetUserId()).Courses.Add(course);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Home", new { area = "" });
             }
 
             return View(course);
