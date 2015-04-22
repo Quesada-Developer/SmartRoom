@@ -94,7 +94,7 @@ namespace SmartRoom.Web.Areas.Classroom.Controllers
                 Response.StatusCode = 400;
                 return Content("Error finding course");
             }
-            return PartialView("Partial/_UserRelationships", course.UserRelationships.Where(obj => !obj.IsDeleted));
+            return PartialView("Partial/_UserRelationships", course.UserRelationships.Where(obj => obj.IsActive));
         }
 
 
