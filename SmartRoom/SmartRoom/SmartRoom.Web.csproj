@@ -226,6 +226,7 @@
     <Compile Include="App_Start\ApplicationUser.cs" />
     <Compile Include="App_Start\Authen.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\CoursePlaylist.cs" />
     <Compile Include="App_Start\SyllabusTables\Information.cs" />
     <Compile Include="App_Start\SyllabusTables\ClassDate.cs" />
     <Compile Include="App_Start\Course.cs" />
@@ -249,7 +250,7 @@
     <Compile Include="Areas\Forms\FormsAreaRegistration.cs" />
     <Compile Include="Areas\Forms\Models\CompleteSyllabusModel.cs" />
     <Compile Include="Areas\YouTube\Controllers\BroadcastController.cs" />
-    <Compile Include="Areas\YouTube\Controllers\VideoController.cs" />
+    <Compile Include="Areas\YouTube\Controllers\CoursePlaylistsController.cs" />
     <Compile Include="Areas\YouTube\Controllers\YouTubeController.cs" />
     <Compile Include="Areas\YouTube\YouTubeAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -438,6 +439,11 @@
     <Content Include="Areas\Forms\Views\Syllabus\Index.cshtml" />
     <Content Include="Areas\Forms\Views\Shared\_AdditionalInformationRow.cshtml" />
     <Content Include="Areas\Classroom\Views\Courses\Partial\_CourseMenu.cshtml" />
+    <Content Include="Areas\YouTube\Views\CoursePlaylists\Create.cshtml" />
+    <Content Include="Areas\YouTube\Views\CoursePlaylists\Delete.cshtml" />
+    <Content Include="Areas\YouTube\Views\CoursePlaylists\Details.cshtml" />
+    <Content Include="Areas\YouTube\Views\CoursePlaylists\Edit.cshtml" />
+    <Content Include="Areas\YouTube\Views\CoursePlaylists\Index.cshtml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
