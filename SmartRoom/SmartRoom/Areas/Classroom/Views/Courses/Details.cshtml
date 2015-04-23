@@ -123,9 +123,10 @@
                 </dd>
 
             </dl>
+            @Html.ActionLink("Edit Course", "Edit", new { id = Model.Id }, new { @class = "btn btn-primary btn-sm", @style = "margin:10px;" })
+            @Html.Partial("Partial/_AddUserRelationships", new SmartRoom.Web.Areas.Classroom.Models.AddUserToCourse() { CourseId = Model.Id })
 
         </div>
-        <hr />
 
     </div>
 

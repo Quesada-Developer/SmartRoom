@@ -30,7 +30,7 @@ namespace SmartRoom.Web.App_Start
         }
 
         public virtual List<Course> Courses { get; set; }
-        //return db.Courses.Where(obj => obj.UserRelationships.Any(ur => ur.AccountId == Id && !ur.IsActive)).ToList();
+        //db.Courses.Where(obj => obj.UserRelationships.Any(ur => ur.AccountId.Equals(id) && ur.IsActive)).ToList();
 
         public virtual List<Syllabus> Syllabi { get; set; }
         public IEnumerable<Course> CoursesByRole(CourseRole Role)

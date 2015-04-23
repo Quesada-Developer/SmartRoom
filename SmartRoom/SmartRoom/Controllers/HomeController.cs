@@ -22,7 +22,9 @@ namespace SmartRoom.Web.Controllers
             List<Course> CourseList = new List<Course>();
             try
             {
-                CourseList = model.Users.Find(User.Identity.GetUserId()).Courses.ToList();
+                //CourseList = model.Users.Find(User.Identity.GetUserId()).Courses.ToList();
+                var id = User.Identity.GetUserId();
+                CourseList = model.Courses.Where(obj => obj.UserRelationships.Any(ur => ur.AccountId.Equals(id) && ur.IsActive)).ToList();
             }
             catch(Exception e)
             {
