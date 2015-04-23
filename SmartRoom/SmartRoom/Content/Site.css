@@ -3,6 +3,10 @@ html, body {
     height:100%
 }
 /* Set padding to keep content from hitting the edges */
+
+.a{
+    text-decoration: none;
+}
 .wrapper {
     margin-left: 5%;
     margin-right: 5%;
@@ -119,7 +123,20 @@ textarea {
         border: 5px solid #8ce4fa;
         border-radius: 10px;
         padding:15px;
-        width:75%;
+        min-width:75%;
+        margin-left:auto;
+        margin-right:auto;
+}
+.form-overflow{
+        text-align: left;
+        overflow-x:auto;
+        border-style: solid;
+        background-color: #fff;
+        background-image: none;
+        border: 5px solid #8ce4fa;
+        border-radius: 10px;
+        padding:15px;
+        min-width:75%;
         margin-left:auto;
         margin-right:auto;
 }

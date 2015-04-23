@@ -14,51 +14,54 @@
     </div>
 </div>
 <hr />
-<div class="row">
-    <div class="col-sm-6">
-        <h2 title="@Html.DisplayNameFor(model => model.Title)">@Html.DisplayFor(model => model.Title)</h2>
-        <h4 title="@Html.DisplayNameFor(model => model.Subject) : @Html.DisplayNameFor(model => model.CourseNumber)">@Html.DisplayFor(model => model.Subject) @Html.DisplayFor(model => model.CourseNumber)</h4>
+<div class="form-overflow">
+    <div class="row">
+        <div class="col-sm-6">
+            <h2 title="@Html.DisplayNameFor(model => model.Title)">@Html.DisplayFor(model => model.Title)</h2>
+            <h4 title="@Html.DisplayNameFor(model => model.Subject) : @Html.DisplayNameFor(model => model.CourseNumber)">@Html.DisplayFor(model => model.Subject) @Html.DisplayFor(model => model.CourseNumber)</h4>
 
 
-    </div>
-    <div class="col-sm-6">
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.Term)
-            </dt>
+        </div>
+        <div class="col-sm-6">
+            <!--col-sm-6-->
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Term)
+                </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.Term)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.Location)
-            </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Term)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Location)
+                </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.Location)
-            </dd>
-        </dl>
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.StartDate)
-            </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Location)
+                </dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.StartDate)
+                </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.StartDate)
-            </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.StartDate)
+                </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.EndDate)
-            </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.EndDate)
+                </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.EndDate)
-            </dd>
-        </dl>
+                <dd>
+                    @Html.DisplayFor(model => model.EndDate)
+                </dd>
+            </dl>
+        </div>
     </div>
 </div>
 <hr />
-<div>
+<div class="form-horizontal">
     <h2 title="Announcements">Announcements</h2>
     @{List<SmartRoom.Web.App_Start.Announcement> list = Model.Announcements.Where(x => x.PublishOn >= DateTime.Now).OrderBy(x => x.PublishOn).Take(7).ToList();}
     @for (int i = 0; i < list.Count(); i++)
@@ -68,67 +71,82 @@
 
         @Html.DisplayFor(mode => list[i].NewsText);<br />
     }
-<a href="@Url.Action("Index", "Announcements", new { area = "Forms", id = Model.Id })">
-    <div>View All</div>
-</a>
+    <a href="@Url.Action("Index", "Announcements", new { area = "Forms", id = Model.Id })">
+        <div>View All</div>
+    </a>
 </div>
 <hr />
-<div class="row">
-    <img src="~/Content/images/YouTube-icon-full_color.png" width="100" />Add link to the closest valid stream link.
+<div class="form-horizontal">
+    <div class="row">
+        <center><img src="~/Content/images/YouTube-icon-full_color.png" width="100" />Add link to the closest valid stream link.</center>
+    </div>
 </div>
 <hr />
-
 @if (Model.UserRelationships.Any(obj => obj.AccountId.Equals(User.Identity.GetUserId()) && obj.AccountRole == SmartRoom.Web.Helpers.CourseRole.owner))
 {
-    <div class="row">
-        <a href="@Url.Action("Create", "YouTube", new { area = "YouTube", id = Model.Id })">
-            <div>
-                Create a new stream - WE NEED TO FORMAT THIS AS A DIV BUTTON LIKE IN THE HOME PAGE
-            </div>
-        </a>
 
-        <a href="@Url.Action("Create", "Announcements", new { area = "Forms", id = Model.Id })">
-            <div>
-                Create an announcmenet - same here
-            </div>
-        </a>
-        <a href="@Url.Action("Create","Syllabus",new{area="Forms",id = Model.Id})">
-            <div>
-                Create a syllabus - not currently implemented, on my todo list
-            </div>
-        </a>
+    <div>
+        <h3>
+            <a href="@Url.Action("Create", "YouTube", new { area = "YouTube", id = Model.Id })">
+                <div class="ui-state-default class-container">
+                    <center>
+                        CREATE A NEW STREAM
+                    </center>
+                </div>
+            </a>
+        </h3>
+        <h3>
+            <a href="@Url.Action("Create", "Announcements", new { area = "Forms", id = Model.Id })">
+                <div class="ui-state-default class-container">
+                    <center>
+                        CREATE AN ANNOUNCEMENT
+                    </center>
+                </div>
+            </a>
+        </h3>
+        <h3>
+            <a href="@Url.Action("Create","Syllabus",new{area="Forms",id = Model.Id})">
+                <div class="ui-state-default class-container">
+                    <center>
+                        CREATE/ADD A SYLLABUS [TO DO]
+                    </center>
+                </div>
+            </a>
+        </h3>
     </div>
 
 }
-
+<hr />
 
 @if (Model.UserRelationships.Any(obj => obj.AccountId.Equals(User.Identity.GetUserId()) && obj.AccountRole == SmartRoom.Web.Helpers.CourseRole.owner))
 {
     @* This Section is viewed by admins only. *@
-    <div class="row">
-        <div class="col-sm-12">
+    <div class="form-horizontal">
+        <div class="row">
+            <div class="col-sm-12">
 
-            @Html.Hidden("CourseId", Model.Id)
-            <div id="UserSection">
-                @Html.Partial("Partial/_UserRelationships", Model.UserRelationships.Where(obj => obj.IsActive))
+                @Html.Hidden("CourseId", Model.Id)
+                <div id="UserSection">
+                    @Html.Partial("Partial/_UserRelationships", Model.UserRelationships.Where(obj => obj.IsActive))
+                </div>
+                <hr />
+                <dl class="dl-horizontal">
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.RegistrationCode)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.RegistrationCode)
+                    </dd>
+
+                </dl>
+
             </div>
-            <dl class="dl-horizontal">
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.RegistrationCode)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.RegistrationCode)
-                </dd>
-
-            </dl>
+            <hr />
 
         </div>
-        <hr />
-
     </div>
-
 }
 
 <script>
