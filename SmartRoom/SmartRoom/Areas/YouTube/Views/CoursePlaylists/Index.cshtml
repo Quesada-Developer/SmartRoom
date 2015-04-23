@@ -14,21 +14,6 @@
         <th>
             @Html.DisplayNameFor(model => model.Course.RegistrationCode)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreatedBy.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ModifedBy.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PlaylistId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreateDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ModifiedDate)
-        </th>
         <th></th>
     </tr>
 
@@ -37,21 +22,15 @@
         <td>
             @Html.DisplayFor(modelItem => item.Course.RegistrationCode)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedBy.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ModifedBy.Email)
-        </td>
+
         <td>
             @Html.DisplayFor(modelItem => item.PlaylistId)
         </td>
+
         <td>
-            @Html.DisplayFor(modelItem => item.CreateDate)
+            @Html.DisplayFor(modelItem => item.PlaylistName)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ModifiedDate)
-        </td>
+ 
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.CoursePlaylistId }) |
             @Html.ActionLink("Details", "Details", new { id=item.CoursePlaylistId }) |

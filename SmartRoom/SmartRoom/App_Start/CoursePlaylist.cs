@@ -14,7 +14,6 @@ namespace SmartRoom.Web.App_Start
 
         public CoursePlaylist() {
 
-            CreateDate = DateTime.Now;
             UserRelationships = new List<UserRelationship>();
 
         }
@@ -26,24 +25,12 @@ namespace SmartRoom.Web.App_Start
         public int CourseId { get; set; }
         [Display(Name = "Course")]
         public virtual Course Course { get; set; }
-        [Required]
-        
+        [Required]        
         public String PlaylistId { get; set; }
         [Required]
+        [Display(Name = "Playlist Name")]
+        public String PlaylistName { get; set; }
       
-        [Display(Name = "Created By")]
-        public string CreatedById { get; set; }
-        public virtual ApplicationUser CreatedBy { get; set; }
-        [Required]
-        [Display(Name = "Created")]
-        [Column(TypeName = "DateTime2")]
-        public DateTime CreateDate { get; set; }
-
-        [Display(Name = "Modified Last By")]
-        public string ModifedById { get; set; }
-        public virtual ApplicationUser ModifedBy { get; set; }
-        [Column(TypeName = "DateTime2")]
-        public DateTime? ModifiedDate { get; set; }
 
         public virtual List<UserRelationship> UserRelationships { get; set; }
 

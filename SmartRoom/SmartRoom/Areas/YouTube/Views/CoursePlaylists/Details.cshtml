@@ -11,13 +11,20 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Course.RegistrationCode)
+            @Html.DisplayNameFor(model => model.Course.Title)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Course.RegistrationCode)
+            @Html.DisplayFor(model => model.Course.Title)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.PlaylistName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PlaylistName)
+        </dd>
 
         <dd style="display:none;" id="playlist">
             @Html.DisplayFor(model => model.PlaylistId)
@@ -32,7 +39,7 @@
 
             var Id1 = document.getElementById('playlist').textContent;
 
-            document.getElementById('player').setAttribute('src','https://www.youtube.com/embed/videoseries?list=' + Id1.trim);
+            document.getElementById('player').setAttribute('src','https://www.youtube.com/embed/videoseries?list=' + Id1.trim());
 
 
             </script>

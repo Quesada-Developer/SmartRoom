@@ -65,8 +65,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Google.Apis.Auth.1.9.1\lib\net40\Google.Apis.Auth.PlatformServices.dll</HintPath>
     </Reference>
-    <Reference Include="Google.Apis.Calendar.v3">
-      <HintPath>..\packages\Google.Apis.Calendar.v3.1.9.0.1210\lib\portable-net40+sl50+win+wpa81+wp80\Google.Apis.Calendar.v3.dll</HintPath>
+    <Reference Include="Google.Apis.Calendar.v3, Version=1.9.0.122, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Google.Apis.Calendar.v3.1.9.0.1220\lib\portable-net40+sl50+win+wpa81+wp80\Google.Apis.Calendar.v3.dll</HintPath>
     </Reference>
     <Reference Include="Google.Apis.Core, Version=1.9.1.12394, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -251,6 +252,8 @@
     <Compile Include="Areas\Forms\Controllers\SyllabusController.cs" />
     <Compile Include="Areas\Forms\FormsAreaRegistration.cs" />
     <Compile Include="Areas\Forms\Models\CompleteSyllabusModel.cs" />
+    <Compile Include="Areas\GoogleCalender\Controllers\GoogleCalenderController.cs" />
+    <Compile Include="Areas\GoogleCalender\GoogleCalenderAreaRegistration.cs" />
     <Compile Include="Areas\YouTube\Controllers\BroadcastController.cs" />
     <Compile Include="Areas\YouTube\Controllers\CoursePlaylistsController.cs" />
     <Compile Include="Areas\YouTube\Controllers\YouTubeController.cs" />
@@ -451,6 +454,7 @@
     <Content Include="Areas\Forms\Views\Announcements\Edit.cshtml" />
     <Content Include="Areas\Forms\Views\Announcements\Index.cshtml" />
     <Content Include="Areas\Forms\Views\Syllabus\Partial\_AdditionalInformationRow.cshtml" />
+    <Content Include="Areas\GoogleCalender\Views\web.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -1304,8 +1308,10 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Classroom\Views\Shared\" />
     <Folder Include="Areas\Forms\Views\Shared\" />
+    <Folder Include="Areas\GoogleCalender\Models\" />
+    <Folder Include="Areas\GoogleCalender\Views\GoogleCalender\" />
+    <Folder Include="Areas\GoogleCalender\Views\Shared\" />
     <Folder Include="Areas\YouTube\Models\" />
-    <Folder Include="Areas\YouTube\Views\Video\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

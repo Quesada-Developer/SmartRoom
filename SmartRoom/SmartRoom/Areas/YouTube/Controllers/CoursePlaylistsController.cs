@@ -17,7 +17,7 @@ namespace SmartRoom.Web.Areas.YouTube.Controllers
         // GET: YouTube/CoursePlaylists
         public ActionResult Index()
         {
-            var coursePlaylist = db.CoursePlaylists.Include(c => c.Course).Include(c => c.CreatedBy).Include(c => c.ModifedBy);
+            var coursePlaylist = db.CoursePlaylists.Include(c => c.Course);
             return View(coursePlaylist.ToList());
         }
 
@@ -39,9 +39,7 @@ namespace SmartRoom.Web.Areas.YouTube.Controllers
         // GET: YouTube/CoursePlaylists/Create
         public ActionResult Create()
         {
-            ViewBag.CourseId = new SelectList(db.Courses, "Id", "RegistrationCode");
-            ViewBag.CreatedById = new SelectList(db.Users, "Id", "Email");
-            ViewBag.ModifedById = new SelectList(db.Users, "Id", "Email");
+            ViewBag.CourseId = new SelectList(db.Courses, "Id", "Title");
             return View();
         }
 
@@ -50,7 +48,7 @@ namespace SmartRoom.Web.Areas.YouTube.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CoursePlaylistId,CourseId,PlaylistId,CreatedById,CreateDate,ModifedById,ModifiedDate")] CoursePlaylist coursePlaylist)
+        public ActionResult Create([Bind(Include = "CoursePlaylistId,CourseId,PlaylistId,PlaylistName")] CoursePlaylist coursePlaylist)
         {
             if (ModelState.IsValid)
             {
@@ -59,9 +57,7 @@ namespace SmartRoom.Web.Areas.YouTube.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CourseId = new SelectList(db.Courses, "Id", "RegistrationCode", coursePlaylist.CourseId);
-            ViewBag.CreatedById = new SelectList(db.Users, "Id", "Email", coursePlaylist.CreatedById);
-            ViewBag.ModifedById = new SelectList(db.Users, "Id", "Email", coursePlaylist.ModifedById);
+            ViewBag.CourseId = new SelectList(db.Courses, "Id", "Title", coursePlaylist.CourseId);
             return View(coursePlaylist);
         }
 
@@ -77,9 +73,7 @@ namespace SmartRoom.Web.Areas.YouTube.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.CourseId = new SelectList(db.Courses, "Id", "RegistrationCode", coursePlaylist.CourseId);
-            ViewBag.CreatedById = new SelectList(db.Users, "Id", "Email", coursePlaylist.CreatedById);
-            ViewBag.ModifedById = new SelectList(db.Users, "Id", "Email", coursePlaylist.ModifedById);
+            ViewBag.CourseId = new SelectList(db.Courses, "Id", "Title", coursePlaylist.CourseId);
             return View(coursePlaylist);
         }
 
@@ -88,7 +82,7 @@ namespace SmartRoom.Web.Areas.YouTube.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CoursePlaylistId,CourseId,PlaylistId,CreatedById,CreateDate,ModifedById,ModifiedDate")] CoursePlaylist coursePlaylist)
+        public ActionResult Edit([Bind(Include = "CoursePlaylistId,CourseId,PlaylistId,PlaylistName")] CoursePlaylist coursePlaylist)
         {
             if (ModelState.IsValid)
             {
@@ -96,9 +90,7 @@ namespace SmartRoom.Web.Areas.YouTube.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CourseId = new SelectList(db.Courses, "Id", "RegistrationCode", coursePlaylist.CourseId);
-            ViewBag.CreatedById = new SelectList(db.Users, "Id", "Email", coursePlaylist.CreatedById);
-            ViewBag.ModifedById = new SelectList(db.Users, "Id", "Email", coursePlaylist.ModifedById);
+            ViewBag.CourseId = new SelectList(db.Courses, "Id", "Title", coursePlaylist.CourseId);
             return View(coursePlaylist);
         }
 
