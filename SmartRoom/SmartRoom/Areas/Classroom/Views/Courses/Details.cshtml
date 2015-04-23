@@ -8,7 +8,7 @@
 
 <div id="alert_placeholder"></div>
 <div class="row">
-    <div class="col-sm-4 pull-left">
+    <div class="col-sm-12 pull-left">
         @Html.Partial("Partial/_CourseMenu", Model.UserRelationships.Where(x => x.AccountId.Equals(User.Identity.GetUserId())))
 
     </div>
@@ -128,7 +128,6 @@
             @Html.Hidden("CourseId", Model.Id)
             <div id="UserSection">
                 @Html.Partial("Partial/_UserRelationships", Model.UserRelationships.Where(obj => obj.IsActive))
-                @Html.Partial("Partial/_AddUserRelationships", new SmartRoom.Web.Areas.Classroom.Models.AddUserToCourse() { CourseId = Model.Id })
             </div>
                 <hr />
             <dl class="dl-horizontal">
@@ -151,21 +150,43 @@
     </div>
 }
 
-<script>
-    function UpdateUsers() {
-        var xmlhttp;
-        if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
-            xmlhttp = new XMLHttpRequest();
-        }
-        else {// code for IE6, IE5
-            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-        }
-        xmlhttp.onreadystatechange = function () {
-            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                document.getElementById("UserSection").innerHTML = xmlhttp.responseText;
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $("form").submit(function () { // you can use any selector that match your form
+                $.ajax({
+                    url: this.action,
+                    type: this.method,
+                    data: $(this).serialize()
+                }).done(function (data) {
+                    $('#AddUser').modal('hide');
+                    UpdateUsers();
+                    $('#alert_placeholder').html('<div class="alert alert-success" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>' + data + '</div>')
+                })
+                .fail(function (jqXHR, textStatus) {
+                    $('#alert_placeholder_adduser').html('<div class="alert alert-danger" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>' + jqXHR.responseText + '</div>')
+                })
+                ;
+                $('#alert_placeholder').html('<div class="alert alert-danger" role="alert">error</div>')
+                return false; // prevent the form submission
+            });
+        });
+
+        function UpdateUsers() {
+            var xmlhttp;
+            if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp = new XMLHttpRequest();
             }
+            else {// code for IE6, IE5
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    document.getElementById("UserSection").innerHTML = xmlhttp.responseText;
+                }
+            }
+            xmlhttp.open("GET", "../GetUsers/?CourseId=" + $("#CourseId").val(), true);
+            xmlhttp.send();
         }
-        xmlhttp.open("GET", "../GetUsers/?CourseId=" + $("#CourseId").val(), true);
-        xmlhttp.send();
-    }
-</script>
+    </script>
+}

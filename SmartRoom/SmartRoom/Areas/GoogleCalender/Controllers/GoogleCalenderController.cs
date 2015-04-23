@@ -20,11 +20,11 @@ namespace SmartRoom.Web.Areas.GoogleCalender.Controllers
         private CalendarService googlecalender;
 
         // creates a broadcast verified
-        public async Task<LiveBroadcast> createBroadcast(String kind, String snippetTitle, DateTime startTime, DateTime endTime, String privacyStatus)
+        /*public async Task<LiveBroadcast> createBroadcast(String kind, String snippetTitle, DateTime startTime, DateTime endTime, String privacyStatus)
         {
             googlecalender = new CalendarService(await googleAuthen.getInitializer());
 
-            ca
+
             LiveBroadcast broadcast = new LiveBroadcast();
 
             // Set broadcast Kind
@@ -45,6 +45,6 @@ namespace SmartRoom.Web.Areas.GoogleCalender.Controllers
 
 
             return returnedBroadcast;
-        }
-
+        }*/
+    }
 }
