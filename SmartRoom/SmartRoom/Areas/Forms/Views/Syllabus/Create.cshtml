@@ -6,11 +6,10 @@
 
 <h2>Create</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-    <li class="form-horizontal">
+    <div class="form-horizontal">
         <h4>Syllabus</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -53,14 +52,13 @@
                 @Html.ValidationMessageFor(model => model.CellPhone, "", new { @class = "text-danger" })
             </div>
         </div>
-
-        <li class="ui-state-default class-container">
+        <div class="form-group">
             @Html.LabelFor(model => model.EmergencyPhone, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.EmergencyPhone, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.EmergencyPhone, "", new { @class = "text-danger" })
             </div>
-        </li>
+        </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.EmailAddress, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -70,73 +68,58 @@
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Monday, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="form-group form-checkbox">
+            <label class="col-md-2 control-label">Course Meeting Days</label>
             <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.Monday)
-                    @Html.ValidationMessageFor(model => model.Monday, "", new { @class = "text-danger" })
+                <div class="col-md-2">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.Monday)
+                        @Html.ValidationMessageFor(model => model.Monday, "", new { @class = "text-danger" })
+                    </div>
                 </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Tuesday, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.Tuesday)
-                    @Html.ValidationMessageFor(model => model.Tuesday, "", new { @class = "text-danger" })
+                @Html.LabelFor(model => model.Monday, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-2">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.Tuesday)
+                        @Html.ValidationMessageFor(model => model.Tuesday, "", new { @class = "text-danger" })
+                    </div>
                 </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Wednesday, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.Wednesday)
-                    @Html.ValidationMessageFor(model => model.Wednesday, "", new { @class = "text-danger" })
+                @Html.LabelFor(model => model.Tuesday, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-2">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.Wednesday)
+                        @Html.ValidationMessageFor(model => model.Wednesday, "", new { @class = "text-danger" })
+                    </div>
                 </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Thursday, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.Thursday)
-                    @Html.ValidationMessageFor(model => model.Thursday, "", new { @class = "text-danger" })
+                @Html.LabelFor(model => model.Wednesday, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-2">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.Thursday)
+                        @Html.ValidationMessageFor(model => model.Thursday, "", new { @class = "text-danger" })
+                    </div>
                 </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Friday, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.Friday)
-                    @Html.ValidationMessageFor(model => model.Friday, "", new { @class = "text-danger" })
+                @Html.LabelFor(model => model.Thursday, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-2">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.Friday)
+                        @Html.ValidationMessageFor(model => model.Friday, "", new { @class = "text-danger" })
+                    </div>
                 </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Saturday, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.Saturday)
-                    @Html.ValidationMessageFor(model => model.Saturday, "", new { @class = "text-danger" })
+                @Html.LabelFor(model => model.Friday, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-2">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.Saturday)
+                        @Html.ValidationMessageFor(model => model.Saturday, "", new { @class = "text-danger" })
+                    </div>
                 </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Sunday, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.Sunday)
-                    @Html.ValidationMessageFor(model => model.Sunday, "", new { @class = "text-danger" })
+                @Html.LabelFor(model => model.Saturday, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-2">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.Sunday)
+                        @Html.ValidationMessageFor(model => model.Sunday, "", new { @class = "text-danger" })
+                    </div>
                 </div>
+                @Html.LabelFor(model => model.Sunday, htmlAttributes: new { @class = "control-label col-md-2" })
             </div>
         </div>
 
@@ -152,9 +135,10 @@
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>
-        </div>        
-        @Html.Partial("Partial/_AdditionalInformationRow", Model.AdditionalInformation)
+        </div>
+        @*@Html.Partial("Partial/_AdditionalInformationRow", Model.AdditionalInformation)*@
     </div>
+
 }
 
 <div>

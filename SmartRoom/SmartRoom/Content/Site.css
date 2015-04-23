@@ -161,7 +161,11 @@ textarea {
 
 @media (min-width: 992px) {
     .col-md-10 {
-        width: 75%;
+        width: 60%;
+        text-align: right;
+    }
+    .col-md-10 .checkbox{
+        width: 1%;
         text-align: right;
     }
 }
@@ -306,4 +310,9 @@ a.navbar-brand {
     }
     .no-decorations a{
         text-decoration:none;
+    }
+    .form-checkbox .col-md-10 .col-md-2{
+        width: initial;
+        padding-left:initial;
+       font-weight:initial;
     }

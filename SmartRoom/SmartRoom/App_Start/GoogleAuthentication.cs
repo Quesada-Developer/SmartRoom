@@ -20,6 +20,7 @@ namespace SmartRoom.Web.App_Start
         {
             ClientSecret = new ClientSecrets();
             ClientSecret.ClientSecret = "WIeQIEArSTs1P_drjOQvsSiC";
+
             ClientSecret.ClientId = "1084733801830-4j2fje2ku2b6tkpa4v9v6cbbt08jeiql.apps.googleusercontent.com";
             Scope = new[] {
                     "https://www.googleapis.com/auth/youtube",  
