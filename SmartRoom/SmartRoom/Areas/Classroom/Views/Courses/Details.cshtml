@@ -67,23 +67,23 @@
 </div>
 <hr class="course-hr" />
 
-@{List<SmartRoom.Web.App_Start.Announcement> announcementList = Model.Announcements.Where(x => x.PublishOn >= DateTime.Now).OrderBy(x => x.PublishOn).Take(7).ToList();}
+@{List<SmartRoom.Web.App_Start.Announcement> announcementList = Model.Announcements.Where(x => x.PublishOn >= DateTime.Now.AddDays(-1)).OrderBy(x => x.PublishOn).Take(7).ToList();}
 @if (announcementList.Count() > 0)
 {
-    <div class="form-horizontal">
-        <h2 title="Announcements">Announcements</h2>
+    <div class="form-horizontal announcements">
+            <h2 title="Announcements">Announcements</h2>
 
-        @for (int i = 0; i < announcementList.Count(); i++)
+            @for (int i = 0; i < announcementList.Count(); i++)
         {
-            @Html.DisplayFor(model => announcementList[i].PublishOn); <text> - </text>
-            @Html.DisplayFor(model => announcementList[i].NewsTitle);<br />
+                @Html.DisplayFor(model => announcementList[i].PublishOn); <text> - </text>
+                @Html.DisplayFor(model => announcementList[i].NewsTitle);<br />
 
-            @Html.DisplayFor(mode => announcementList[i].NewsText);<br />
+                @Html.DisplayFor(mode => announcementList[i].NewsText);<br />
         }
-        <a href="@Url.Action("Index", "Announcements", new { area = "Forms", id = Model.Id })">
-            <div>View All</div>
-        </a>
-    </div>
+            <a href="@Url.Action("Index", "Announcements", new { area = "Forms", id = Model.Id })">
+                <div>View All</div>
+            </a>
+        </div>
     <hr class="course-hr" />
 }
 @{SmartRoom.Web.App_Start.YoutubeLiveDetail nextStream = Model.YoutubeLiveDetails.Where(x => x.BroadcastScheduledStartTime.Day >= DateTime.Now.Day).OrderBy(x => x.BroadcastScheduledStartTime).FirstOrDefault();}
@@ -92,7 +92,16 @@
 <div class="row">
     <a href="@Url.Action("Details", "YouTube", new { area = "YouTube", id = nextStream.Id })">
         <div class="class-container">
-            <img src="~/Content/images/YouTube-icon-full_color.png" width="100" />Next Stream
+            <table>
+                <tr>
+                    <td>
+                        <img src="~/Content/images/YouTube-icon-full_color.png" width="100" />
+                    </td>
+                    <td>
+            <h2>View Next Stream</h2>
+                    </td>
+                </tr>
+            </table>
         </div>
         </a>
 </div>
@@ -120,14 +129,14 @@
         <a href="@Url.Action("Create","Syllabus",new{area="Forms",id = Model.Id})">
             <div class="class-container">
                 <h3>
-                    CREATE/ADD A SYLLABUS [TO DO]
+                    CREATE A SYLLABUS [TO DO]
                 </h3>
             </div>
         </a>
     </div>
+    <hr class="course-hr" />
 
 }
-<hr class="course-hr" />
 
 @if (Model.UserRelationships.Any(obj => obj.AccountId.Equals(User.Identity.GetUserId()) && obj.AccountRole == SmartRoom.Web.Helpers.CourseRole.owner))
 {

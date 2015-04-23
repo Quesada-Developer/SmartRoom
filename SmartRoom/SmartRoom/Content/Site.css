@@ -316,3 +316,10 @@ a.navbar-brand {
         padding-left:initial;
        font-weight:initial;
     }
+    .announcements{
+    color:#8ce4fa;
+    }
+    .announcements a{
+    color:#3cb3cf;
+        text-decoration:none;
+    }
