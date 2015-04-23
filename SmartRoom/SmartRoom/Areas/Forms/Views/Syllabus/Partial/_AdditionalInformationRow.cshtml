@@ -1,0 +1,15 @@
+﻿@model List<SmartRoom.Web.App_Start.Information>
+@section script{
+    @Scripts.Render("~/Scripts/Personalized/SyllabusFormApp.js")
+}
+<div class="editorRow" ng-app="syllabusApp">
+
+    <div ng-controller="formCtrl">
+        <div ng-repeat="item in master">
+            <input type="date" ng-model="item.Date">
+            <input type="text" placeholder="Title" ng-model="item.Title">
+            <input ng-class="{'blockInput': !item.inlineChecked}" type="text" placeholder="enter text..." ng-model="item.Info">
+        </div>
+        <button ng-click="addFields()">New Item</button>
+    </div>
+</div>

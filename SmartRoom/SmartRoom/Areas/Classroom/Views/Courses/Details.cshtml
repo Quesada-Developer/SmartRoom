@@ -111,6 +111,7 @@
             @Html.Hidden("CourseId", Model.Id)
             <div id="UserSection">
                 @Html.Partial("Partial/_UserRelationships", Model.UserRelationships.Where(obj => obj.IsActive))
+                @Html.Partial("Partial/_AddUserRelationships", new SmartRoom.Web.Areas.Classroom.Models.AddUserToCourse() { CourseId = Model.Id })
             </div>
             <dl class="dl-horizontal">
 

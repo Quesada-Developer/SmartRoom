@@ -432,7 +432,6 @@
     <Content Include="Content\bootstrap\badges.less" />
     <Content Include="Content\bootstrap\alerts.less" />
     <Content Include="Areas\Classroom\Views\Courses\Partial\_AddUserRelationships.cshtml" />
-    <Content Include="Areas\Classroom\Views\View111.cshtml" />
     <Content Include="Areas\Classroom\Views\Courses\Partial\_DeleteUserRelationship.cshtml" />
     <Content Include="Areas\Forms\Views\Syllabus\Create.cshtml" />
     <Content Include="Areas\Forms\Views\Syllabus\Delete.cshtml" />
@@ -445,6 +444,7 @@
     <Content Include="Areas\Forms\Views\Announcements\Details.cshtml" />
     <Content Include="Areas\Forms\Views\Announcements\Edit.cshtml" />
     <Content Include="Areas\Forms\Views\Announcements\Index.cshtml" />
+    <Content Include="Areas\Forms\Views\Syllabus\Partial\_AdditionalInformationRow.cshtml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
