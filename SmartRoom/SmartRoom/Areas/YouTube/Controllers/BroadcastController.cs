@@ -12,15 +12,13 @@ namespace SmartRoom.Web.Areas.YouTube.Controllers
     public class BroadcastController : Controller
     {
 
-        private readonly Authen youtubeAuthen = new Authen(new[] { 
-                        "https://www.googleapis.com/auth/youtube",  
-                        "https://www.googleapis.com/auth/plus.login" });
+        private readonly GoogleAuthentication youtubeAuthen = new GoogleAuthentication();
         private YouTubeService youtube;
 
         // creates a broadcast verified
         public async Task<LiveBroadcast> createBroadcast(String kind, String snippetTitle, DateTime startTime, DateTime endTime, String privacyStatus)
         {
-            youtube = new YouTubeService(await youtubeAuthen.getInitializer());
+            youtube = new YouTubeService(await youtubeAuthen.GetInitializer());
             LiveBroadcast broadcast = new LiveBroadcast();
 
             // Set broadcast Kind
@@ -47,7 +45,7 @@ namespace SmartRoom.Web.Areas.YouTube.Controllers
         public async Task<LiveStream> createStream(String kind, String snippetTitle, String CDNFormat, String CDNIngestionType)
         {
             LiveStream liveStream = new LiveStream();
-            youtube = new YouTubeService(await youtubeAuthen.getInitializer());
+            youtube = new YouTubeService(await youtubeAuthen.GetInitializer());
 
             // Set stream kind
             liveStream.Kind = kind;
@@ -73,7 +71,7 @@ namespace SmartRoom.Web.Areas.YouTube.Controllers
         // Binds a stream to a broadcast verified
         public async Task<LiveBroadcast> bindBroadcast(LiveBroadcast broadcast, LiveStream Livestream)
         {
-            youtube = new YouTubeService(await youtubeAuthen.getInitializer());
+            youtube = new YouTubeService(await youtubeAuthen.GetInitializer());
 
             LiveBroadcastsResource.BindRequest liveBroadcastBind = youtube.LiveBroadcasts.Bind(broadcast.Id, "id,contentDetails");
             liveBroadcastBind.StreamId = Livestream.Id;
@@ -87,7 +85,7 @@ namespace SmartRoom.Web.Areas.YouTube.Controllers
         // Redo
         public async Task<Boolean> transitionBroadcast(String broadcastId, String streamId, tranRef.BroadcastStatusEnum broadcastStatusEnum)
         {
-            youtube = new YouTubeService(await youtubeAuthen.getInitializer());
+            youtube = new YouTubeService(await youtubeAuthen.GetInitializer());
 
             IList<LiveStream> streams = await listStream();
 
@@ -112,7 +110,7 @@ namespace SmartRoom.Web.Areas.YouTube.Controllers
         // needs to be tested
         public async Task<LiveBroadcast> updateBroadcast(String broadcastId, String snippetTitle, DateTime startTime, DateTime endTime, String privacyStatus)
         {
-            youtube = new YouTubeService(await youtubeAuthen.getInitializer());
+            youtube = new YouTubeService(await youtubeAuthen.GetInitializer());
 
             IList<LiveBroadcast> broadcasts = await listBroadcast();
 
@@ -148,7 +146,7 @@ namespace SmartRoom.Web.Areas.YouTube.Controllers
         {
             Boolean flag = false;
 
-            youtube = new YouTubeService(await youtubeAuthen.getInitializer());
+            youtube = new YouTubeService(await youtubeAuthen.GetInitializer());
 
             IList<LiveStream> stream = await listStream();
 
@@ -190,7 +188,7 @@ namespace SmartRoom.Web.Areas.YouTube.Controllers
         // Needs to be tested
         public async Task<Boolean> deleteBroadcast(String broadcastId)
         {
-            youtube = new YouTubeService(await youtubeAuthen.getInitializer());
+            youtube = new YouTubeService(await youtubeAuthen.GetInitializer());
 
             Boolean flag = true;
 
@@ -208,7 +206,7 @@ namespace SmartRoom.Web.Areas.YouTube.Controllers
         // Needs to be tested
         public async Task<Boolean> deleteStream(String streamId)
         {
-            youtube = new YouTubeService(await youtubeAuthen.getInitializer());
+            youtube = new YouTubeService(await youtubeAuthen.GetInitializer());
 
             Boolean flag = true;
 
@@ -227,7 +225,7 @@ namespace SmartRoom.Web.Areas.YouTube.Controllers
         // Lists Streams belonging to authenticated user
         public async Task<IList<LiveStream>> listStream()
         {
-          youtube = new YouTubeService(await youtubeAuthen.getInitializer());
+          youtube = new YouTubeService(await youtubeAuthen.GetInitializer());
 
           LiveStreamsResource.ListRequest streamRequest = youtube.LiveStreams.List("id,snippet");
           streamRequest.Mine = true;
@@ -243,7 +241,7 @@ namespace SmartRoom.Web.Areas.YouTube.Controllers
         // Lists broadcasts belonging to authenticated user
         public async Task<IList<LiveBroadcast>> listBroadcast()
         {
-            youtube = new YouTubeService(await youtubeAuthen.getInitializer());
+            youtube = new YouTubeService(await youtubeAuthen.GetInitializer());
 
             LiveBroadcastsResource.ListRequest broadcastRequest = youtube.LiveBroadcasts.List("id,snippet");
             broadcastRequest.Mine = true;

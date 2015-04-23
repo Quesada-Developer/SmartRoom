@@ -13,10 +13,7 @@ namespace SmartRoom.Web.Areas.GoogleCalender.Controllers
     public class GoogleCalenderController : Controller
     {
 
-        private readonly Authen googleAuthen = new Authen(new[] {   
-                        "https://www.googleapis.com/auth/plus.login",
-                        "https://www.googleapis.com/auth/Calendar"
-        });
+        private readonly GoogleAuthentication googleAuthen = new GoogleAuthentication();
         private CalendarService googlecalender;
 
         // creates a broadcast verified

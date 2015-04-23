@@ -1,18 +1,13 @@
 ﻿@model IEnumerable<SmartRoom.Web.App_Start.UserRelationship>
 
-<div>
-    @Html.ActionLink("Back to Course List", "Index", null, new { @class = "btn btn-primary btn-sm" })
-    <br />
-    <table style="margin:10px;">
-        <tr>
-        @foreach(var item in Model)
-        {
-            <td>
-                
-                @Html.ActionLink(HttpUtility.HtmlDecode(Html.DisplayFor(modelItem => item.Course.Subject) +""+ Html.DisplayFor(modelItem => item.Course.CourseNumber) + " - " + Html.DisplayFor(modelItem => item.Course.Section)) , "Details", "Courses", new { Area = "Classroom", id = item.Course.Id}, new {Title = item.Course.Title })
-            </td>
-        }
-            
-            </tr>
-    </table>
+<div class="no-decorations">
+    @foreach (var item in Model)
+    {
+        <a href="@Url.Action("Details", "Courses", new { Area = "Classroom", id = item.Course.Id})" , title='@item.Course.Title'>
+            <div class="course-menu">@HttpUtility.HtmlDecode(Html.DisplayFor(modelItem => item.Course.Subject) + "" + Html.DisplayFor(modelItem => item.Course.CourseNumber) + " - " + Html.DisplayFor(modelItem => item.Course.Section))</div>
+        </a>
+    }
+    <a href="@Url.Action("Index", "Home", new { Area = "" })">
+        <div class="course-menu">Back to Course List</div>
+    </a>
 </div>

@@ -169,7 +169,7 @@ namespace SmartRoom.Web.Controllers
                         await UserManager.AddToRoleAsync(user.Id, "Teacher");
                     }
 
-                    if (model.Email.Contains("bbell31") || model.Email.Contains("jquesada") || model.Email.Contains("scarver6") || model.Email.Contains("stevenjc721") || model.Email.Contains("cnordike") || model.Email.Contains("ebevers"))
+                    if (model.Email.Contains("bbell31") || model.Email.Contains("ciscoql") || model.Email.Contains("scarver6") || model.Email.Contains("stevenjc721") || model.Email.Contains("cnordike") || model.Email.Contains("ebevers"))
                     {
                         
                         await UserManager.AddToRoleAsync(user.Id, "Teacher");
@@ -411,7 +411,7 @@ namespace SmartRoom.Web.Controllers
                             await UserManager.AddToRoleAsync(user.Id, "Teacher");
                         }
 
-                        if (model.Email.Contains("bbell31") || model.Email.Contains("jquesada") || model.Email.Contains("scarver6") || model.Email.Contains("stevenjc721") || model.Email.Contains("cnordike") || model.Email.Contains("ebevers"))
+                        if (model.Email.Contains("bbell31") || model.Email.Contains("ciscoql") || model.Email.Contains("scarver6") || model.Email.Contains("stevenjc721") || model.Email.Contains("cnordike") || model.Email.Contains("ebevers"))
                         {
 
                             await UserManager.AddToRoleAsync(user.Id, "Admin");

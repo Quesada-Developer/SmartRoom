@@ -23,28 +23,46 @@
     {
         foreach (var item in Model)
         {
-            <li class="ui-state-default class-container">
-                @Html.ActionLink(HttpUtility.HtmlDecode(Html.DisplayFor(modelItem => item.Title) + " - " + Html.DisplayFor(modelItem => item.Section)), "Details", "Courses", new { Area = "Classroom", id = item.Id }, null)
-                <hr />
-                
-                @{List<SmartRoom.Web.App_Start.Announcement> list = item.Announcements.Where(x => x.PublishOn >= DateTime.Now).OrderBy(x => x.PublishOn).Take(3).ToList();}
-                @for (int i = 0; i < list.Count(); i++ )
-                {
-                    @Html.DisplayFor(model => list[i].PublishOn); <text> - </text>
-                    @Html.DisplayFor(model => list[i].NewsTitle);<br />
-                }
-                
+            <li>
+                <a href="@Url.Action("Details", "Courses", new { Area = "Classroom", id = item.Id })">
+                    <div class="class-container ui-state-default">
+                        @HttpUtility.HtmlDecode(Html.DisplayFor(modelItem => item.Title) + " - " + Html.DisplayFor(modelItem => item.Section))
+                        <hr />
+
+                        @{List<SmartRoom.Web.App_Start.Announcement> list = item.Announcements.Where(x => x.PublishOn >= DateTime.Now).OrderBy(x => x.PublishOn).Take(3).ToList();}
+                        @for (int i = 0; i < list.Count(); i++)
+                        {
+                            @Html.DisplayFor(model => list[i].PublishOn); <text> - </text>
+                            @Html.DisplayFor(model => list[i].NewsTitle);<br />
+                        }
+                    </div>
+                </a>
             </li>
         }
     }
     @if (User.IsInRole("Teacher") || User.IsInRole("Admin"))
     {
-        <li class="class-container">
-            @Html.ActionLink("Add Classroom", "Create", "Courses", new { Area = "Classroom"}, new { })
-            <hr />
-            <br>
-            <a href="@Url.Action("Create", "Courses", new { Area = "Classroom"})">
-            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+        <li>
+            <a href="@Url.Action("Create", "Courses", new { Area = "Classroom" })">
+                <div class="class-container">
+                    Add Course
+                    <hr />
+                    <br>
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                </div>
+                </a>
+</li>
+    }
+    else
+    {
+        <li>
+            <a href="@Url.Action("Enroll", "Courses", new { Area = "Classroom" })">
+                <div class="class-container">
+                    Enroll in Course
+                    <hr />
+                    <br>
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                </div>
             </a>
         </li>
     }

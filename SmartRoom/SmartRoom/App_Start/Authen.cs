@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 namespace SmartRoom.Web.App_Start
 {
     public class Authen
-    {
+    {/*
         private readonly string AUTH_URL = "https://accounts.google.com/o/oauth2/auth";
         private ClientSecrets CLIENT_SECRET = new ClientSecrets();
         private readonly string TOKEN_URL = "https://accounts.google.com/o/oauth2/token";
@@ -33,6 +33,6 @@ namespace SmartRoom.Web.App_Start
                 HttpClientInitializer = credential,
                 ApplicationName = Properties.Settings.Default.ApplicationName
             };
-        }
+        }*/
     }
 }

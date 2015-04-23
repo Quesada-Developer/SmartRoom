@@ -1,27 +1,30 @@
 ﻿
 html, body {
-    height:100%
+    height: 100%;
 }
 /* Set padding to keep content from hitting the edges */
 
-.a{
+.a {
     text-decoration: none;
 }
+
 .wrapper {
     margin-left: 5%;
     margin-right: 5%;
 }
+
 .background {
     margin-left: 15%;
     margin-right: 15%;
-    margin-bottom:5%;
-    min-height:100%;
+    margin-bottom: 5%;
+    min-height: 100%;
     width: 70%;
     box-shadow: 0 0 8px 8px #9ec0c8;
     background-color: #d5e6ea;
     position: absolute;
     background-attachment: fixed;
 }
+
 .body-content {
     padding: 15px;
     padding-top: 65px;
@@ -38,15 +41,15 @@ html, body {
 input,
 select,
 textarea {
-  height: 34px;
-  padding: 6px 12px;
-  font-size: 14px;
-  line-height: 1.42857143;
-  color: #555;
-  background-color: #fff;
-  background-image: none;
-  border: 1px solid #ccc;
-  border-radius: 4px;   
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
 .index-course {
@@ -58,7 +61,6 @@ textarea {
     padding: 3px;
     margin: 5px;
     text-align: center;
-
 }
 
 /* Styles go here */
@@ -79,22 +81,22 @@ textarea {
 
 #sortable-container {
     display: inline-block;
-
 }
 
 .column {
     border: 1px solid #000000;
     border-radius: 5px;
 }
-.ui-sortable-helper{
-    opacity:0.5;
+
+.ui-sortable-helper {
+    opacity: 0.5;
 }
+
 #sortable {
     list-style-type: none;
     margin: 0;
     padding: 0;
     width: 100%;
-    height: 100%;
 }
 
     #sortable li {
@@ -106,55 +108,67 @@ textarea {
         min-height: 10%;
         font-size: 16px;
         text-align: center;
-    box-shadow: 0 0 4px 4px #afc9cf;
     }
-    #sortable hr
-    {
-        margin-top:0px;
-        margin-bottom:10px;
+
+    #sortable hr {
+        margin-top: 0px;
+        margin-bottom: 10px;
+    }
+    #sortable .class-container:hover{
+        opacity:1;
+    }
+    #sortable .class-container{
+        opacity:.85;
+        width:100%;
+        height: 100%;
+        margin:initial;
+        box-shadow: 0 0 4px 4px #afc9cf;
     }
 
 .form-horizontal {
+    text-align: left;
+    border-style: solid;
+    background-color: #fff;
+    background-image: none;
+    border: 5px solid #8ce4fa;
+    border-radius: 10px;
+    padding: 15px;
+    min-width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+}
 
-        text-align: left;
-        border-style: solid;
-        background-color: #fff;
-        background-image: none;
-        border: 5px solid #8ce4fa;
-        border-radius: 10px;
-        padding:15px;
-        min-width:75%;
-        margin-left:auto;
-        margin-right:auto;
+.form-overflow {
+    text-align: left;
+    overflow-x: auto;
+    border-style: solid;
+    background-color: #fff;
+    background-image: none;
+    border: 5px solid #8ce4fa;
+    border-radius: 10px;
+    padding: 15px;
+    min-width: 75%;
+    margin-left: auto;
+    margin-right: auto;
 }
-.form-overflow{
-        text-align: left;
-        overflow-x:auto;
-        border-style: solid;
-        background-color: #fff;
-        background-image: none;
-        border: 5px solid #8ce4fa;
-        border-radius: 10px;
-        padding:15px;
-        min-width:75%;
-        margin-left:auto;
-        margin-right:auto;
-}
+
 @media (min-width: 768px) {
     .form-horizontal .control-label {
         text-align: left;
-        width:25%;
+        width: 25%;
     }
 }
+
 @media (min-width: 992px) {
     .col-md-10 {
-        width:75%;
-        text-align:right;
+        width: 75%;
+        text-align: right;
     }
 }
-.col-md-10 input{
-    width:75%;
-        text-align: left;
+
+.col-md-10 input {
+    width: 75%;
+    text-align: left;
 }
 /* Youtube Styles */
 
@@ -175,7 +189,7 @@ textarea {
         font-size: 16px;
         color: #8ce4fa;
     }
-    
+
 a.navbar-brand {
     background: url("images/Logo.png") no-repeat top left;
     display: block;
@@ -184,46 +198,112 @@ a.navbar-brand {
     text-indent: -9999px; /* hides the link text */
 }
 
-.class-container{
-    background-color:white;
-    border-radius:10px;
+.class-container {
+    background-color: white;
+    border-radius: 10px;
     border-color: #8ce4fa;
     border-style: solid;
     border-width: 5px;
-    color:#8ce4fa;
+    color: #8ce4fa;
 }
 
-.container{
-    width:90%;
-    margin-left:5%;
-    margin-right:5%;
+.container {
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
 }
 
-.col-md-10 .btn-default{
-    width:auto;
+.col-md-10 .btn-default {
+    width: auto;
 }
 
-.class-container .glyphicon{
-    font-size:200%;
-    color:#8ce4fa;
+.class-container .glyphicon {
+    font-size: 200%;
+    color: #8ce4fa;
 }
-.class-container a{
+
+.class-container a {
+    text-decoration: none;
+    color: #8ce4fa;
+    font-weight: 700;
+}
+
+#loginForm .form-horizontal {
+    width: 100%;
+}
+
+.checkbox input[type=checkbox] {
+    height: initial;
+    width: initial;
+    margin-left: 0px;
+}
+
+#socialLoginForm .form-horizontal {
+    width: 100%;
+}
+
+.class-container {
+    text-align: center;
+    border-style: solid;
+    background-color: #fff;
+    border: 5px solid #8ce4fa;
+    border-radius: 10px;
+    padding: 15px;
+    width: 25%;
+    float: left;
+    height: 25%;
+    margin: 10px;
+}
+
+.form .class-container {
+    width: 100%;
+    text-align: left;
+}
+
+    .form .class-container a {
+        color: white;
+        font-weight: initial;
+    }
+
+.col-left {
+    text-align: left;
+    width: 15%;
+    float: right;
+}
+
+    .col-left dd {
+        margin-left: 50%;
+    }
+
+    .col-left dt {
+        width: initial;
+    }
+
+    .course-menu{
+    text-align: center;
+    border-style: solid;
+    background-color: #fff;
+    border: 3px solid #8ce4fa;
+    border-radius: 5px;
+    padding: 5px;
     text-decoration:none;
-    color:#8ce4fa;
     font-weight:700;
-}
-
-#loginForm .form-horizontal
-{
-    width:100%
-}
-.checkbox input[type=checkbox]
-{
-    height:initial;
-    width:initial;
-    margin-left:0px;
-}
-#socialLoginForm .form-horizontal
-{
-    width:100%;
-}
+    color:#8ce4fa;
+    margin-right:5px;
+    float: left;
+    }
+    .course-hr{
+        margin-top:10px;
+        margin-bottom:10px;
+        border-top:2px solid #3cb3cf
+    }
+    .course-table tbody tr td{
+        border-top:none;
+    }
+    .course-table tbody tr th{
+        border-top:2px solid #3cb3cf;
+        border-bottom:2px solid #3cb3cf;
+    }
+    .no-decorations a{
+        text-decoration:none;
+    }

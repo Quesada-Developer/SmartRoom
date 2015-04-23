@@ -1,11 +1,11 @@
-﻿@model SmartRoom.Web.Models.EnrollViewModel
+﻿@model SmartRoom.Web.Areas.Classroom.Models.EnrollViewModel
 @{
     ViewBag.Title = "Enroll";
 }
 
 <h2>@ViewBag.Title.</h2>
 <div class="form-horizontal">
-    @using (Html.BeginForm("Enroll", "Course", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    @using (Html.BeginForm("Enroll", "Courses", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
     {
         @Html.AntiForgeryToken()
         @Html.ValidationSummary("", new { @class = "text-danger" })

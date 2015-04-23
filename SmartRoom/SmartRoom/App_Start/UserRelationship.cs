@@ -16,9 +16,14 @@ namespace SmartRoom.Web.App_Start
 
         [Key]
         public int Id { get; set; }
+
+        [Required]
         public string AccountId { get; set; }
         public virtual ApplicationUser Account { get; set; }
+
+        public int? CourseId { get; set; }
         public virtual Course Course { get; set; }
+
         [Required]
         public int AccountRoleId { get; set; }
         public CourseRole AccountRole { get; set; }

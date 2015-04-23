@@ -28,7 +28,7 @@ namespace SmartRoom.Web.Areas.Classroom.Controllers
         }
 
         //
-        // GET: /Manage/AddPhoneNumber
+        // GET: /Classroom/Enroll/
         public ActionResult Enroll()
         {
             return View();
@@ -166,7 +166,7 @@ namespace SmartRoom.Web.Areas.Classroom.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Enroll(EnrollViewModel model)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 if (!db.Courses.Any(obj => obj.RegistrationCode.Equals(model.RegistrationCode)))
                 {
@@ -179,7 +179,7 @@ namespace SmartRoom.Web.Areas.Classroom.Controllers
                     ModelState.AddModelError("RegistrationCode", "You can have already register for this course.");
                     return View(model);
                 }
-                UserRelationship _UserRelationship = new UserRelationship() { AccountId = User.Identity.GetUserId(), AccountRole = CourseRole.student };
+                UserRelationship _UserRelationship = new UserRelationship() { AccountId = User.Identity.GetUserId(), AccountRole = CourseRole.student, CourseId=course.Id, CreatedBy=User.Identity.GetUserId() };
                 db.UserRelationships.Add(_UserRelationship);
                 course.UserRelationships.Add(_UserRelationship);
                 db.Users.Find(User.Identity.GetUserId()).Courses.Add(course);

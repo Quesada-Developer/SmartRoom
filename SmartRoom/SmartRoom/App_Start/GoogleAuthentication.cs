@@ -10,14 +10,15 @@ namespace SmartRoom.Web.App_Start
     public class GoogleAuthentication
     {
         private ClientSecrets ClientSecret;
-        private readonly string AuthURL = "https://accounts.google.com/o/oauth2/auth";
-        private readonly string TokenURL = "https://accounts.google.com/o/oauth2/token";
-        private readonly string ClientEmail = "1084733801830-4j2fje2ku2b6tkpa4v9v6cbbt08jeiql@developer.gserviceaccount.com";
+        private const string AuthURL = "https://accounts.google.com/o/oauth2/auth";
+        private const string TokenURL = "https://accounts.google.com/o/oauth2/token";
+        private const string ClientEmail = "1084733801830-4j2fje2ku2b6tkpa4v9v6cbbt08jeiql@developer.gserviceaccount.com";
         private UserCredential Credential;
         private string[] Scope;
 
         public GoogleAuthentication()
         {
+            ClientSecret = new ClientSecrets();
             ClientSecret.ClientSecret = "WIeQIEArSTs1P_drjOQvsSiC";
             ClientSecret.ClientId = "1084733801830-4j2fje2ku2b6tkpa4v9v6cbbt08jeiql.apps.googleusercontent.com";
             Scope = new[] {
