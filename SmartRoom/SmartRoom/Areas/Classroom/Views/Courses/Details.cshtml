@@ -14,6 +14,7 @@
     </div>
 </div>
 <hr />
+<div class="form-overflow">
 <div class="row">
     <div class="col-sm-6">
         <h2 title="@Html.DisplayNameFor(model => model.Title)">@Html.DisplayFor(model => model.Title)</h2>
@@ -22,6 +23,7 @@
 
     </div>
     <div class="col-sm-6">
+            <!--col-sm-6-->
         <dl class="dl-horizontal">
             <dt>
                 @Html.DisplayNameFor(model => model.Term)
@@ -57,8 +59,9 @@
         </dl>
     </div>
 </div>
+</div>
 <hr />
-<div>
+<div class="form-horizontal">
     <h2 title="Announcements">Announcements</h2>
     @{List<SmartRoom.Web.App_Start.Announcement> list = Model.Announcements.Where(x => x.PublishOn >= DateTime.Now).OrderBy(x => x.PublishOn).Take(7).ToList();}
     @for (int i = 0; i < list.Count(); i++)
@@ -73,38 +76,52 @@
 </a>
 </div>
 <hr />
+<div class="form-horizontal">
 <div class="row">
-    <img src="~/Content/images/YouTube-icon-full_color.png" width="100" />Add link to the closest valid stream link.
+        <center><img src="~/Content/images/YouTube-icon-full_color.png" width="100" />Add link to the closest valid stream link.</center>
 </div>
+</div>
+<hr />
+@if (Model.UserRelationships.Any(obj => obj.AccountId.Equals(User.Identity.GetUserId()) && obj.AccountRole == SmartRoom.Web.Helpers.CourseRole.owner))
+{
+
+            <div>
+        <h3>
+            <a href="@Url.Action("Create", "YouTube", new { area = "YouTube", id = Model.Id })">
+                <div class="ui-state-default class-container">
+                    <center>
+                        CREATE A NEW STREAM
+                    </center>
+            </div>
+        </a>
+        </h3>
+        <h3>
+        <a href="@Url.Action("Create", "Announcements", new { area = "Forms", id = Model.Id })">
+                <div class="ui-state-default class-container">
+                    <center>
+                        CREATE AN ANNOUNCEMENT
+                    </center>
+            </div>
+        </a>
+        </h3>
+        <h3>
+        <a href="@Url.Action("Create","Syllabus",new{area="Forms",id = Model.Id})">
+                <div class="ui-state-default class-container">
+                    <center>
+                        CREATE/ADD A SYLLABUS [TO DO]
+                    </center>
+            </div>
+        </a>
+        </h3>
+    </div>
+
+}
 <hr />
 
 @if (Model.UserRelationships.Any(obj => obj.AccountId.Equals(User.Identity.GetUserId()) && obj.AccountRole == SmartRoom.Web.Helpers.CourseRole.owner))
 {
-    <div class="row">
-        <a href="@Url.Action("Create", "YouTube", new { area = "YouTube", id = Model.Id })">
-            <div>
-                Create a new stream - WE NEED TO FORMAT THIS AS A DIV BUTTON LIKE IN THE HOME PAGE
-            </div>
-        </a>
-
-        <a href="@Url.Action("Create", "Announcements", new { area = "Forms", id = Model.Id })">
-            <div>
-                Create an announcmenet - same here
-            </div>
-        </a>
-        <a href="@Url.Action("Create","Syllabus",new{area="Forms",id = Model.Id})">
-            <div>
-                Create a syllabus - not currently implemented, on my todo list
-            </div>
-        </a>
-    </div>
-
-}
-
-
-@if (Model.UserRelationships.Any(obj => obj.AccountId.Equals(User.Identity.GetUserId()) && obj.AccountRole == SmartRoom.Web.Helpers.CourseRole.owner))
-{
     @* This Section is viewed by admins only. *@
+    <div class="form-horizontal">
     <div class="row">
         <div class="col-sm-12">
 
@@ -113,6 +130,7 @@
                 @Html.Partial("Partial/_UserRelationships", Model.UserRelationships.Where(obj => obj.IsActive))
                 @Html.Partial("Partial/_AddUserRelationships", new SmartRoom.Web.Areas.Classroom.Models.AddUserToCourse() { CourseId = Model.Id })
             </div>
+                <hr />
             <dl class="dl-horizontal">
 
                 <dt>
@@ -130,7 +148,7 @@
         </div>
 
     </div>
-
+    </div>
 }
 
 <script>

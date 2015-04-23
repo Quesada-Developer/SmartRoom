@@ -4,69 +4,72 @@
     ViewBag.Title = "Index";
 }
 <br/>
-<h2>Courses</h2>
+<div class="form-overflow">
+    <h2>Courses</h2>
 
-<p>
-    @if (User.IsInRole("Teacher"))
-    {
-        @Html.ActionLink("Create New", "Create");
-    }
-        
-        
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Subject)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CourseNumber)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Section)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Location)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Term)
-        </th>
-        <th></th>
-    </tr>
+    <p>
+        @if (User.IsInRole("Teacher"))
+        {
+            @Html.ActionLink("Create New", "Create");
+        }
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Subject)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CourseNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Section)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Location)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Term)
-        </td>
-        <td>
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) 
-            @if (User.IsInRole("Teacher"))
-            {
-                Html.ActionLink("Edit", "Edit", new { id = item.Id });
-                Html.ActionLink("Delete", "Delete", new { id = item.Id });
-            }
-            
-        </td>
-    </tr>
-}
 
-</table>
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Subject)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CourseNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Section)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Location)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Term)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Subject)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CourseNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Section)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Location)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Term)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.Id })
+                    @if (User.IsInRole("Teacher"))
+                    {
+                        Html.ActionLink("Edit", "Edit", new { id = item.Id });
+                        Html.ActionLink("Delete", "Delete", new { id = item.Id });
+                    }
+
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
