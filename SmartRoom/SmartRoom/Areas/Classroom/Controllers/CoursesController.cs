@@ -131,12 +131,13 @@ namespace SmartRoom.Web.Areas.Classroom.Controllers
                         AccountId = model.AccountId, 
                         AccountRole = (CourseRole)model.AccountRole, 
                         CreateDate = DateTime.Now, 
-                        /*CreatedBy = User.Identity.GetUserId(),*/ 
+                        CreatedBy = User.Identity.GetUserId(), 
                         Course = db.Courses.Find(model.CourseId) 
                     };
                     db.UserRelationships.Add(_UserRelationship);
                     db.Courses.Find(model.CourseId).UserRelationships.Add(_UserRelationship);
                     db.Users.Find(model.AccountId).Courses.Add(db.Courses.Find(model.CourseId));
+                    var errors = ModelState.Values.SelectMany(v => v.Errors);
                     db.SaveChanges();
                 }
                     

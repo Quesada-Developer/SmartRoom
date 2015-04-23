@@ -1,7 +1,7 @@
 ﻿@model SmartRoom.Web.Areas.Classroom.Models.RemoveUserFromCourse
 
 
-    @using (Html.BeginForm("DeleteUserFromCourse", "Courses", FormMethod.Post, new { id = "DeleteUser" }))
+    @using (Html.BeginForm("DeleteUserFromCourse", "Courses", FormMethod.Post, new { id = "DeleteUser", role = "form" }))
     {
         @Html.AntiForgeryToken()
         <div class="form-actions no-color">
