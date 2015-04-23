@@ -65,7 +65,7 @@ namespace SmartRoom.Web.App_Start
         [Required]
         [Display(Name = "Created By")]
         public string CreatedById { get; set; }
-
+        public virtual ApplicationUser CreatedBy { get; set; }
         [Required]
         [Display(Name = "Created")]
         [Column(TypeName = "DateTime2")]
@@ -73,7 +73,7 @@ namespace SmartRoom.Web.App_Start
 
         [Display(Name = "Modified Last By")]
         public string ModifedById { get; set; }
-
+        public virtual ApplicationUser ModifedBy { get; set; }
         [Column(TypeName = "DateTime2")]
         public DateTime? ModifiedDate { get; set; }
 

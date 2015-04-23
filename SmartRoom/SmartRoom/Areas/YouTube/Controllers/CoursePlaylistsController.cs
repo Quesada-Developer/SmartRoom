@@ -17,7 +17,7 @@ namespace SmartRoom.Web.Areas.YouTube.Controllers
         // GET: YouTube/CoursePlaylists
         public ActionResult Index()
         {
-            var coursePlaylist = db.CoursePlaylists.Include(c => c.Course);
+            var coursePlaylist = db.CoursePlaylists.Include(c => c.Course).Include(c => c.CreatedBy).Include(c => c.ModifedBy);
             return View(coursePlaylist.ToList());
         }
 
