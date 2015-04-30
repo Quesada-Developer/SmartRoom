@@ -1,6 +1,8 @@
-﻿using Google.Apis.YouTube.v3.Data;
+﻿using Google.Apis.YouTube.v3;
+using Google.Apis.YouTube.v3.Data;
 using SmartRoom.Web.App_Start;
 using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
@@ -65,7 +67,6 @@ namespace SmartRoom.Web.Areas.YouTube.Controllers
 
             // Bind them together
             LiveBroadcast bindedBroadcast = await liveController.bindBroadcast(broadcast, stream);
-
             // Values to-be inserted updated
             youtubelivedetail.BroadcastId = bindedBroadcast.Id;
             youtubelivedetail.BroadcastchannelId = bindedBroadcast.ContentDetails.BoundStreamId;
@@ -75,7 +76,12 @@ namespace SmartRoom.Web.Areas.YouTube.Controllers
             youtubelivedetail.StreamCDNIngestionUrl = stream.Cdn.IngestionInfo.IngestionAddress;
           
             String id = (bindedBroadcast.ContentDetails.MonitorStream.EmbedHtml).ToString();
-            
+            YouTubeService youtube = new YouTubeService(await (new GoogleAuthentication()).GetInitializer());
+
+                bindedBroadcast.ContentDetails.MonitorStream.EnableMonitorStream = false;
+                LiveBroadcastsResource.UpdateRequest disablePreview = youtube.LiveBroadcasts.Update(bindedBroadcast, "contentDetails");
+                LiveBroadcast returnBroadcast = disablePreview.Execute();
+
             //substring for browser
             if(id.Contains("embed/")){
 
@@ -97,6 +103,39 @@ namespace SmartRoom.Web.Areas.YouTube.Controllers
 
             ViewBag.CourseId = new SelectList(db.Courses, "Id", "Title", youtubelivedetail.CourseId);
             return View(youtubelivedetail);
+        }
+
+        public async Task<ActionResult> Test(int id)
+        {
+            var q = db.YoutubeLiveDetails.Where(x => x.Id == id).FirstOrDefault();
+            try
+            {
+                if (q != null)
+                {
+                    var liveController = new BroadcastController();
+
+                    var youtube = new YouTubeService(await (new GoogleAuthentication()).GetInitializer());
+                    var broadcastRequest = youtube.LiveBroadcasts.List("id,status");
+                    broadcastRequest.Id = q.BroadcastId;
+                    var returnedList = broadcastRequest.Execute();
+                    var broadcast = returnedList.Items.FirstOrDefault();
+
+                    var streamRequest = youtube.LiveStreams.List("id,status");
+                    streamRequest.Id = q.StreamId;
+                    var streamList = streamRequest.Execute();
+                    var stream = streamList.Items.FirstOrDefault();
+
+                    if (broadcast != null && stream != null)
+                    {
+                        LiveBroadcast transBroadcast = await liveController.transitionBroadcast(broadcast, stream, Google.Apis.YouTube.v3.LiveBroadcastsResource.TransitionRequest.BroadcastStatusEnum.Live);
+                    }
+                }
+                return View("Details", q);
+            }
+            catch
+            {
+                return View("Index", db.YoutubeLiveDetails);
+            }
         }
 
         // GET: /Youtube/Edit/5

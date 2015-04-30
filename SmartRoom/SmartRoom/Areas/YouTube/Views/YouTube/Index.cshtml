@@ -59,7 +59,7 @@
             @Html.DisplayNameFor(model => model.StreamStatus)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.StreamSnippetTitle)
+            @Html.DisplayNameFor(model => model.StreamName)
         </th>
        <!-- <th>
             @Html.DisplayNameFor(model => model.StreamCDNFormat)
@@ -82,7 +82,7 @@
 
             <td>
               <button > @Html.ActionLink("Edit", "Edit", new { id = item.Id })</button>  
-                <button>@Html.ActionLink("Transition", "Transition", new { id = item.Id })</button>
+                <button>@Html.ActionLink("Start", "Start", new { id = item.Id })</button>
                 <button >@Html.ActionLink("Details","Details", new { id = item.Id })</button>
                 <button >@Html.ActionLink("Delete","Delete", new { id = item.Id })</button>
 
@@ -134,7 +134,7 @@
                 @Html.DisplayFor(modelItem => item.StreamStatus)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.StreamSnippetTitle)
+                @Html.DisplayFor(modelItem => item.StreamName)
             </td>
          <!--   <td>
                 @Html.DisplayFor(modelItem => item.StreamCDNFormat)

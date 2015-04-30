@@ -8,10 +8,8 @@
 
 <div id="alert_placeholder"></div>
 <div class="row">
-    <div class="col-sm-4 pull-left">
         @Html.Partial("Partial/_CourseMenu", Model.UserRelationships.Where(x => x.AccountId.Equals(User.Identity.GetUserId())))
 
-    </div>
 </div>
 <hr class="course-hr" />
 <div class="row">

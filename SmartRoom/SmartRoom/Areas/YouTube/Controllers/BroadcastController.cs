@@ -34,8 +34,7 @@ namespace SmartRoom.Web.Areas.YouTube.Controllers
             broadcast.Status = new LiveBroadcastStatus();
             broadcast.Status.PrivacyStatus = privacyStatus;
 
-
-            LiveBroadcast returnedBroadcast = youtube.LiveBroadcasts.Insert(broadcast, "id,snippet,status").Execute();
+            LiveBroadcast returnedBroadcast = youtube.LiveBroadcasts.Insert(broadcast, "id,snippet,contentDetails,status").Execute();
 
 
             return returnedBroadcast;
@@ -83,27 +82,15 @@ namespace SmartRoom.Web.Areas.YouTube.Controllers
         }
 
         // Redo
-        public async Task<Boolean> transitionBroadcast(String broadcastId, String streamId, tranRef.BroadcastStatusEnum broadcastStatusEnum)
+        public async Task<LiveBroadcast> transitionBroadcast(LiveBroadcast broadcast, LiveStream stream, tranRef.BroadcastStatusEnum broadcastStatusEnum)
         {
             youtube = new YouTubeService(await youtubeAuthen.GetInitializer());
+            if (stream.Status.StreamStatus != "active")
+                throw new Exception("stream is not active");
+            LiveBroadcastsResource.TransitionRequest liveBroadcastTransition = youtube.LiveBroadcasts.Transition(broadcastStatusEnum, broadcast.Id, "id,snippet,contentDetails,status");
+            LiveBroadcast broadcastResponse = liveBroadcastTransition.Execute();
 
-            IList<LiveStream> streams = await listStream();
-
-            for (int i = 0; i < streams.Count; i++)
-            {
-                if (streams[i].Id == streamId && streams[i].Status.StreamStatus == "active")
-                {
-
-                    LiveBroadcastsResource.TransitionRequest liveBroadcastTransition = youtube.LiveBroadcasts.Transition(broadcastStatusEnum, broadcastId, "id,snippet,contentDetails,status");
-
-                    LiveBroadcast broadcastResponse = liveBroadcastTransition.Execute();
-
-                    return true;
-
-                }
-            }
-
-            return false;
+            return broadcastResponse;
 
         }
 

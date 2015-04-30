@@ -1,10 +1,14 @@
 ﻿@model IEnumerable<SmartRoom.Web.App_Start.UserRelationship>
 
+@{
+    var userId = User.Identity.GetUserId();
+    var courses = new SmartRoom.Web.App_Start.SmartModel().UserRelationships.Where(x => x.AccountId == userId).Select(x => x.Course);
+}
 <div class="no-decorations">
-    @foreach (var item in Model)
+    @foreach (var item in courses)
     {
-        <a href="@Url.Action("Details", "Courses", new { Area = "Classroom", id = item.Course.Id})" , title='@item.Course.Title'>
-            <div class="course-menu">@HttpUtility.HtmlDecode(Html.DisplayFor(modelItem => item.Course.Subject) + "" + Html.DisplayFor(modelItem => item.Course.CourseNumber) + " - " + Html.DisplayFor(modelItem => item.Course.Section))</div>
+        <a href="@Url.Action("Details", "Courses", new { Area = "Classroom", id = item.Id})" , title='@item.Title'>
+            <div class="course-menu">@HttpUtility.HtmlDecode(Html.DisplayFor(modelItem => item.Subject) + "" + Html.DisplayFor(modelItem => item.CourseNumber) + " - " + Html.DisplayFor(modelItem => item.Section))</div>
         </a>
     }
     <a href="@Url.Action("Index", "Home", new { Area = "" })">

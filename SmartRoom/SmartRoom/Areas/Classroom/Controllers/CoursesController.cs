@@ -21,9 +21,7 @@ namespace SmartRoom.Web.Areas.Classroom.Controllers
         [Authorize]
         public ActionResult Index()
         {
-            string _UserId = User.Identity.GetUserId();
-            var list = db.Users.Find(_UserId);
-            List<Course> Courses = (list != null)? list.CoursesByRole(CourseRole.owner).ToList(): new List<Course>();
+            var Courses = db.UserRelationships.Where(x=>x.AccountId==User.Identity.GetUserId()).Select(x=>x.Course);
             return View(Courses);
         }
 

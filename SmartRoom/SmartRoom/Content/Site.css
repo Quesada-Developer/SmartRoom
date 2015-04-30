@@ -208,7 +208,7 @@ a.navbar-brand {
     border-color: #8ce4fa;
     border-style: solid;
     border-width: 5px;
-    color: #8ce4fa;
+    color: black;
 }
 
 .container {
@@ -223,12 +223,12 @@ a.navbar-brand {
 
 .class-container .glyphicon {
     font-size: 200%;
-    color: #8ce4fa;
+    color: black;
 }
 
 .class-container a {
     text-decoration: none;
-    color: #8ce4fa;
+    color: black;
     font-weight: 700;
 }
 
@@ -292,7 +292,7 @@ a.navbar-brand {
     padding: 5px;
     text-decoration:none;
     font-weight:700;
-    color:#8ce4fa;
+    color:black;
     margin-right:5px;
     float: left;
     }
@@ -317,10 +317,10 @@ a.navbar-brand {
        font-weight:initial;
     }
     .announcements{
-    color:#8ce4fa;
+    color:black;
     }
     .announcements a{
-    color:#3cb3cf;
+    color:black;
         text-decoration:none;
     }
     @media (min-width: 992px){
