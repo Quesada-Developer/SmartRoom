@@ -1,4 +1,6 @@
-﻿using Google.Apis.Calendar.v3;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Google.Apis.Calendar.v3;
 using SmartRoom.Web.App_Start;
 using System;
 using System.Collections.Generic;
@@ -17,7 +19,7 @@ namespace SmartRoom.Web.Areas.Forms.Controllers
         {
             GoogleAuthentication youtubeAuthen = new GoogleAuthentication();
             CalendarService googlecalender = new CalendarService(await youtubeAuthen.GetInitializer());
-            var re = googlecalender.Events.List("bbell31@students.kennesaw.edu").Execute();
+            var re = googlecalender.Events.List(db.Users.Find(User.Identity.GetUserId()).Email).Execute();
             return View(re.Items);
         }
         public ActionResult Edit(string id)
