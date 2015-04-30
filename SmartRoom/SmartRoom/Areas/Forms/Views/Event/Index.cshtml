@@ -1,4 +1,6 @@
-﻿@{
+﻿@model List<Google.Apis.Calendar.v3.Data.Event>
+
+@{
     ViewBag.Title = "Event Calendar";
 }
 
@@ -6,21 +8,14 @@
     @Scripts.Render("~/Scripts/angular.min.js")
     @Scripts.Render("~/Scripts/daypilot-all.min.js")
 }
+<p>Google Events</p>
+@foreach (Google.Apis.Calendar.v3.Data.Event f in Model)
+{
+    
+    <p>@f.Summary - (Starts: @f.Start.DateTime.ToString())</p>
+}
 
 
-<div ng-app="main" ng-controller="DemoCtrl">
-    <div style="float:left; width: 160px">
-        <daypilot-navigator id="navi" daypilot-config="navigatorConfig"></daypilot-navigator>
-    </div>
-    <div style="margin-left: 160px">
-        <div class="space">
-            <button ng-click="showDay()">Day</button>
-            <button ng-click="showWeek()">Week</button>
-        </div>
-        <daypilot-calendar id="day" daypilot-config="dayConfig" daypilot-events="events"></daypilot-calendar>
-        <daypilot-calendar id="week" daypilot-config="weekConfig" daypilot-events="events"></daypilot-calendar>
-    </div>
-</div>
 <script>
     var app = angular.module('main', ['daypilot']).controller('DemoCtrl', function ($scope, $timeout, $http) {
         $scope.events = [];

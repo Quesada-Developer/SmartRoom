@@ -430,6 +430,7 @@ namespace SmartRoom.Web.Controllers
                             db.UserRelationships.Add(_UserRelationship);
                             db.SaveChanges();
                         }
+                        await CreateCalendar();
                         return RedirectToLocal(returnUrl);
                     }
                 }

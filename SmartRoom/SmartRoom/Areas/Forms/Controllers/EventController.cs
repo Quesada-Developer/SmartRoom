@@ -1,7 +1,11 @@
-﻿using SmartRoom.Web.App_Start;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Google.Apis.Calendar.v3;
+using SmartRoom.Web.App_Start;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -11,9 +15,12 @@ namespace SmartRoom.Web.Areas.Forms.Controllers
     {
         private SmartModel db = new SmartModel();
 
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            return View();
+            GoogleAuthentication youtubeAuthen = new GoogleAuthentication();
+            CalendarService googlecalender = new CalendarService(await youtubeAuthen.GetInitializer());
+            var re = googlecalender.Events.List(db.Users.Find(User.Identity.GetUserId()).Email).Execute();
+            return View(re.Items);
         }
         public ActionResult Edit(string id)
         {
