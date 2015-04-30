@@ -107,8 +107,9 @@
                 </div>
             </a>
         </div>
-<hr class="course-hr" />
-}
+    }
+    <hr class="course-hr" />
+
 @if (Model.UserRelationships.Any(obj => obj.AccountId.Equals(User.Identity.GetUserId()) && obj.AccountRole == SmartRoom.Web.Helpers.CourseRole.owner))
 {
 
