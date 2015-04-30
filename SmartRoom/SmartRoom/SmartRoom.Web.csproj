@@ -61,6 +61,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Google.Apis.Auth.1.9.1\lib\net40\Google.Apis.Auth.dll</HintPath>
     </Reference>
+    <Reference Include="Google.Apis.Auth.Mvc4">
+      <HintPath>..\packages\Google.Apis.Auth.Mvc.1.9.1\lib\net40\Google.Apis.Auth.Mvc4.dll</HintPath>
+    </Reference>
     <Reference Include="Google.Apis.Auth.PlatformServices, Version=1.9.1.12399, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Google.Apis.Auth.1.9.1\lib\net40\Google.Apis.Auth.PlatformServices.dll</HintPath>
@@ -249,6 +252,8 @@
     <Compile Include="Areas\Classroom\Models\AccountDDLModel.cs" />
     <Compile Include="Areas\Classroom\Models\CoursesViewModels.cs" />
     <Compile Include="Areas\Forms\Controllers\AnnouncementsController.cs" />
+    <Compile Include="Areas\Forms\Controllers\CalendarController.cs" />
+    <Compile Include="Areas\Forms\Controllers\EventController.cs" />
     <Compile Include="Areas\Forms\Controllers\SyllabusController.cs" />
     <Compile Include="Areas\Forms\FormsAreaRegistration.cs" />
     <Compile Include="Areas\Forms\Models\CompleteSyllabusModel.cs" />
@@ -455,6 +460,11 @@
     <Content Include="Areas\Forms\Views\Announcements\Index.cshtml" />
     <Content Include="Areas\Forms\Views\Syllabus\Partial\_AdditionalInformationRow.cshtml" />
     <Content Include="Areas\GoogleCalender\Views\web.config" />
+    <Content Include="Areas\GoogleCalender\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\GoogleCalender\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\GoogleCalender\Views\GoogleCalender\Index.cshtml" />
+    <Content Include="Areas\Forms\Views\Event\Index.cshtml" />
+    <Content Include="Areas\Forms\Views\Event\Edit.cshtml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -487,6 +497,7 @@
     <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\daypilot-all.min.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-dj.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-er.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-et.js" />
@@ -1309,8 +1320,6 @@
     <Folder Include="Areas\Classroom\Views\Shared\" />
     <Folder Include="Areas\Forms\Views\Shared\" />
     <Folder Include="Areas\GoogleCalender\Models\" />
-    <Folder Include="Areas\GoogleCalender\Views\GoogleCalender\" />
-    <Folder Include="Areas\GoogleCalender\Views\Shared\" />
     <Folder Include="Areas\YouTube\Models\" />
   </ItemGroup>
   <ItemGroup>

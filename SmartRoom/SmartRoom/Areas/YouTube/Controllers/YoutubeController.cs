@@ -2,7 +2,6 @@
 using Google.Apis.YouTube.v3.Data;
 using SmartRoom.Web.App_Start;
 using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
@@ -105,7 +104,7 @@ namespace SmartRoom.Web.Areas.YouTube.Controllers
             return View(youtubelivedetail);
         }
 
-        public async Task<ActionResult> Test(int id)
+        public async Task<ActionResult> Start(int id)
         {
             var q = db.YoutubeLiveDetails.Where(x => x.Id == id).FirstOrDefault();
             try

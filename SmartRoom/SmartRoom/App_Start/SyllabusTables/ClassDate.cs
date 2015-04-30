@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Web;
 
 namespace SmartRoom.Web.App_Start
 {
@@ -13,14 +10,12 @@ namespace SmartRoom.Web.App_Start
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        public DateTime Date { get; set; }
-        public string LectureTopic { get; set; }
-        public string LectureInformation { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+        public string Title { get; set; }
+        public string Information { get; set; }
 
         public bool isActive { get; set; }
-
-        public int InfoId { get; set; }
-        public virtual Information Info{ get; set; }
-
+        
     }
 }

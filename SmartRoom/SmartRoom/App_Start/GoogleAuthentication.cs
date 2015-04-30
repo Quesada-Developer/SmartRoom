@@ -1,6 +1,8 @@
 ﻿using Google.Apis.Auth.OAuth2;
+using Google.Apis.Calendar.v3;
 using Google.Apis.Services;
 using Google.Apis.Util;
+using Google.Apis.YouTube.v3;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -20,12 +22,11 @@ namespace SmartRoom.Web.App_Start
         {
             ClientSecret = new ClientSecrets();
             ClientSecret.ClientSecret = "WIeQIEArSTs1P_drjOQvsSiC";
-
             ClientSecret.ClientId = "1084733801830-4j2fje2ku2b6tkpa4v9v6cbbt08jeiql.apps.googleusercontent.com";
             Scope = new[] {
-                    "https://www.googleapis.com/auth/youtube",  
                     "https://www.googleapis.com/auth/plus.login",
-                    "https://www.googleapis.com/auth/calendar"
+                    YouTubeService.Scope.Youtube,
+                    CalendarService.Scope.Calendar
                 };
         }
 

@@ -67,7 +67,7 @@ namespace SmartRoom.Web.App_Start
 
         public virtual List<Information> AdditionalInformation { get; set; }
         public virtual List<GradeDistribution> GradeDistributions { get; set; }
-        public virtual List<ClassDate> ClassDates { get; set; }
+        //public virtual List<ClassDate> ClassDates { get; set; }
 
         public bool isActive { get; set; }
     }

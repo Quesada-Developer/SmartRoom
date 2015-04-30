@@ -1,9 +1,6 @@
 ﻿using Microsoft.AspNet.Identity;
 using SmartRoom.Web.App_Start;
-using SmartRoom.Web.Areas.Classroom.Models;
-using SmartRoom.Web.Controllers;
 using SmartRoom.Web.Helpers;
-using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;

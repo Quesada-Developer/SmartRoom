@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using Google.Apis.Calendar.v3;
+using Google.Apis.YouTube.v3;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
@@ -34,8 +36,8 @@ namespace SmartRoom.Web
                         validateInterval: TimeSpan.FromMinutes(30),
                         regenerateIdentity: (manager, user) => user.GenerateUserIdentityAsync(manager))
                 }
-            });  
-            
+            });
+
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
 
             // Enables the application to temporarily store user information when they are verifying the second factor in the two-factor authentication process.
@@ -58,12 +60,23 @@ namespace SmartRoom.Web
             //app.UseFacebookAuthentication(
             //   appId: "",
             //   appSecret: "");
+            var authenInfo = new GoogleOAuth2AuthenticationOptions();
 
-            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            {
-                ClientId = "1084733801830-4j2fje2ku2b6tkpa4v9v6cbbt08jeiql.apps.googleusercontent.com",
-                ClientSecret = "WIeQIEArSTs1P_drjOQvsSiC"
-            });
+            authenInfo.Scope.Add("openid");
+            authenInfo.Scope.Add("profile");
+            authenInfo.Scope.Add("email");
+            authenInfo.Scope.Add("https://www.googleapis.com/auth/plus.login");
+            authenInfo.Scope.Add("https://www.googleapis.com/auth/plus.me");
+            authenInfo.Scope.Add(YouTubeService.Scope.Youtube);
+            authenInfo.Scope.Add(CalendarService.Scope.Calendar);
+            authenInfo.Scope.Add(CalendarService.Scope.CalendarReadonly);
+
+            authenInfo.ClientId = "1084733801830-4j2fje2ku2b6tkpa4v9v6cbbt08jeiql.apps.googleusercontent.com";
+            authenInfo.ClientSecret = "WIeQIEArSTs1P_drjOQvsSiC";
+
+            authenInfo.Provider = new GoogleOAuth2AuthenticationProvider();
+
+            app.UseGoogleAuthentication(authenInfo);
         }
     }
 }

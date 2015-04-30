@@ -1,47 +1,28 @@
-﻿using Google.Apis.YouTube.v3;
-using Google.Apis.YouTube.v3.Data;
-using Google.Apis.Calendar.v3;
-using System;
-using System.Collections.Generic;
+﻿using Google.Apis.Calendar.v3;
+using SmartRoom.Web.App_Start;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace SmartRoom.Web.Areas.GoogleCalender.Controllers
 {
-    using SmartRoom.Web.App_Start;
-    using tranRef = Google.Apis.YouTube.v3.LiveBroadcastsResource.TransitionRequest;
     public class GoogleCalenderController : Controller
     {
 
         private readonly GoogleAuthentication googleAuthen = new GoogleAuthentication();
         private CalendarService googlecalender;
 
-        // creates a broadcast verified
-        /*public async Task<LiveBroadcast> createBroadcast(String kind, String snippetTitle, DateTime startTime, DateTime endTime, String privacyStatus)
+        public async Task<ActionResult >Index()
         {
-            googlecalender = new CalendarService(await googleAuthen.getInitializer());
+            googlecalender = new CalendarService(await googleAuthen.GetInitializer());
+            string pageToken = null;
+            do
+            {
+                //Events events = googlecalender.CalendarList.Get("SmartRoom");
+            }
+            while (pageToken != null);
 
 
-            LiveBroadcast broadcast = new LiveBroadcast();
-
-            // Set broadcast Kind
-            broadcast.Kind = kind;
-
-            // Set broadcast snippet 
-            broadcast.Snippet = new LiveBroadcastSnippet();
-            broadcast.Snippet.Title = snippetTitle;
-            broadcast.Snippet.ScheduledStartTime = startTime;
-            broadcast.Snippet.ScheduledEndTime = endTime;
-
-            //Set broadcast status
-            broadcast.Status = new LiveBroadcastStatus();
-            broadcast.Status.PrivacyStatus = privacyStatus;
-
-
-            LiveBroadcast returnedBroadcast = youtube.LiveBroadcasts.Insert(broadcast, "id,snippet,status").Execute();
-
-
-            return returnedBroadcast;
-        }*/
+            return View();
+        }
     }
 }

@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using SmartRoom.Web.App_Start;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using SmartRoom.Web.App_Start;
 
 namespace SmartRoom.Web.Areas.YouTube.Controllers
 {

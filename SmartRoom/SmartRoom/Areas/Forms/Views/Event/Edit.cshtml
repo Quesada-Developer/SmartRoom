@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewBag.Title = "Edit";
+}
+@section scripts{
+    @Scripts.Render("~/Scripts/angular.min.js")
+    @Scripts.Render("~/Scripts/daypilot-all.min.js")
+}
+<h2>Edit</h2>
+
+@{
+    Layout = null;
+}
+    <style>
+        p, body, td {
+            font-family: Tahoma, Arial, Sans-Serif;
+            font-size: 10pt;
+        }
+    </style>
+    <form id="f" method="post" action="@Url.Action("Edit")">
+        <h2>Edit Event</h2>
+
+        <div style="margin-top:20px">
+            <div>Event text</div>
+            @Html.TextBox("Title") @Html.Hidden("Id")
+        </div>
+
+        <div>Start</div>
+        <div>@Html.TextBox("StartDate")</div>
+
+        <div>End</div>
+        <div>@Html.TextBox("EndDate")</div>
+
+        <div style="margin-top:20px">
+            <input type="submit" id="ButtonSave" value="Save" />
+            <a href="javascript:DayPilot.Modal.close()">Cancel</a>
+        </div>
+
+    </form>
+
+    <script type="text/javascript">
+        $("#f").submit(function () {
+            var f = $("#f");
+            $.post(f.action, f.serialize(), function (result) {
+                DayPilot.Modal.close(result);
+            });
+            return false;
+        });
+
+        $(document).ready(function () {
+            $("#Title").focus();
+        });
+
+    </script>
+

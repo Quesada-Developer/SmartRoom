@@ -1,28 +1,33 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using Google.Apis.Calendar.v3;
+using Google.Apis.Calendar.v3.Data;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using SmartRoom.Web.App_Start;
+using SmartRoom.Web.Helpers;
 using SmartRoom.Web.Models;
+using System;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using settings = SmartRoom.Web.Properties.Settings;
 
 namespace SmartRoom.Web.Controllers
 {
-    using SmartRoom.Web.App_Start;
-    using settings = Properties.Settings;
-    
+
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private SmartModel db = new SmartModel();
 
         public AccountController()
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -34,9 +39,9 @@ namespace SmartRoom.Web.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -120,7 +125,7 @@ namespace SmartRoom.Web.Controllers
             // If a user enters incorrect codes for a specified amount of time then the user account 
             // will be locked out for a specified amount of time. 
             // You can configure the account lockout settings in IdentityConfig
-            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent:  model.RememberMe, rememberBrowser: model.RememberBrowser);
+            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent: model.RememberMe, rememberBrowser: model.RememberBrowser);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -154,7 +159,7 @@ namespace SmartRoom.Web.Controllers
 
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
-                
+
 
                 if (result.Succeeded)
                 {
@@ -171,14 +176,14 @@ namespace SmartRoom.Web.Controllers
 
                     if (model.Email.Contains("bbell31") || model.Email.Contains("ciscoql") || model.Email.Contains("scarver6") || model.Email.Contains("stevenjc721") || model.Email.Contains("cnordike") || model.Email.Contains("ebevers"))
                     {
-                        
+
                         await UserManager.AddToRoleAsync(user.Id, "Teacher");
                     }
 
 
 
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
@@ -349,7 +354,7 @@ namespace SmartRoom.Web.Controllers
             {
                 return RedirectToAction("Login");
             }
-            
+
             // Sign in the user with this external login provider if the user already has a login
             var result = await SignInManager.ExternalSignInAsync(loginInfo, isPersistent: false);
             switch (result)
@@ -363,11 +368,11 @@ namespace SmartRoom.Web.Controllers
                 case SignInStatus.Failure:
                 default:
                     // If the user does not have an account, then prompt the user to create an account
-                  /*  if (!loginInfo.Email.Contains(Properties.Settings.Default.UniversityDomain))
-                    {
-                        ViewBag.Error = "Email must be a a valid University email.";
-                        return View("ExternalLoginFailure");
-                    }*/
+                    /*  if (!loginInfo.Email.Contains(Properties.Settings.Default.UniversityDomain))
+                      {
+                          ViewBag.Error = "Email must be a a valid University email.";
+                          return View("ExternalLoginFailure");
+                      }*/
                     ViewBag.ReturnUrl = returnUrl;
                     ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
                     return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Email = loginInfo.Email });
@@ -385,15 +390,14 @@ namespace SmartRoom.Web.Controllers
             {
                 return RedirectToAction("Index", "Manage");
             }
-
             if (ModelState.IsValid)
             {
                 // Get the information about the user from the external login provider
                 var info = await AuthenticationManager.GetExternalLoginInfoAsync();
-               /* if (info == null || !model.Email.Contains(settings.Default.UniversityDomain))
-                {
-                    return View("ExternalLoginFailure");
-                }*/
+                /* if (info == null || !model.Email.Contains(settings.Default.UniversityDomain))
+                 {
+                     return View("ExternalLoginFailure");
+                 }*/
                 var user = new ApplicationUser { UserName = info.ExternalIdentity.Name, Email = model.Email };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
@@ -417,6 +421,16 @@ namespace SmartRoom.Web.Controllers
                             await UserManager.AddToRoleAsync(user.Id, "Admin");
                         }
                         await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
+
+                        var course = db.Courses.Where(x => x.RegistrationCode == model.RegistrationCode).FirstOrDefault();
+                        if (course != null)
+                        {
+                            UserRelationship _UserRelationship = new UserRelationship() { AccountId = User.Identity.GetUserId(), AccountRole = CourseRole.student, CourseId = course.Id, CreatedBy = User.Identity.GetUserId() };
+                            db.UserRelationships.Add(_UserRelationship);
+                            db.SaveChanges();
+                        }
+                        //await CreateCalendar();
                         return RedirectToLocal(returnUrl);
                     }
                 }
@@ -437,7 +451,7 @@ namespace SmartRoom.Web.Controllers
             return RedirectToAction("Index", "Home", new { area = "" });
         }
 
-        
+
 
         //
         // GET: /Account/ExternalLoginFailure
@@ -525,5 +539,15 @@ namespace SmartRoom.Web.Controllers
             }
         }
         #endregion
+
+        private async Task CreateCalendar()
+        {
+            CalendarService googlecalender = new CalendarService(await (new GoogleAuthentication()).GetInitializer());
+            var calendarRequest = googlecalender.Calendars.Get("primary");
+            var result = calendarRequest.Execute();
+
+
+            Event test = new Event();
+        }
     }
 }
