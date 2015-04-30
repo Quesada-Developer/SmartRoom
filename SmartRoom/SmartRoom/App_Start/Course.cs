@@ -81,6 +81,7 @@ namespace SmartRoom.Web.App_Start
         public int CourseOptionsId { get; set; }
         public virtual CourseOption CourseOptions { get; set; }
         public virtual ICollection<YoutubeLiveDetail> YoutubeLiveDetails { get; set; }
+        public virtual ICollection<CoursePlaylist> CoursePlaylist { get; set; }
         public virtual List<Announcement> Announcements { get; set; }
         public virtual List<UserRelationship> UserRelationships { get; set; }
         public virtual ICollection<Syllabus> Syllabi { get; set; }

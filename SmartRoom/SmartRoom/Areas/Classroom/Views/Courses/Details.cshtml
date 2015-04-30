@@ -90,12 +90,23 @@
 @if (nextStream != null)
 { 
 <div class="row">
-    <a href="@Url.Action("Details", "YouTube", new { area = "YouTube", id = nextStream.Id })">
+    <a href="@Url.Action("Details", "YouTube", new { area = "YouTube", id = nextStream.Id})">
         <div class="class-container">
             <img src="~/Content/images/YouTube-icon-full_color.png" width="100" />Next Stream
         </div>
         </a>
 </div>
+}
+    @{SmartRoom.Web.App_Start.CoursePlaylist nextPlaylist = Model.CoursePlaylist.Where(x => x.CourseId == Model.Id).FirstOrDefault();}
+    @if (nextPlaylist != null)
+{
+        <div class="row">
+            <a href="@Url.Action("Details", "CoursePlaylists", new { area = "YouTube", id = nextPlaylist.CoursePlaylistId })">
+                <div class="class-container">
+                    <img src="~/Content/images/YouTube-icon-full_color.png" width="100" />Next Playlist
+                </div>
+            </a>
+        </div>
 <hr class="course-hr" />
 }
 @if (Model.UserRelationships.Any(obj => obj.AccountId.Equals(User.Identity.GetUserId()) && obj.AccountRole == SmartRoom.Web.Helpers.CourseRole.owner))
