@@ -1,8 +1,11 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using Google.Apis.Calendar.v3;
+using Google.Apis.Calendar.v3.Data;
+using Microsoft.AspNet.Identity;
 using SmartRoom.Web.App_Start;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace SmartRoom.Web.Controllers
@@ -12,7 +15,7 @@ namespace SmartRoom.Web.Controllers
         SmartModel model = new SmartModel();
 
         [Authorize]
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
             //ApplicationUser user = context.Users.Where(u => u.UserName.Equals(UserName, StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
             //var account = new AccountController();
@@ -30,8 +33,20 @@ namespace SmartRoom.Web.Controllers
             {
 
             }
+            //await CreateCalendar();
 
             return View(CourseList);
+        }
+        private async Task CreateCalendar()
+        {
+            CalendarService googlecalender = new CalendarService(await (new GoogleAuthentication()).GetInitializer());
+            Calendar calendar = new Calendar();
+            calendar.Summary = "sampleCalendar";
+            calendar.Id = "#contacts@group.v.calendar.google.com";
+            calendar.Kind = "calendar#calendar";
+
+            var calendarRequest = googlecalender.Calendars.Insert(calendar);
+            var result = calendarRequest.Execute();
         }
 
         public ActionResult About()

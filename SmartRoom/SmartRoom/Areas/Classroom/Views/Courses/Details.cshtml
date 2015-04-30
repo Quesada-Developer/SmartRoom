@@ -8,7 +8,7 @@
 
 <div id="alert_placeholder"></div>
 <div class="row">
-        @Html.Partial("Partial/_CourseMenu", Model.UserRelationships.Where(x => x.AccountId.Equals(User.Identity.GetUserId())))
+    @Html.Partial("Partial/_CourseMenu", Model.UserRelationships.Where(x => x.AccountId.Equals(User.Identity.GetUserId())))
 
 </div>
 <hr class="course-hr" />
@@ -20,204 +20,239 @@
                 @{string professor = Model.UserRelationships.Where(x => x.AccountRole == SmartRoom.Web.Helpers.CourseRole.owner).Select(x => x.Account.UserName).First();}
                 <h4>
                     @professor
-            </h4>
+                </h4>
 
 
-        </div>
-        <div class="col-left">
-            <!--col-sm-6-->
-            <dl class="dl-horizontal">
-                <dt>
-                    @Html.DisplayNameFor(model => model.Term)
-                </dt>
+            </div>
+            <div class="col-left">
+                <!--col-sm-6-->
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Term)
+                    </dt>
 
-                <dd>
-                    @Html.DisplayFor(model => model.Term)
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.Location)
-                </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Term)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Location)
+                    </dt>
 
-                <dd>
-                    @Html.DisplayFor(model => model.Location)
-                </dd>
-            </dl>
-            <dl class="dl-horizontal">
-                <dt>
-                    @Html.DisplayNameFor(model => model.StartDate)
-                </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Location)
+                    </dd>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.StartDate)
+                    </dt>
 
-                <dd>
-                    @Html.DisplayFor(model => model.StartDate)
-                </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.StartDate)
+                    </dd>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.EndDate)
-                </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.EndDate)
+                    </dt>
 
-                <dd>
-                    @Html.DisplayFor(model => model.EndDate)
-                </dd>
-            </dl>
+                    <dd>
+                        @Html.DisplayFor(model => model.EndDate)
+                    </dd>
+                </dl>
+            </div>
         </div>
     </div>
 </div>
-</div>
 <hr class="course-hr" />
+<div class="row">
 
-@{List<SmartRoom.Web.App_Start.Announcement> announcementList = Model.Announcements.Where(x => x.PublishOn >= DateTime.Now.AddDays(-1)).OrderBy(x => x.PublishOn).Take(7).ToList();}
-@if (announcementList.Count() > 0)
-{
-    <div class="form-horizontal announcements">
+    @{List<SmartRoom.Web.App_Start.Announcement> announcementList = Model.Announcements.Where(x => x.PublishOn >= DateTime.Now.AddDays(-1)).OrderBy(x => x.PublishOn).Take(7).ToList();}
+    @if (announcementList.Count() > 0)
+    {
+        <div class="form-horizontal announcements">
             <h2 title="Announcements">Announcements</h2>
 
             @for (int i = 0; i < announcementList.Count(); i++)
-        {
+            {
                 @Html.DisplayFor(model => announcementList[i].PublishOn); <text> - </text>
                 @Html.DisplayFor(model => announcementList[i].NewsTitle);<br />
 
                 @Html.DisplayFor(mode => announcementList[i].NewsText);<br />
-        }
+            }
             <a href="@Url.Action("Index", "Announcements", new { area = "Forms", id = Model.Id })">
                 <div>View All</div>
             </a>
         </div>
-    <hr class="course-hr" />
-}
-@{SmartRoom.Web.App_Start.YoutubeLiveDetail nextStream = Model.YoutubeLiveDetails.Where(x => x.BroadcastScheduledStartTime.Day >= DateTime.Now.Day).OrderBy(x => x.BroadcastScheduledStartTime).FirstOrDefault();}
-@if (nextStream != null)
-{ 
-<div class="row">
-    <a href="@Url.Action("Details", "YouTube", new { area = "YouTube", id = nextStream.Id})">
-        <div class="class-container">
-            <table>
-                <tr>
-                    <td>
-                        <img src="~/Content/images/YouTube-icon-full_color.png" width="100" />
-                    </td>
-                    <td>
-            <h2>View Next Stream</h2>
-                    </td>
-                </tr>
-            </table>
-        </div>
+    }
+    @{SmartRoom.Web.App_Start.YoutubeLiveDetail nextStream = Model.YoutubeLiveDetails.Where(x => x.BroadcastScheduledStartTime.Date >= DateTime.Now.Date.AddDays(-1)).OrderBy(x => x.BroadcastScheduledStartTime).FirstOrDefault();}
+    @if (nextStream != null)
+    {
+        <a href="@Url.Action("Details", "YouTube", new { area = "YouTube", id = nextStream.Id})">
+            <div class="class-container">
+                <table>
+                    <tr>
+                        <td>
+                            <img src="~/Content/images/YouTube-icon-full_color.png" width="100" />
+                        </td>
+                        <td>
+                            <h2>View Next Stream</h2>
+                        </td>
+                    </tr>
+                </table>
+            </div>
         </a>
-</div>
-}
+    }
     @{SmartRoom.Web.App_Start.CoursePlaylist nextPlaylist = Model.CoursePlaylist.Where(x => x.CourseId == Model.Id).FirstOrDefault();}
     @if (nextPlaylist != null)
-{
+    {
+        <a href="@Url.Action("Details", "CoursePlaylists", new { area = "YouTube", id = nextPlaylist.CoursePlaylistId })">
+            <div class="class-container">
+                <table>
+                    <tr>
+                        <td>
+                            <img src="~/Content/images/YouTube-icon-full_color.png" width="100" />
+                        </td>
+                        <td>
+                            <h2>View Playlist</h2>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </a>
+    }
+    @{SmartRoom.Web.App_Start.Syllabus syllabus = Model.Syllabi.FirstOrDefault();}
+    @if (syllabus != null)
+    {
+        <a href="@Url.Action("Details", "Syllabus", new { area = "Forms", id = syllabus.Id })">
+            <div class="class-container">
+                <table>
+                    <tr>
+                        <td>
+                            <h2>View Syllabus</h2>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </a>
+    }
+    </div>
+    <hr class="course-hr" />
+    @if (Model.UserRelationships.Any(obj => obj.AccountId.Equals(User.Identity.GetUserId()) && obj.AccountRole == SmartRoom.Web.Helpers.CourseRole.owner))
+    {
+
         <div class="row">
-            <a href="@Url.Action("Details", "CoursePlaylists", new { area = "YouTube", id = nextPlaylist.CoursePlaylistId })">
+
+            <a href="@Url.Action("Index", "Event", new { area = "Forms", id = Model.Id })">
                 <div class="class-container">
-                    <img src="~/Content/images/YouTube-icon-full_color.png" width="100" />Next Playlist
+                    <h3>
+                        CALENDAR
+                    </h3>
+                </div>
+            </a>
+            <a href="@Url.Action("Create","Syllabus",new{area="Forms",id = Model.Id})">
+                <div class="class-container">
+                    <h3>
+                        CREATE A SYLLABUS
+                    </h3>
+                </div>
+            </a>
+            <a href="@Url.Action("Create","CoursePlaylists",new{area="YouTube",id = Model.Id})">
+                <div class="class-container">
+                    <h3>
+                        CREATE A PLAYLIST
+                    </h3>
+                </div>
+            </a>
+            <a href="@Url.Action("Create", "YouTube", new { area = "YouTube", id = Model.Id })">
+                <div class="class-container">
+                    <h3>
+                        CREATE A NEW STREAM
+                    </h3>
+
+                </div>
+            </a>
+            <a href="@Url.Action("Create", "Announcements", new { area = "Forms", id = Model.Id })">
+                <div class="class-container">
+                    <h3>
+                        CREATE AN ANNOUNCEMENT
+                    </h3>
                 </div>
             </a>
         </div>
+        <hr class="course-hr" />
+
     }
-    <hr class="course-hr" />
 
-@if (Model.UserRelationships.Any(obj => obj.AccountId.Equals(User.Identity.GetUserId()) && obj.AccountRole == SmartRoom.Web.Helpers.CourseRole.owner))
-{
+    @if (Model.UserRelationships.Any(obj => obj.AccountId.Equals(User.Identity.GetUserId()) && obj.AccountRole == SmartRoom.Web.Helpers.CourseRole.owner))
+    {
+        @* This Section is viewed by admins only. *@
+        <div class="row">
+            <div class="form">
+                <div class="class-container">
+                    <div class="col-sm-12">
+                        @Html.Hidden("CourseId", Model.Id)
+                        <div id="UserSection">
+                            @Html.Partial("Partial/_UserRelationships", Model.UserRelationships.Where(obj => obj.IsActive))
+                            @Html.Partial("Partial/_AddUserRelationships", new SmartRoom.Web.Areas.Classroom.Models.AddUserToCourse() { CourseId = Model.Id })
+                        </div>
+                        <hr class="course-hr" />
+                        <dl class="dl-horizontal">
 
-    <div class="row">
-        <a href="@Url.Action("Create", "YouTube", new { area = "YouTube", id = Model.Id })">
-            <div class="class-container">
-                <h3>
-                    CREATE A NEW STREAM
-                </h3>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.RegistrationCode)
+                            </dt>
 
-            </div>
-        </a>
-        <a href="@Url.Action("Create", "Announcements", new { area = "Forms", id = Model.Id })">
-            <div class="class-container">
-                <h3>
-                    CREATE AN ANNOUNCEMENT
-                </h3>
-            </div>
-        </a>
-        <a href="@Url.Action("Create","Syllabus",new{area="Forms",id = Model.Id})">
-            <div class="class-container">
-                <h3>
-                    CREATE A SYLLABUS [TO DO]
-                </h3>
-            </div>
-        </a>
-    </div>
-    <hr class="course-hr" />
+                            <dd>
+                                @Html.DisplayFor(model => model.RegistrationCode)
+                            </dd>
 
-}
+                        </dl>
+                        @Html.ActionLink("Edit Course", "Edit", new { id = Model.Id }, new { @class = "btn btn-primary btn-sm", @style = "margin:10px;" })
+                        @*@Html.Partial("Partial/_AddUserRelationships", new SmartRoom.Web.Areas.Classroom.Models.AddUserToCourse() { CourseId = Model.Id })*@
 
-@if (Model.UserRelationships.Any(obj => obj.AccountId.Equals(User.Identity.GetUserId()) && obj.AccountRole == SmartRoom.Web.Helpers.CourseRole.owner))
-{
-    @* This Section is viewed by admins only. *@
-    <div class="row">
-        <div class="form">
-            <div class="class-container">
-                <div class="col-sm-12">
-                    @Html.Hidden("CourseId", Model.Id)
-                    <div id="UserSection">
-                        @Html.Partial("Partial/_UserRelationships", Model.UserRelationships.Where(obj => obj.IsActive))
-                        @Html.Partial("Partial/_AddUserRelationships", new SmartRoom.Web.Areas.Classroom.Models.AddUserToCourse() { CourseId = Model.Id })
                     </div>
-                    <hr class="course-hr" />
-                    <dl class="dl-horizontal">
-
-                        <dt>
-                            @Html.DisplayNameFor(model => model.RegistrationCode)
-                        </dt>
-
-                        <dd>
-                            @Html.DisplayFor(model => model.RegistrationCode)
-                        </dd>
-
-                    </dl>
-                    @Html.ActionLink("Edit Course", "Edit", new { id = Model.Id }, new { @class = "btn btn-primary btn-sm", @style = "margin:10px;" })
-                    @*@Html.Partial("Partial/_AddUserRelationships", new SmartRoom.Web.Areas.Classroom.Models.AddUserToCourse() { CourseId = Model.Id })*@
-
                 </div>
             </div>
         </div>
-    </div>
-}
-
-@section scripts{
-    <script>
-        $(document).ready(function () {
-            $("form").submit(function () { // you can use any selector that match your form
-                $.ajax({
-                    url: this.action,
-                    type: this.method,
-                    data: $(this).serialize()
-                }).done(function (data) {
-                    $('#AddUser').modal('hide');
-                    UpdateUsers();
-                    $('#alert_placeholder').html('<div class="alert alert-success" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>' + data + '</div>')
-                })
-                .fail(function (jqXHR, textStatus) {
-                    $('#alert_placeholder_adduser').html('<div class="alert alert-danger" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>' + jqXHR.responseText + '</div>')
-                })
-                ;
-                $('#alert_placeholder').html('<div class="alert alert-danger" role="alert">error</div>')
-                return false; // prevent the form submission
-            });
-        });
-
-    function UpdateUsers() {
-        var xmlhttp;
-        if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
-            xmlhttp = new XMLHttpRequest();
-        }
-        else {// code for IE6, IE5
-            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-        }
-        xmlhttp.onreadystatechange = function () {
-            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                document.getElementById("UserSection").innerHTML = xmlhttp.responseText;
-            }
-        }
-        xmlhttp.open("GET", "../GetUsers/?CourseId=" + $("#CourseId").val(), true);
-        xmlhttp.send();
     }
-    </script>
-}
+
+    @section scripts{
+        <script>
+            $(document).ready(function () {
+                $("form").submit(function () { // you can use any selector that match your form
+                    $.ajax({
+                        url: this.action,
+                        type: this.method,
+                        data: $(this).serialize()
+                    }).done(function (data) {
+                        $('#AddUser').modal('hide');
+                        UpdateUsers();
+                        $('#alert_placeholder').html('<div class="alert alert-success" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>' + data + '</div>')
+                    })
+                    .fail(function (jqXHR, textStatus) {
+                        $('#alert_placeholder_adduser').html('<div class="alert alert-danger" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>' + jqXHR.responseText + '</div>')
+                    })
+                    ;
+                    $('#alert_placeholder').html('<div class="alert alert-danger" role="alert">error</div>')
+                    return false; // prevent the form submission
+                });
+            });
+
+            function UpdateUsers() {
+                var xmlhttp;
+                if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+                    xmlhttp = new XMLHttpRequest();
+                }
+                else {// code for IE6, IE5
+                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                xmlhttp.onreadystatechange = function () {
+                    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                        document.getElementById("UserSection").innerHTML = xmlhttp.responseText;
+                    }
+                }
+                xmlhttp.open("GET", "../GetUsers/?CourseId=" + $("#CourseId").val(), true);
+                xmlhttp.send();
+            }
+        </script>
+    }

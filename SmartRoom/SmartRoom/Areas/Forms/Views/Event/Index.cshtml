@@ -42,7 +42,7 @@
                 var params = {
                     start: args.start.toString(),
                     end: args.end.toString(),
-                    text: "New event"
+                    text: "Senior Project Event"
                 };
 
                 $http.post('@Url.Action("Create", "Calendar")', params).success(function (data) {

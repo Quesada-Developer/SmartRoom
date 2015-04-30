@@ -430,7 +430,6 @@ namespace SmartRoom.Web.Controllers
                             db.UserRelationships.Add(_UserRelationship);
                             db.SaveChanges();
                         }
-                        await CreateCalendar();
                         return RedirectToLocal(returnUrl);
                     }
                 }
@@ -540,16 +539,5 @@ namespace SmartRoom.Web.Controllers
         }
         #endregion
 
-        private async Task CreateCalendar()
-        {
-            CalendarService googlecalender = new CalendarService(await (new GoogleAuthentication()).GetInitializer());
-            Calendar calendar = new Calendar();
-            calendar.Summary = "sampleCalendar";
-            calendar.Id = "_Sample";
-            calendar.Kind = "calendar#calendar";
-
-            var calendarRequest = googlecalender.Calendars.Insert(calendar);
-            var result = calendarRequest.Execute();
-        }
     }
 }
